@@ -1,0 +1,51 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem;
+}
+
+.left-side,
+.center-side,
+.right-side {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.center-side {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+
+  &:hover {
+    color: #ccc;
+    text-decoration: underline;
+  }
+}
+
+.right-side {
+  justify-content: flex-end;
+}
+
+.search-icon {
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  &:hover {
+    color: #ccc;
+  }
+}

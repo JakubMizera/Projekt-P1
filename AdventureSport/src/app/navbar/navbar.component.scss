@@ -1,51 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
   padding: 1rem;
+  background-color:transparent;
 }
 
-.left-side,
-.center-side,
-.right-side {
+.left-side {
   display: flex;
   align-items: center;
 }
 
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+}
+
 .brand {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
-  margin-right: 1rem;
 }
 
 .center-side {
-  flex-grow: 1;
-  justify-content: center;
+  display: flex;
 }
 
 .nav-link {
   color: #fff;
   text-decoration: none;
-  margin: 0 0.5rem;
+  margin: 0 10px;
 
   &:hover {
-    color: #ccc;
-    text-decoration: underline;
+    color: #ddd;
   }
 }
 
 .right-side {
-  justify-content: flex-end;
+  display: flex;
 }
 
 .search-icon {
   color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-
-  &:hover {
-    color: #ccc;
-  }
+  font-size: 1.25rem;
 }
+

@@ -1,4 +1,6 @@
 import * as z from 'zod';
+import { db } from '../../db';
+import { WithId } from 'mongodb'
 
 // Validation schema for User
 // TO DO - change user for project needs 
@@ -11,4 +13,9 @@ export const User = z.object({
     country: z.string(),
 });
 
+// Creating interface for User
 export type User = z.infer<typeof User>;
+// Added Id from MongoDB 
+export type UserWithId = WithId<User>;
+// Connecting to MongoDB
+export const Users = db.collection<User>('users');

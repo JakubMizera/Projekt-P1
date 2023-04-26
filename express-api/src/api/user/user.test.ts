@@ -9,7 +9,7 @@ beforeAll(async ()=> {
     try {
         await Users.drop();
     } catch (error) {
-        
+        console.error(error);
     }
 })
 

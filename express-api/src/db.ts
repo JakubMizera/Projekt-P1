@@ -1,11 +1,13 @@
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
-// TO DO - update connection to db
-const username = encodeURIComponent("JakubMizera");
-const password = encodeURIComponent("sG7KeFtl5HjupZ4B");
+dotenv.config();
+
+const mongoUsername = process.env.MONGOUSERNAME;
+const password = process.env.PASSWORD;
 
 const {
-    MONGO_URI = `mongodb+srv://${username}:${password}@adventuresport.ea7tjzl.mongodb.net/?retryWrites=true&w=majoritydb://localhost/AdventureSport`,
+    MONGO_URI = `mongodb+srv://${mongoUsername}:${password}@adventuresport.ea7tjzl.mongodb.net/?retryWrites=true&w=majoritydb://localhost/AdventureSport`,
 } = process.env;
 
 export const client = new MongoClient(MONGO_URI);

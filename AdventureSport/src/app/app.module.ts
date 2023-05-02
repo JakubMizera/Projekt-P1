@@ -14,8 +14,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     NavbarComponent,
     BackgroundImageComponent,
     SearchBarComponent,
-
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule

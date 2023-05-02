@@ -1,0 +1,56 @@
+.background-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.background-image {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/images/Main.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.adventure-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.text-top{
+
+  font-size: 3rem;
+  color: #fff;
+  font-family:normal normal bold 36px/48px Astoria;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  text-align: center;
+  letter-spacing: 5.04px;
+}
+.text-bottom {
+  top: 358px;
+  left: 549px;
+  width: 862px;
+  height: 127px;
+  font-size: 6rem;
+  color: #fff;
+  font-family: var(--unnamed-font-style-normal) normal 900 95px/129px Blenny;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  text-align: center;
+  letter-spacing: 5.04px;
+}
+
+

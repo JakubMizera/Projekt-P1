@@ -1,8 +1,8 @@
 @import '../../styles/variables';
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   padding: 50px 20px;
   background-color: transparent;
@@ -26,6 +26,7 @@
 
   .center-side {
     display: flex;
+    justify-content: center;
 
     .nav-link {
       font-size: 22px;
@@ -45,6 +46,7 @@
 
   .right-side {
     display: flex;
+    justify-content: flex-end;
 
     .search-icon {
       color: #fff;

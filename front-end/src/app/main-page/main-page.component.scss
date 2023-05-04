@@ -1,3 +1,8 @@
+:host {
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+}
+
 .background-image {
     position: absolute;
     top: 0;
@@ -24,15 +29,16 @@ main {
     justify-content: center;
     align-items: center;
     color: #fff;
-    margin-top: 100px;
     
     h2 {
         font-size: 2rem;
         letter-spacing: 5.04px;
+        text-align: center;
     }
 
     h1 {
         font-size: 5rem;
         letter-spacing: 34.2px;
+        text-align: center;
     }
 }

@@ -1,26 +1,28 @@
-.background-container {
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     background-image: url(./../../assets/images/Main.png);
     background-size: cover;
-    min-height: 400px;
-    margin-top: -1px;
-    color: #FFFFFF;
+    width: 100vw;
+    min-height: 800px;
+    z-index: -1;
+}
 
-    main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    
+    h2 {
+        font-size: 2rem;
+        letter-spacing: 5.04px;
+    }
 
-        h3 {
-            font-size: 2rem;
-            letter-spacing: 5.04px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 5rem;
-            letter-spacing: 34.2px;
-            text-align: center;
-        }
+    h1 {
+        font-size: 5rem;
+        letter-spacing: 34.2px;
     }
 }

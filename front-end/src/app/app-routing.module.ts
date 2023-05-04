@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { EventsComponent } from './events/events.component';
+import { ContactComponent } from './contact/contact.component';
+
 
 const routes: Routes = [
-  // {path: '', component: NavbarComponent}
+  {path: '', component: MainPageComponent},
+  {path:'about', component: AboutUsComponent},
+  {path:'events', component: EventsComponent},
+  {path:'contact', component: ContactComponent},
 ];
 
 @NgModule({

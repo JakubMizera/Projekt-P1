@@ -1,0 +1,26 @@
+.background-container {
+    background-image: url(./../../assets/images/Main.png);
+    background-size: cover;
+    min-height: 400px;
+    margin-top: -1px;
+    color: #FFFFFF;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+            font-size: 2rem;
+            letter-spacing: 5.04px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 5rem;
+            letter-spacing: 34.2px;
+            text-align: center;
+        }
+    }
+}

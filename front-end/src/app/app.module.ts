@@ -9,6 +9,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { SliderComponent } from './slider/slider.component';
 
 
 @NgModule({
@@ -20,10 +22,12 @@ import { ContactComponent } from './contact/contact.component';
     MainPageComponent,
     EventsComponent,
     ContactComponent,
+    SliderComponent,
     ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+      SlickCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

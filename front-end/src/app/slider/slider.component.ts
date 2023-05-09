@@ -1,32 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import Splide from '@splidejs/splide';
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
 })
-export class SliderComponent implements OnInit {
-  images = [
-    'assets/images/image1.jpg',
-    'assets/images/image2.jpg',
-    'assets/images/image3.jpg',
-    'assets/images/image4.jpg',
-    'assets/images/image5.jpg',
-    'assets/images/image6.jpg',
-  ];
+export class SliderComponent implements AfterViewInit {
+  constructor(private elRef: ElementRef) {}
 
-  sliderConfig = {
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    arrows: true,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    dots: true,
-    infinite: true
-  };
+  ngAfterViewInit() {
+    new Splide(this.elRef.nativeElement.querySelector('.splide'), {
+      perPage: 5,
+      type: 'loop',
+      cover: true,
+      height: '10rem',
+      focus: 'center',
+      breakpoints: {
+        768: {
+          height: '6rem',
+        },
+      },
+    }).mount();
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 }

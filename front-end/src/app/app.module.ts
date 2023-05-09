@@ -11,6 +11,7 @@ import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SliderComponent } from './slider/slider.component';
+import { SidePanelComponent } from './side-panel/side-panel.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { SliderComponent } from './slider/slider.component';
     EventsComponent,
     ContactComponent,
     SliderComponent,
+    SidePanelComponent,
     ],
   imports: [
     BrowserModule,

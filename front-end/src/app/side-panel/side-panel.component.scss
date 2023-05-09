@@ -1,0 +1,65 @@
+aside {
+    max-width: 306px;
+    display: grid;
+    grid-template-rows: 1fr 400px 2fr;
+    box-shadow: 15px 0px 97px -11px #00000026;
+
+    .brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+
+        img {
+            margin-left: -20px;
+            width: 98px;
+            aspect-ratio: 16/10;
+        }
+
+        .brandName {
+            font-size: 26px;
+        }
+    }
+
+    .forwardBtns {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        font-size: 19px;
+        color: #8D8D8D;
+        padding-top: 50px;
+
+        .asideBtn {
+            padding: 20px 70px;
+            cursor: pointer;
+            text-align: center;
+
+            i {
+                padding-right: 6px;
+            }
+
+            &:hover {
+                color: black;
+                transition: color .3s;
+            }
+        }
+    }
+
+    .bottomBtns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        .bottomBtn {
+            color: #226CFC;
+            background-color: #dfe9ff;
+            font-size: 18px;
+            font-weight: 600;
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 7px;
+        }
+    }
+}

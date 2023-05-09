@@ -1,8 +1,8 @@
 .carousel {
-  width: 100%;
-  height: auto;
+  width: 100vw;
   margin-bottom: 20px;
-
+  box-sizing: border-box;
+  overflow-x: hidden;
   .slide {
     display: grid;
     grid-template-columns: repeat(1, 381px);
@@ -20,6 +20,7 @@
       width: 381px;
       height: 381px;
       object-fit: cover;
+
     }
   }
 }
@@ -41,3 +42,7 @@
 .slick-dots {
   bottom: -30px;
 }
+
+
+
+

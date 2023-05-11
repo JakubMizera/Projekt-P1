@@ -1,3 +1,12 @@
+:host {
+    display: grid;
+    grid-template-columns: 306px 1fr;
+}
+
+router-outlet {
+    display: none;
+}
+
 aside {
     max-width: 306px;
     display: grid;
@@ -9,6 +18,7 @@ aside {
         align-items: center;
         justify-content: center;
         padding: 10px;
+        cursor: pointer;
 
         img {
             margin-left: -20px;

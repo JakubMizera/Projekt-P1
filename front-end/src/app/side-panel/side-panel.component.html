@@ -1,28 +1,41 @@
 <aside>
-    <div class="brand">
+    <div class="brand" routerLink="">
         <img src="../../assets/images/Logo.png" alt="Adventure Sport logo">
         <span class="brandName">AdventureSport</span>
     </div>
     <div class="forwardBtns">
-        <button class="asideBtn">
-            <i class="fas fa-bars-staggered"></i>
-            Lista kursów
-        </button>
-        <button class="asideBtn">
-            <i class="fas fa-cart-shopping"></i>
-            Zakupione
-        </button>
-        <button class="asideBtn">
-            <i class="fas fa-file-lines"></i>
-            Historia płatności
-        </button>
-        <button class="asideBtn">
-            <i class="fas fa-gear"></i>
-            Ustawienia
-        </button>
+        <a routerLink="courses">
+            <button class="asideBtn">
+                <i class="fas fa-bars-staggered"></i>
+                Lista kursów
+            </button>
+        </a>
+        <a routerLink="purchased">
+            <button class="asideBtn">
+                <i class="fas fa-cart-shopping"></i>
+                Zakupione
+            </button>
+        </a>
+        <a routerLink="payment">
+            <button class="asideBtn">
+                <i class="fas fa-file-lines"></i>
+                Historia płatności
+            </button>
+        </a>
+        <a routerLink="settings">
+            <button class="asideBtn">
+                <i class="fas fa-gear"></i>
+                Ustawienia
+            </button>
+        </a>
     </div>
     <div class="bottomBtns">
-        <button class="bottomBtn">Dodaj kurs</button>
-        <button class="bottomBtn">Kontakt z pomocą</button>
+        <button routerLink="createcourse" class="bottomBtn">
+            <a>Dodaj kurs</a>
+        </button>
+        <button routerLink="contact" class="bottomBtn">
+            <a>Kontakt z pomocą</a>
+        </button>
     </div>
 </aside>
+<router-outlet></router-outlet>

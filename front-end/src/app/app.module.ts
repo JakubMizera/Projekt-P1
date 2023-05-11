@@ -12,6 +12,11 @@ import { ContactComponent } from './contact/contact.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SliderComponent } from './slider/slider.component';
 import { SidePanelComponent } from './side-panel/side-panel.component';
+import { UserViewComponent } from './user-view/user-view.component';
+import { UserCoursesComponent } from './user-courses/user-courses.component';
+import { UserPaymentHistoryComponent } from './user-payment-history/user-payment-history.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { UserPurchasedComponent } from './user-purchased/user-purchased.component';
 
 
 @NgModule({
@@ -25,6 +30,11 @@ import { SidePanelComponent } from './side-panel/side-panel.component';
     ContactComponent,
     SliderComponent,
     SidePanelComponent,
+    UserViewComponent,
+    UserCoursesComponent,
+    UserPaymentHistoryComponent,
+    UserSettingsComponent,
+    UserPurchasedComponent,
     ],
   imports: [
     BrowserModule,

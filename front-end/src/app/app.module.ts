@@ -17,6 +17,8 @@ import { UserCoursesComponent } from './user-courses/user-courses.component';
 import { UserPaymentHistoryComponent } from './user-payment-history/user-payment-history.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserPurchasedComponent } from './user-purchased/user-purchased.component';
+import { UserAddCourseComponent } from './user-add-course/user-add-course.component';
+import { UserContactComponent } from './user-contact/user-contact.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { UserPurchasedComponent } from './user-purchased/user-purchased.componen
     UserPaymentHistoryComponent,
     UserSettingsComponent,
     UserPurchasedComponent,
+    UserAddCourseComponent,
+    UserContactComponent,
     ],
   imports: [
     BrowserModule,

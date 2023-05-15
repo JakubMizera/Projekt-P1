@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserPurchasedComponent } from './user-purchased/user-purchased.component';
 import { UserAddCourseComponent } from './user-add-course/user-add-course.component';
 import { UserContactComponent } from './user-contact/user-contact.component';
+import { UserHeaderComponent } from './user-header/user-header.component';
 
 
 @NgModule({
@@ -39,11 +41,13 @@ import { UserContactComponent } from './user-contact/user-contact.component';
     UserPurchasedComponent,
     UserAddCourseComponent,
     UserContactComponent,
+    UserHeaderComponent,
     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
       SlickCarouselModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

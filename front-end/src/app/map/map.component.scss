@@ -1,0 +1,21 @@
+.map-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.map-container h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+
+}
+
+.map-image {
+  max-width: 40%;
+  border-radius: 10px;
+}
+

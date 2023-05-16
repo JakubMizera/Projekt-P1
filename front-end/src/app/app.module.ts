@@ -21,6 +21,7 @@ import { UserPurchasedComponent } from './user-purchased/user-purchased.componen
 import { UserAddCourseComponent } from './user-add-course/user-add-course.component';
 import { UserContactComponent } from './user-contact/user-contact.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { UserHeaderComponent } from './user-header/user-header.component';
     UserAddCourseComponent,
     UserContactComponent,
     UserHeaderComponent,
+    MapComponent,
     ],
   imports: [
     BrowserModule,

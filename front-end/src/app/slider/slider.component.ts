@@ -13,6 +13,8 @@ export class SliderComponent implements AfterViewInit {
     new Splide(this.elRef.nativeElement.querySelector('.splide'), {
       perPage: 5,
       type: 'loop',
+      autoplay: true,
+      interval: 4000,
       cover: true,
       height: '10rem',
       focus: 'center',

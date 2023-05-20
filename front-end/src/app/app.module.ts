@@ -22,6 +22,7 @@ import { UserAddCourseComponent } from './user-add-course/user-add-course.compon
 import { UserContactComponent } from './user-contact/user-contact.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { MapComponent } from './map/map.component';
+import { OurServicesComponent } from './our-services/our-services.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MapComponent } from './map/map.component';
     UserContactComponent,
     UserHeaderComponent,
     MapComponent,
+    OurServicesComponent,
     ],
   imports: [
     BrowserModule,

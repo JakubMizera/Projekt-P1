@@ -23,6 +23,7 @@ import { UserContactComponent } from './user-contact/user-contact.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { MapComponent } from './map/map.component';
 import { OurServicesComponent } from './our-services/our-services.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { OurServicesComponent } from './our-services/our-services.component';
     UserHeaderComponent,
     MapComponent,
     OurServicesComponent,
+    ContactUsComponent,
     ],
   imports: [
     BrowserModule,

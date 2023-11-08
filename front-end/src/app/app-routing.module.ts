@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainPageComponent } from './main-page/main-page.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  {
+    path: '',
+    loadChildren: () => import('./modules/main/main.module').then(m => m.MainModule)
+  },
   { path: 'about', component: AboutUsComponent },
   { path: 'events', component: EventsComponent },
   { path: 'contact', component: ContactComponent },

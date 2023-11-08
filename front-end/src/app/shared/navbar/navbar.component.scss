@@ -1,0 +1,56 @@
+@import '../../../styles/variables';
+
+.navbar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 50px 20px;
+  background-color: transparent;
+
+  .left-side {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      width: 80px;
+      aspect-ratio: 16/10;
+    }
+
+    .brand {
+      color: #fff;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+  }
+
+  .center-side {
+    display: flex;
+    justify-content: center;
+
+    .nav-link {
+      font-size: 22px;
+      text-decoration: none;
+      padding: 10px 20px;
+      text-align: center;
+      font: normal normal medium 24px/32px Forma DJR Text;
+      letter-spacing: 0.58px;
+      color: #E3F4FF;
+      opacity: 1;
+
+      &:hover {
+        color: #ddd;
+      }
+    }
+  }
+
+  .right-side {
+    display: flex;
+    justify-content: flex-end;
+
+    .search-icon {
+      color: #fff;
+      font-size: 1.25rem;
+    }
+  }
+}

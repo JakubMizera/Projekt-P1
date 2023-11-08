@@ -12,19 +12,9 @@ import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SliderComponent } from './slider/slider.component';
-import { SidePanelComponent } from './side-panel/side-panel.component';
-import { UserViewComponent } from './user-view/user-view.component';
-import { UserCoursesComponent } from './user-courses/user-courses.component';
-import { UserPaymentHistoryComponent } from './user-payment-history/user-payment-history.component';
-import { UserSettingsComponent } from './user-settings/user-settings.component';
-import { UserPurchasedComponent } from './user-purchased/user-purchased.component';
-import { UserAddCourseComponent } from './user-add-course/user-add-course.component';
-import { UserContactComponent } from './user-contact/user-contact.component';
-import { UserHeaderComponent } from './user-header/user-header.component';
 import { MapComponent } from './map/map.component';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-
 
 @NgModule({
   declarations: [
@@ -36,23 +26,14 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     EventsComponent,
     ContactComponent,
     SliderComponent,
-    SidePanelComponent,
-    UserViewComponent,
-    UserCoursesComponent,
-    UserPaymentHistoryComponent,
-    UserSettingsComponent,
-    UserPurchasedComponent,
-    UserAddCourseComponent,
-    UserContactComponent,
-    UserHeaderComponent,
     MapComponent,
     OurServicesComponent,
     ContactUsComponent,
-    ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-      SlickCarouselModule,
+    SlickCarouselModule,
     FormsModule,
   ],
   providers: [],

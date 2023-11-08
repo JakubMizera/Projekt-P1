@@ -6,10 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent {
-  userName = 'Test Username';
-  searchQuery?: string;
-
-  onSearch() {
-    console.log(`Query: ${this.searchQuery}`);
-  }
+  userName = "Test username";
 }

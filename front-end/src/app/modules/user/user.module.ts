@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { UserSidePanelComponent } from './user-side-panel/user-side-panel.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UserSharedModule } from 'src/app/shared/user/user-shared.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     UserPurchasedComponent,
     UserSettingsComponent,
     UserViewComponent,
-    UserSidePanelComponent
+    UserSidePanelComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     MatButtonModule,
     MatIconModule,
+    UserSharedModule,
   ],
   exports: [
     UserAddCourseComponent,

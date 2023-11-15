@@ -5,28 +5,31 @@
     </div>
     <table class="table">
         <thead>
-          <tr>
-            <th>Kursy</th>
-            <th>Status</th>
-            <th>Liczba zakupionych</th>
-            <th>Cena</th>
-            <th></th> <!-- For action buttons like edit/delete -->
-          </tr>
+            <tr>
+                <th>Kursy</th>
+                <th>Status</th>
+                <th>Liczba zakupionych</th>
+                <th>Cena</th>
+                <th></th> <!-- For action buttons like edit/delete -->
+            </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let course of courses">
-            <td>{{ course.name }}</td>
-            <td>
-              <span [ngClass]="{'badge': true, 'bg-success': course.status === 'active', 'bg-warning': course.status === 'inactive'}">
-                {{ course.status === 'active' ? 'Aktywny' : 'Nieaktywny' }}
-              </span>
-            </td>
-            <td>{{ course.amountBought }}</td>
-            <td>{{ course.price}} zł</td>
-            <td>
-              <!-- Action buttons go here -->
-            </td>
-          </tr>
+            <tr *ngFor="let course of courses">
+                <td>{{ course.name }}</td>
+                <td>
+                    <span
+                        [ngClass]="{'badge': true, 'bg-success': course.status === 'active', 'bg-warning': course.status === 'inactive'}">
+                        {{ course.status === 'active' ? 'Aktywny' : 'Nieaktywny' }}
+                    </span>
+                </td>
+                <td>{{ course.amountBought }}</td>
+                <td>{{ course.price}} zł</td>
+                <td>
+                    <button mat-icon-button>
+                        <mat-icon>more_horiz</mat-icon>
+                    </button>
+                </td>
+            </tr>
         </tbody>
-      </table>
+    </table>
 </div>

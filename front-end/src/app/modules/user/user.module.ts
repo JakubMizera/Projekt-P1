@@ -11,6 +11,8 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { UserRoutingModule } from './user-routing.module';
 import { RouterModule } from '@angular/router';
 import { UserSidePanelComponent } from './user-side-panel/user-side-panel.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { UserSidePanelComponent } from './user-side-panel/user-side-panel.compon
     CommonModule,
     UserRoutingModule,
     RouterModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   exports: [
     UserAddCourseComponent,

@@ -1,0 +1,61 @@
+@import './../../../../styles/variables';
+
+.container {
+    padding: 10px 5%;
+}
+
+.header {
+    display: inline-block;
+    background: $button-background;
+    border-radius: 20px;
+    font-weight: 300;
+    padding: 8px 20px;
+    margin-bottom: 20px;
+
+    .header-title {
+        color: #fff;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+}
+
+.table {
+    width: 100%;
+    color: #212529;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    vertical-align: top;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.bg-success {
+    color: #fff;
+    background-color: #28a745;
+    /* Green for active */
+}
+
+.bg-warning {
+    color: #fff;
+    background-color: #ffc107;
+    /* Yellow for inactive */
+}

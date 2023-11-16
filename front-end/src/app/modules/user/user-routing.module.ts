@@ -13,6 +13,7 @@ const routes: Routes = [
         path: '',
         component: UserSidePanelComponent,
         children: [
+            { path: '', redirectTo: 'courses', pathMatch: 'full' },
             { path: 'courses', component: UserCoursesComponent },
             { path: 'purchased', component: UserPurchasedComponent },
             { path: 'payment', component: UserPaymentHistoryComponent },

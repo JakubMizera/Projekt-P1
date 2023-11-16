@@ -41,13 +41,11 @@ aside {
         padding-top: 50px;
 
         .asideBtn {
-            padding: 20px 70px;
+            padding: 20px 50px;
             cursor: pointer;
             text-align: center;
-
-            i {
-                padding-right: 6px;
-            }
+            display: flex;
+            gap: 10px;
 
             &:hover {
                 color: black;

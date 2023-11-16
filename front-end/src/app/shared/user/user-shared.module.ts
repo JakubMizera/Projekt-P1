@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomHeaderComponent } from './custom-header/custom-header.component';
 import { UserCustomContainerComponent } from './user-custom-container/user-custom-container.component';
+import { UserHeaderComponent } from './user-header/user-header.component';
 
 @NgModule({
     declarations: [
         CustomHeaderComponent,
-        UserCustomContainerComponent
+        UserCustomContainerComponent,
+        UserHeaderComponent
     ],
     imports: [
         CommonModule,
     ],
     exports: [
         CustomHeaderComponent,
-        UserCustomContainerComponent
+        UserCustomContainerComponent,
+        UserHeaderComponent,
     ]
 })
 export class UserSharedModule { }

@@ -1,0 +1,82 @@
+@import './../../../../styles/variables';
+
+header {
+    height: 114px;
+    display: grid;
+    grid-template-columns: 80% 1fr;
+
+    .search-bar-container {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        .input-with-button {
+            position: relative;
+            background-color: #F7F7F7;
+            height: 45px;
+            border-radius: 23px;
+            width: 95%;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 850px;
+
+            .search-input {
+                width: 100%;
+                font-size: 15px;
+                color: #94A3AF;
+            }
+
+            .searchBtn {
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                background: $button-background;
+                width: 66px;
+                height: 35px;
+                border-radius: 23px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                i {
+                    font-size: 1rem;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .userInfo {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 10px;
+
+        .avatar {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid black;
+            box-shadow: 0 10px 15px #00000029;
+        }
+
+        .userName {
+            text-align: center;
+        }
+
+        button {
+            cursor: pointer;
+
+
+            .fa-ellipsis {
+                color: #919BB0;
+            }
+        }
+    }
+
+}

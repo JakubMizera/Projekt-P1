@@ -2,19 +2,19 @@
     <div class="search-bar-container">
         <label for="" class="input-with-button">
             <input class="search-input" type="text" placeholder="Wyszukaj..." />
-            <button class="searchBtn">
-                <i class="fas fa-search"></i>
+            <button class="search-btn">
+                <mat-icon class="search-icon">search</mat-icon>
             </button>
         </label>
     </div>
-    <div class="userInfo">
+    <div class="user-info">
         <div class="avatar">
             <!-- add user avatar img -->
             <img>
         </div>
-        <span class="userName">{{userName}}</span>
-        <button>
-            <i class="fa-solid fa-ellipsis"></i>
+        <span class="user-name">{{userName}}</span>
+        <button mat-icon-button>
+            <mat-icon>more_horiz</mat-icon>
         </button>
     </div>
 </header>

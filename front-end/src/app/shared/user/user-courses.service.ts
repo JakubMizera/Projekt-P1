@@ -21,7 +21,9 @@ export class CoursesService {
   // Create
   addCourse(course: Course): void {
     const currentCourses = this.coursesSubject.getValue();
-    const updatedCourses = [...currentCourses, course];
+    const nextId = currentCourses.length === 0 ? 1 : Math.max(...currentCourses.map(c => c.courseId)) + 1;
+    const newCourse = { ...course, courseId: nextId };
+    const updatedCourses = [...currentCourses, newCourse];
     this.updateCoursesInLocalStorage(updatedCourses);
   }
 
@@ -73,6 +75,7 @@ export class CoursesService {
         },
         title: 'Shooting Course',
         description: 'Learn the basics of shooting.',
+        address: 'Kraków, ul. Krakowska 12',
         images: [''],
         price: 29.99,
         accountNumber: 1234567890,
@@ -97,6 +100,7 @@ export class CoursesService {
         },
         title: 'Parachuting Course',
         description: 'Experience the thrill of skydiving.',
+        address: 'Warszawa, ul. Warszawska 12',
         images: [''],
         price: 39.99,
         accountNumber: 1234567891,
@@ -121,6 +125,7 @@ export class CoursesService {
         },
         title: 'Gocart Course',
         description: 'Improve your gocart skills.',
+        address: 'Gdańsk, ul. Gdańska 123',
         images: [''],
         price: 19.99,
         accountNumber: 1234567892,

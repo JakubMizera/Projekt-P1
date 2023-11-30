@@ -9,9 +9,10 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { UserRoutingModule } from './user-routing.module';
 import { RouterModule } from '@angular/router';
 import { UserSidePanelComponent } from './user-side-panel/user-side-panel.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { UserSharedModule } from 'src/app/shared/user/user-shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/shared/material/material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,10 @@ import { UserSharedModule } from 'src/app/shared/user/user-shared.module';
     CommonModule,
     UserRoutingModule,
     RouterModule,
-    MatButtonModule,
-    MatIconModule,
     UserSharedModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
   ],
   exports: [
     UserAddCourseComponent,

@@ -1,3 +1,77 @@
 <app-user-custom-container>
-    <app-custom-header title="Dodaj kurs"></app-custom-header>
+  <app-custom-header title="Dodaj kurs"></app-custom-header>
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="course-form">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nazwa</mat-label>
+      <input matInput formControlName="title" required>
+      <mat-error *ngIf="courseForm.get('title')?.errors?.['required']">
+        Nazwa kursu jest wymagana
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Opis kursu</mat-label>
+      <input matInput formControlName="description" required>
+      <mat-error *ngIf="courseForm.get('description')?.errors?.['required']">
+        Opis kursu jest wymagany
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Adres</mat-label>
+      <input matInput formControlName="address" required>
+      <mat-error *ngIf="courseForm.get('address')?.errors?.['required']">
+        Adres jest wymagany
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cena kursu</mat-label>
+      <input type="number" matInput formControlName="price" min="0" required>
+      <mat-error *ngIf="courseForm.get('price')?.errors">
+        <span *ngIf="courseForm.get('price')?.errors?.['required']">Cena jest wymagana</span>
+        <span *ngIf="courseForm.get('price')?.errors?.['min']">Cena musi być większa od 0</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Numer konta bankowego</mat-label>
+      <input type="number" matInput formControlName="accountNumber" required>
+      <mat-error *ngIf="courseForm.get('accountNumber')?.errors?.['required']">
+        Numer konta bankowego jest wymagany
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Data wygaśnięcia kursu</mat-label>
+      <input matInput [matDatepicker]="pickerExpiration" formControlName="expirationDate" required>
+      <mat-datepicker-toggle matSuffix [for]="pickerExpiration"></mat-datepicker-toggle>
+      <mat-datepicker #pickerExpiration></mat-datepicker>
+      <mat-error *ngIf="courseForm.get('expirationDate')?.errors?.['required']">
+        Data wygaśnięcia kursu jest wymagana
+      </mat-error>
+      <!-- <mat-error *ngIf="courseForm.get('expirationDate')?.errors?.['expirationDateInvalid']">
+                Data wygaśnięcia kursu musi być datą z przyszłości
+            </mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Kategoria</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of courseCategories" [value]="category.key">
+          {{category.value}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="courseForm.get('category')?.errors?.['required']">
+        Kategoria kursu jest wymagana
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button disabled="true">Dodaj zdjęcie...</button>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!courseForm.valid">Dodaj</button>
+  </form>
+
 </app-user-custom-container>

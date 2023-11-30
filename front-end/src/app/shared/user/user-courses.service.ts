@@ -1,31 +1,32 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { UserCourse } from '../interfaces/user-courses-list.model';
+import { Course } from '../interfaces/course.model';
+import { CourseCategory } from '../interfaces/course-category.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
   private readonly localStorageKey = 'userCourses';
-  private coursesSubject!: BehaviorSubject<UserCourse[]>;
-  public courses$: Observable<UserCourse[]>;
+  private coursesSubject!: BehaviorSubject<Course[]>;
+  public courses$: Observable<Course[]>;
 
   constructor() {
-    this.coursesSubject = new BehaviorSubject<UserCourse[]>([]);
+    this.coursesSubject = new BehaviorSubject<Course[]>([]);
     this.courses$ = this.coursesSubject.asObservable();
     const initialCourses = this.getCoursesFromLocalStorage();
     this.coursesSubject.next(initialCourses);
   }
 
   // Create
-  addCourse(course: UserCourse): void {
+  addCourse(course: Course): void {
     const currentCourses = this.coursesSubject.getValue();
     const updatedCourses = [...currentCourses, course];
     this.updateCoursesInLocalStorage(updatedCourses);
   }
 
   // Read from localStorage, initialize if empty
-  private getCoursesFromLocalStorage(): UserCourse[] {
+  private getCoursesFromLocalStorage(): Course[] {
     const coursesJSON = localStorage.getItem(this.localStorageKey);
     if (coursesJSON) {
       return JSON.parse(coursesJSON);
@@ -37,33 +38,97 @@ export class CoursesService {
   }
 
   // Update
-  updateCourse(updatedCourse: UserCourse): void {
+  updateCourse(updatedCourse: Course): void {
     const currentCourses = this.coursesSubject.getValue();
     const updatedCourses = currentCourses.map(course =>
-      course.name === updatedCourse.name ? updatedCourse : course
+      course.courseId === updatedCourse.courseId ? updatedCourse : course
     );
     this.updateCoursesInLocalStorage(updatedCourses);
   }
 
   // Delete
-  deleteCourse(courseName: string): void {
+  deleteCourse(courseId: number): void {
     const currentCourses = this.coursesSubject.getValue();
-    const updatedCourses = currentCourses.filter(course => course.name !== courseName);
+    const updatedCourses = currentCourses.filter(course => course.courseId !== courseId);
     this.updateCoursesInLocalStorage(updatedCourses);
   }
 
   // Helper to update localStorage and BehaviorSubject
-  private updateCoursesInLocalStorage(courses: UserCourse[]): void {
+  private updateCoursesInLocalStorage(courses: Course[]): void {
     localStorage.setItem(this.localStorageKey, JSON.stringify(courses));
     this.coursesSubject.next(courses);
   }
 
   // Initialize with default courses
-  private initializeCourses(): UserCourse[] {
-    const defaultCourses: UserCourse[] = [
-      { name: 'Strzelectwo', status: 'active', amountBought: 50, price: 29.99 },
-      { name: 'Skok ze spadochronem', status: 'active', amountBought: 75, price: 39.99 },
-      { name: 'Koszykówka', status: 'inactive', amountBought: 100, price: 19.99 }
+  private initializeCourses(): Course[] {
+    const defaultCourses: Course[] = [
+      {
+        courseId: 1,
+        author: {
+          userId: 1,
+          firstName: 'John',
+          lastName: 'Travolta',
+          phoneNumber: '+48999888777',
+          email: 'JohnTravolta@gmail.com',
+        },
+        title: 'Shooting Course',
+        description: 'Learn the basics of shooting.',
+        images: [''],
+        price: 29.99,
+        accountNumber: 1234567890,
+        isActive: true,
+        additionDate: new Date(),
+        expirationDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // One year from now
+        category: CourseCategory.Shooting,
+        requirements: ['Beginner level', '18+ years old'],
+        location: {
+          latitude: 40.712776,
+          longitude: -74.005974
+        }
+      },
+      {
+        courseId: 2,
+        author: {
+          userId: 1,
+          firstName: 'Raul',
+          lastName: 'Gillete',
+          phoneNumber: '+48563847104',
+          email: 'RaulGillete@gmail.com',
+        },
+        title: 'Parachuting Course',
+        description: 'Experience the thrill of skydiving.',
+        images: [''],
+        price: 39.99,
+        accountNumber: 1234567891,
+        isActive: true,
+        additionDate: new Date(),
+        expirationDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // One year from now
+        category: CourseCategory.Parachuting,
+        requirements: ['Advanced level', 'Health certificate'],
+        location: {
+          latitude: 51.507351,
+          longitude: -0.127758
+        }
+      },
+      {
+        courseId: 3,
+        author: {
+          userId: 1,
+          firstName: 'Max',
+          lastName: 'Verstappen',
+          phoneNumber: '+48646414123',
+          email: 'MaxVerstappen@gmail.com',
+        },
+        title: 'Gocart Course',
+        description: 'Improve your gocart skills.',
+        images: [''],
+        price: 19.99,
+        accountNumber: 1234567892,
+        isActive: false,
+        additionDate: new Date(),
+        expirationDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // One year from now
+        category: CourseCategory.CarRacing,
+      }
     ];
     return defaultCourses;
   }

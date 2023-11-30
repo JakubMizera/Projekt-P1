@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { UserCourse } from 'src/app/shared/interfaces/user-courses-list.model';
+import { Course } from 'src/app/shared/interfaces/course.model';
 import { CoursesService } from 'src/app/shared/user/user-courses.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CoursesService } from 'src/app/shared/user/user-courses.service';
   styleUrls: ['./user-courses.component.scss']
 })
 export class UserCoursesComponent implements OnInit, OnDestroy {
-  courses: UserCourse[] = [];
+  courses: Course[] = [];
   private subscription!: Subscription;
 
   constructor(private coursesService: CoursesService) { }

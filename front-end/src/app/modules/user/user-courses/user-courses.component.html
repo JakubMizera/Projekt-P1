@@ -6,21 +6,19 @@
             <tr>
                 <th>Kursy</th>
                 <th>Status</th>
-                <th>Liczba zakupionych</th>
                 <th>Cena</th>
                 <th></th> <!-- For action buttons like edit/delete -->
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let course of courses">
-                <td>{{ course.name }}</td>
+                <td>{{ course.title }}</td>
                 <td>
                     <span
-                        [ngClass]="{'badge': true, 'bg-success': course.status === 'active', 'bg-warning': course.status === 'inactive'}">
-                        {{ course.status === 'active' ? 'Aktywny' : 'Nieaktywny' }}
+                        [ngClass]="{'badge': true, 'bg-success': course.isActive === true, 'bg-warning': course.isActive === false}">
+                        {{ course.isActive === true ? 'Aktywny' : 'Nieaktywny' }}
                     </span>
                 </td>
-                <td>{{ course.amountBought }}</td>
                 <td>{{ course.price}} zł</td>
                 <td>
                     <button mat-icon-button>

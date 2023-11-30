@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CustomHeaderComponent } from './custom-header/custom-header.component';
 import { UserCustomContainerComponent } from './user-custom-container/user-custom-container.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
-import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
     declarations: [
@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
     ],
     imports: [
         CommonModule,
-        MatIconModule,
+        MaterialModule,
     ],
     exports: [
         CustomHeaderComponent,

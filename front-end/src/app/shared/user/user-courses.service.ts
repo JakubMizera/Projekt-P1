@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Course } from '../interfaces/course.model';
 import { CourseCategory } from '../interfaces/course-category.model';
 import { Status } from '../interfaces/course-status.model';
@@ -38,6 +38,14 @@ export class CoursesService {
       this.updateCoursesInLocalStorage(defaultCourses);
       return defaultCourses;
     }
+  }
+
+  // Get course by id
+  getCourseById(courseId: number): Observable<Course | null> {
+    return this.courses$
+      .pipe(
+        map((courses: Course[]) => courses.find(course => course.courseId === courseId) || null)
+      );
   }
 
   // Update

@@ -29,7 +29,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Cena kursu</mat-label>
-      <input type="number" matInput formControlName="price" min="0" required>
+      <input type="number" matInput formControlName="price" min="1" required>
       <mat-error *ngIf="courseForm.get('price')?.errors">
         <span *ngIf="courseForm.get('price')?.errors?.['required']">Cena jest wymagana</span>
         <span *ngIf="courseForm.get('price')?.errors?.['min']">Cena musi być większa od 0</span>

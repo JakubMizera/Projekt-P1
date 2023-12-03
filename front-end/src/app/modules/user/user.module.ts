@@ -13,6 +13,7 @@ import { UserSharedModule } from 'src/app/shared/user/user-shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UserCoursesEditComponent } from './user-courses-edit/user-courses-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     UserSettingsComponent,
     UserViewComponent,
     UserSidePanelComponent,
+    UserCoursesEditComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     UserPurchasedComponent,
     UserSettingsComponent,
     UserViewComponent,
+    UserCoursesEditComponent,
   ]
 })
 export class UserModule { }

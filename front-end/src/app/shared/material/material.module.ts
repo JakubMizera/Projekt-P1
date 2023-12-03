@@ -8,6 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { getPolishPaginatorIntl } from './paginator-translate.intl';
+
 
 const materialModules = [
     MatInputModule,
@@ -18,6 +23,9 @@ const materialModules = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
 ];
 
 @NgModule({
@@ -25,6 +33,9 @@ const materialModules = [
     imports: [
         CommonModule,
         ...materialModules
+    ],
+    providers: [
+        { provide: MatPaginatorIntl, useFactory: getPolishPaginatorIntl }
     ],
     exports: [
         ...materialModules

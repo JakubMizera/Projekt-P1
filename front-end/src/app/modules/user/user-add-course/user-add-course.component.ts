@@ -5,6 +5,7 @@ import { CourseCategory } from 'src/app/shared/interfaces/course-category.model'
 import { Course } from 'src/app/shared/interfaces/course.model';
 import { CoursesService } from 'src/app/shared/user/user-courses.service';
 import { expirationDateValidator } from 'src/app/shared/validators/custom-validators';
+import { Status } from 'src/app/shared/interfaces/course-status.model';
 
 @Component({
   selector: 'app-user-add-course',
@@ -31,7 +32,7 @@ export class UserAddCourseComponent implements OnInit {
       address: ['', Validators.required],
       price: [null, [Validators.required, Validators.min(0)]],
       accountNumber: [null, Validators.required],
-      isActive: [true],
+      status: Status.Active,
       additionDate: [new Date()],
       expirationDate: [null, Validators.required],
       category: [CourseCategory.None],

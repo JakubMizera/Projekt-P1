@@ -1,4 +1,5 @@
 import { CourseCategory } from "./course-category.model";
+import { Status } from "./course-status.model";
 import { User } from "./user.model";
 
 export interface Course {
@@ -10,7 +11,7 @@ export interface Course {
     images?: string[],
     price: number,
     accountNumber: number,
-    isActive: boolean,
+    status: Status,
     additionDate: Date,
     expirationDate: Date,
     category: CourseCategory,

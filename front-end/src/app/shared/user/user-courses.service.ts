@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Course } from '../interfaces/course.model';
 import { CourseCategory } from '../interfaces/course-category.model';
+import { Status } from '../interfaces/course-status.model';
 
 @Injectable({
   providedIn: 'root'
@@ -79,7 +80,7 @@ export class CoursesService {
         images: [''],
         price: 29.99,
         accountNumber: 1234567890,
-        isActive: true,
+        status: Status.Active,
         additionDate: new Date(),
         expirationDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // One year from now
         category: CourseCategory.Shooting,
@@ -104,7 +105,7 @@ export class CoursesService {
         images: [''],
         price: 39.99,
         accountNumber: 1234567891,
-        isActive: true,
+        status: Status.Active,
         additionDate: new Date(),
         expirationDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // One year from now
         category: CourseCategory.Parachuting,
@@ -129,7 +130,7 @@ export class CoursesService {
         images: [''],
         price: 19.99,
         accountNumber: 1234567892,
-        isActive: false,
+        status: Status.Inactive,
         additionDate: new Date(),
         expirationDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // One year from now
         category: CourseCategory.CarRacing,

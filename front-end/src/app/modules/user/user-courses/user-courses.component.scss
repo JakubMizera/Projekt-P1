@@ -1,41 +1,42 @@
 @import './../../../../styles/variables';
 
-.table {
-    width: 100%;
-    color: #212529;
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
-.table th,
-.table td {
-    padding: 1rem;
-    vertical-align: middle;
-    border-bottom: 1px solid #dee2e6;
+.mat-elevation-z8 {
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+
+    th,
+    td {
+        vertical-align: middle;
+        height: 70px;
+    }
+
+    th {
+        font-weight: 500;
+    }
 }
 
-.table thead th {
-    color: $color-text-gray;
-    font-weight: 500;
+mat-icon {
+    color: rgba(0, 0, 0, 0.7);
 }
 
-.badge {
-    display: inline-block;
-    padding: 0.25em 0.4em;
-    line-height: 1;
+.status {
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
     text-align: center;
-    white-space: nowrap;
-    font-size: 0.9rem;
-    border-radius: 0.25rem;
-    min-width: 100px;
+    display: inline-block;
+    width: 100px;
 }
 
-.bg-success {
-    color: #fff;
-    background-color: #28a745;
-    /* Green for active */
+.status-active {
+    background-color: $color-status-active;
 }
 
-.bg-warning {
-    color: #fff;
-    background-color: #ffc107;
-    /* Yellow for inactive */
+.status-inactive {
+    background-color: $color-status-inactive;
 }

@@ -1,5 +1,8 @@
 import mongoose, { Document, Schema } from 'mongoose';
-
+enum Status {
+  Active = 'Aktywny',
+  Inactive = 'Nieaktywny',
+}
 interface ICourse extends Document {
   courseId: number;
   title: string;
@@ -8,7 +11,8 @@ interface ICourse extends Document {
   images?: string[];
   price: number;
   accountNumber: number;
-  isActive: boolean;
+  status: Status;
+  // isActive: boolean;
   additionDate: Date;
   expirationDate: Date;
   // category: CourseCategory;
@@ -16,6 +20,7 @@ interface ICourse extends Document {
   location?: {
       latitude: number;
       longitude: number;
+      
   };
 }
 
@@ -27,7 +32,8 @@ const CourseSchema: Schema = new Schema({
   images: [String],
   price: { type: Number, required: true },
   accountNumber: { type: Number, required: true },
-  isActive: { type: Boolean, required: true },
+  status: { type: String, required: true },
+  // isActive: { type: Boolean, required: true },
   additionDate: { type: Date, required: true },
   expirationDate: { type: Date, required: true },
   //  category: { type: String, enum: Object.values(CourseCategory), required: true },

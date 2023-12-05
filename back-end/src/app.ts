@@ -1,30 +1,25 @@
-import express from 'express';
-import morgan from 'morgan';
-import helmet from 'helmet';
+import dotenv from 'dotenv';
+
+import express, { Express } from 'express';
 import cors from 'cors';
+import mongoose from 'mongoose';
+import coursesRouter from './routes/courses';
 
-import * as middlewares from './middlewares';
-import api from './api';
-import MessageResponse from './interfaces/MessageResponse';
+dotenv.config();
+const app: Express = express();
 
-require('dotenv').config();
+mongoose.connect(process.env.MONGODB_URI as string)
+    .then(() => console.log("MongoDB successfully connected"))
+    .catch(err => console.log(err));
 
-const app = express();
-
-app.use(morgan('dev'));
-app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use('/api', coursesRouter);
 
-app.get<{}, MessageResponse>('/', (req, res) => {
-  res.json({
-    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
-  });
+const PORT: string | number = process.env.PORT || 5000;
+app.get('/', (req, res) => {
+    res.send('Witaj w Adventure Sport!');
 });
-
-app.use('/api/v1', api);
-
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
-
-export default app;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

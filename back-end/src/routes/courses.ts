@@ -13,6 +13,20 @@ router.get('/courses', async (req, res) => {
     }
 });
 
+// Pobieranie kursu po id
+router.get('/courses/:id', async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const course = await Course.findById(id);
+        if (!course) {
+            return res.status(404).json({ message: `Cannot find course with id: ${id}` });
+        }
+        res.json(course);
+    } catch (err) {
+        res.status(500).json({ message: 'Error getting course' });
+    }
+});
+
 // Dodawanie nowego kursu
 router.post('/courses', async (req, res) => {
     try {
@@ -36,7 +50,9 @@ router.put('/courses/:id', async (req, res) => {
         res.status(500).json({ message: 'Error updating course' });
     }
 });
- router.delete('/courses/:id', async (req, res) => {
+
+// Usuwanie kursu
+router.delete('/courses/:id', async (req, res) => {
     try {
         const deletedCourse = await Course.findByIdAndDelete(req.params.id);
         if (!deletedCourse) {
@@ -47,4 +63,5 @@ router.put('/courses/:id', async (req, res) => {
         res.status(500).json({ message: 'Error deleting course' });
     }
 });
+
 export default router;

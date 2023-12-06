@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
 import { Course } from 'src/app/shared/interfaces/course.model';
 import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
-import { CoursesService } from 'src/app/shared/user/user-courses.service';
 
 @Component({
   selector: 'app-user-courses',

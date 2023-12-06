@@ -33,7 +33,6 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
       this.dataSource = new MatTableDataSource(courses);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource.data);
     })
   }
 
@@ -46,8 +45,8 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  navigateToCourseEdit(courseId: number): void {
-    this.router.navigate(['user/courses', courseId]);
+  navigateToCourseEdit(id: string): void {
+    this.router.navigate(['user/courses', id]);
   }
 
 }

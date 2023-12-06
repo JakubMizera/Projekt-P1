@@ -29,7 +29,7 @@
         <ng-container matColumnDef="options">
           <th mat-header-cell *matHeaderCellDef>Opcje</th>
           <td mat-cell *matCellDef="let course">
-            <button mat-icon-button (click)="navigateToCourseEdit(course.courseId)">
+            <button mat-icon-button (click)="navigateToCourseEdit(course._id)">
               <mat-icon>more_horiz</mat-icon>
             </button>
           </td>

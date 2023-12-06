@@ -46,8 +46,8 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  navigateToCourseEdit(courseId: number): void {
-    this.router.navigate(['user/courses', courseId]);
+  navigateToCourseEdit(id: string): void {
+    this.router.navigate(['user/courses', id]);
   }
 
 }

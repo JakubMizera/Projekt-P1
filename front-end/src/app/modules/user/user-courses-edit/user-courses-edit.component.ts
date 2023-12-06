@@ -29,8 +29,6 @@ export class UserCoursesEditComponent implements OnInit, OnDestroy {
     private router: Router,
   ) { }
 
-  //TODO => zrobić edycję kursu - czekam na GET api/courses/:id
-
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(params => {
       this.id = params['_id'];

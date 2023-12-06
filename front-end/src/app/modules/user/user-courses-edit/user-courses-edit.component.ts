@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { CourseCategory } from "src/app/shared/interfaces/course-category.model";
 import { Course } from "src/app/shared/interfaces/course.model";
-import { CoursesService } from "src/app/shared/user/user-courses.service";
+import { ApiCoursesService } from "src/app/shared/user/user-courses.api.service";
 
 @Component({
   selector: 'app-user-courses-edit',
@@ -24,10 +24,12 @@ export class UserCoursesEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private coursesService: CoursesService,
+    private apiCoursesService: ApiCoursesService,
     private fb: FormBuilder,
     private router: Router,
   ) { }
+
+    //TODO => zrobić edycję kursu - czekam na GET api/courses/:id
 
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(params => {
@@ -61,7 +63,7 @@ export class UserCoursesEditComponent implements OnInit, OnDestroy {
   }
 
   loadCourse(courseId: number): void {
-    this.courseSubscription = this.coursesService.getCourseById(courseId).subscribe(course => {
+    this.courseSubscription = this.apiCoursesService.getCourseById(courseId).subscribe(course => {
       if (course) {
         this.course = course;
       }
@@ -75,8 +77,10 @@ export class UserCoursesEditComponent implements OnInit, OnDestroy {
         courseId: this.courseId
       };
 
-      this.coursesService.updateCourse(updatedCourse);
-      this.router.navigate(['user/courses']);
+      this.apiCoursesService.updateCourse(this.courseId, updatedCourse).subscribe({
+        next: () => this.router.navigate(['user/courses']),
+        error: (err) => console.error(`Error updating course: ${err}`),
+      });
     }
   }
 

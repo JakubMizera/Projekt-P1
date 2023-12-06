@@ -74,6 +74,7 @@ export class CoursesService {
   private initializeCourses(): Course[] {
     const defaultCourses: Course[] = [
       {
+        _id: '12378931278987321',
         courseId: 1,
         author: {
           userId: 1,
@@ -99,6 +100,7 @@ export class CoursesService {
         }
       },
       {
+        _id: '123789311238987321',
         courseId: 2,
         author: {
           userId: 1,
@@ -124,6 +126,7 @@ export class CoursesService {
         }
       },
       {
+        _id: '1283781927397321',
         courseId: 3,
         author: {
           userId: 1,

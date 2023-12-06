@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
 import { Course } from 'src/app/shared/interfaces/course.model';
+import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
 import { CoursesService } from 'src/app/shared/user/user-courses.service';
 
 @Component({
@@ -23,15 +24,16 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor(
-    private coursesService: CoursesService,
     private router: Router,
+    private apiCoursesService: ApiCoursesService,
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.coursesService.courses$.subscribe(courses => {
+    this.subscription = this.apiCoursesService.courses$.subscribe(courses => {
       this.dataSource = new MatTableDataSource(courses);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      console.log(this.dataSource.data);
     })
   }
 

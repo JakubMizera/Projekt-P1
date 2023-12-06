@@ -32,6 +32,7 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
       this.dataSource = new MatTableDataSource(courses);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      console.log(this.dataSource.data);
     })
   }
 

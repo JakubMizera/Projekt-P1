@@ -1,0 +1,22 @@
+.container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    font-size: 1.3rem;
+    padding: 0 30px 20px 30px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  mat-dialog-content {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  mat-dialog-actions {
+    justify-content: center;
+    gap: 20px;
+  }
+}

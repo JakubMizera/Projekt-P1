@@ -29,9 +29,19 @@
         <ng-container matColumnDef="options">
           <th mat-header-cell *matHeaderCellDef>Opcje</th>
           <td mat-cell *matCellDef="let course">
-            <button mat-icon-button (click)="navigateToCourseEdit(course._id)">
+            <button mat-icon-button [mat-menu-trigger-for]="menu">
               <mat-icon>more_horiz</mat-icon>
             </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="navigateToCourseEdit(course._id)">
+                <mat-icon>edit</mat-icon>
+                <span>Edytuj</span>
+              </button>
+              <button mat-menu-item (click)="deleteCourse(course._id)">
+                <mat-icon>delete</mat-icon>
+                <span>Usuń</span>
+              </button>
+            </mat-menu>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

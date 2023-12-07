@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
 import { Course } from 'src/app/shared/interfaces/course.model';
+import { ConfirmationDialogComponent } from 'src/app/shared/material/confimation-dialog/confirmation-dialog.component';
 import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
 
 @Component({
@@ -25,6 +27,7 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private apiCoursesService: ApiCoursesService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -49,4 +52,14 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
     this.router.navigate(['user/courses', id]);
   }
 
+  deleteCourse(id: string): void {
+    // this.apiCoursesService.deleteCourse(id).subscribe();
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+
+    dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.apiCoursesService.deleteCourse(id).subscribe()
+      }
+    })
+  }
 }

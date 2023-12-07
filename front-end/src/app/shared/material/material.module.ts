@@ -12,33 +12,39 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { getPolishPaginatorIntl } from './paginator-translate.intl';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confimation-dialog/confirmation-dialog.component';
 
 const materialModules = [
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatButtonModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatIconModule,
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatMenuModule,
+  MatDialogModule,
 ];
 
 @NgModule({
-    declarations: [],
-    imports: [
-        CommonModule,
-        ...materialModules
-    ],
-    providers: [
-        { provide: MatPaginatorIntl, useFactory: getPolishPaginatorIntl }
-    ],
-    exports: [
-        ...materialModules
-    ]
+  declarations: [
+    ConfirmationDialogComponent
+  ],
+  imports: [
+    CommonModule,
+    ...materialModules
+  ],
+  providers: [
+    { provide: MatPaginatorIntl, useFactory: getPolishPaginatorIntl }
+  ],
+  exports: [
+    ...materialModules
+  ]
 })
 export class MaterialModule { }

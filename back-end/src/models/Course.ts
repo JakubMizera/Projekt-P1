@@ -3,8 +3,15 @@ enum Status {
   Active = 'Aktywny',
   Inactive = 'Nieaktywny',
 }
+enum CourseCategory {
+  None = 'Brak',
+  Shooting = 'Strzelectwo',
+  Parachuting = 'Spadochroniarstwo',
+  CarRacing = 'Wyścigi samochodowe',
+  Archery = 'Łucznictwo',
+}
 interface ICourse extends Document {
-  courseId: number;
+  // courseId: number;
   title: string;
   description: string;
   address: string;
@@ -15,7 +22,7 @@ interface ICourse extends Document {
   // isActive: boolean;
   additionDate: Date;
   expirationDate: Date;
-  // category: CourseCategory;
+  category: CourseCategory;
   requirements?: string[];
   location?: {
       latitude: number;
@@ -25,7 +32,7 @@ interface ICourse extends Document {
 }
 
 const CourseSchema: Schema = new Schema({
-  courseId: { type: Number, required: true },
+  // courseId: { type: Number, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   address: { type: String, required: true },
@@ -36,7 +43,7 @@ const CourseSchema: Schema = new Schema({
   // isActive: { type: Boolean, required: true },
   additionDate: { type: Date, required: true },
   expirationDate: { type: Date, required: true },
-  //  category: { type: String, enum: Object.values(CourseCategory), required: true },
+   category: { type: String, enum: Object.values(CourseCategory), required: true },
   requirements: [String],
   location: {
       latitude: Number,

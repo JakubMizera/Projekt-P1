@@ -5,7 +5,7 @@ import { UserPurchasedComponent } from "./user-purchased/user-purchased.componen
 import { UserSettingsComponent } from "./user-settings/user-settings.component";
 import { UserAddCourseComponent } from "./user-add-course/user-add-course.component";
 import { UserContactComponent } from "./user-contact/user-contact.component";
-import { UserSidePanelComponent } from "./user-side-panel/user-side-panel.component";
+import { UserSidePanelComponent } from "../../shared/user/user-side-panel/user-side-panel.component";
 import { UserCoursesEditComponent } from "./user-courses-edit/user-courses-edit.component";
 
 const routes: Routes = [

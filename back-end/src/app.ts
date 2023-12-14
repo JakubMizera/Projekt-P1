@@ -1,26 +1,16 @@
 import dotenv from 'dotenv';
-
 import express, { Express } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import coursesRouter from './routes/courses';
 import userRouter from './routes/users';
-import session from 'express-session';
+import passport from 'passport';
+import cookieSession from 'cookie-session';
 import authRouter from './routes/auth';
-
+import './auth/googleAuth';
 
 dotenv.config();
 const app: Express = express();
-
-app.use(session({
-  secret: process.env.GOOGLE_CLIENT_SECRET!,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false, // Set to true if using https
-    maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds
-  },
-}));
 
 mongoose.connect(process.env.MONGODB_URI as string)
   .then(() => console.log("MongoDB successfully connected"))
@@ -28,9 +18,23 @@ mongoose.connect(process.env.MONGODB_URI as string)
 
 app.use(cors());
 app.use(express.json());
+
+// Cookie session configuration
+app.use(cookieSession({
+  name: 'adventureSport_session',
+  keys: ['key1', 'key2'],
+  maxAge: 24 * 60 * 60 * 1000,
+}))
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Routes
+app.use('/api', authRouter);
 app.use('/api', coursesRouter);
 app.use('/api', userRouter);
-app.use('/api', authRouter);
+
 const PORT: string | number = process.env.PORT || 5000;
 app.get('/', (req, res) => {
   res.send('Witaj w Adventure Sport!');

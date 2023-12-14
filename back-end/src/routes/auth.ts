@@ -1,17 +1,17 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import passport from 'passport';
 
 const router = express.Router();
 
-router.get('/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
+// Route to start authentication with Google
+router.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
 
-router.get('google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  (res: Response, req: Request) => {
-    res.redirect('/');
-  }
-);
+// Google OAuth callback route
+router.get('/auth/google/callback', passport.authenticate('google', {
+  failureRedirect: '/login', // Redirect to login page upon failure
+  successRedirect: '/' // Redirect to home page upon success
+}));
 
 export default router;

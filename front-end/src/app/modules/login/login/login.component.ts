@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GoogleAuthService } from 'src/app/shared/auth/google.auth.service';
+import { LoginService } from 'src/app/shared/auth/login.service';
 
 @Component({
   selector: 'app-about-us',
@@ -7,11 +7,10 @@ import { GoogleAuthService } from 'src/app/shared/auth/google.auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
-  constructor(private googleAuthService: GoogleAuthService) {}
+  constructor(private loginService: LoginService) { }
 
   login(): void {
-    this.googleAuthService.login();
+    this.loginService.loginWithGoogle();
   }
 
 }

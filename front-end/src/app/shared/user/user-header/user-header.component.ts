@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-header',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent {
-  userName = "Test username";
+  constructor(private router: Router) {}
+
+  navigateToLogin(): void {
+    this.router.navigate(['/login']);
+  }
 }

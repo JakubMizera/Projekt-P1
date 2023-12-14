@@ -1,0 +1,52 @@
+@import './../../../../styles/variables';
+
+.container {
+  background-image: url('./../../../../assets/images/Main.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login-wrapper {
+    background-color: #fff;
+    height: 70vh;
+    width: 400px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 1.3rem;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 270px;
+      height: 50px;
+      background-color: #e4e4e4;
+
+      &:hover {
+        background-color: $color-hover-gray;
+      }
+
+      svg {
+        width: 20px;
+      }
+    }
+  }
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+

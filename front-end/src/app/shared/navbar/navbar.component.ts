@@ -12,8 +12,9 @@ export class NavbarComponent {
   // Show or hide main navbar - (hide for /user)
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd && event.urlAfterRedirects.includes('/user')) {
-        this.showNav = false;
+      if (event instanceof NavigationEnd) {
+        this.showNav = !(event.urlAfterRedirects.includes('/user') ||
+          event.urlAfterRedirects.includes('/login'))
       } else if (event instanceof NavigationEnd) {
         this.showNav = true;
       }

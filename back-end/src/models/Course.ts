@@ -1,15 +1,17 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { CourseCategory } from '../interfaces/CourseCategory';
+
 enum Status {
   Active = 'Aktywny',
   Inactive = 'Nieaktywny',
 }
-enum CourseCategory {
-  None = 'Brak',
-  Shooting = 'Strzelectwo',
-  Parachuting = 'Spadochroniarstwo',
-  CarRacing = 'Wyścigi samochodowe',
-  Archery = 'Łucznictwo',
-}
+// enum CourseCategory {
+//   None = 'Brak',
+//   Shooting = 'Strzelectwo',
+//   Parachuing = 'Spadochroniarstwo',
+//   CarRacing = 'Wyścigi samochodowe',
+//   Archery = 'Łucznictwo',
+// }
 interface ICourse extends Document {
   // courseId: number;
   title: string;

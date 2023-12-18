@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import Course from '../models/Course';
+const { validateCourse , validate} = require('../middleware/validation');
 
 const router = express.Router();
 
@@ -28,13 +29,13 @@ router.get('/courses/:id', async (req: Request, res: Response) => {
 });
 
 // Dodawanie nowego kursu
-router.post('/courses', async (req, res) => {
+router.post('/courses', validateCourse, validate, async (req, res) => {
     try {
         const newCourse = new Course(req.body);
         await newCourse.save();
         res.status(201).json(newCourse);
     } catch (err) {
-        res.status(400).json({ message: 'Error creating course' });
+        res.status(400).json({ message: 'Error creating course', err });
     }
 });
 

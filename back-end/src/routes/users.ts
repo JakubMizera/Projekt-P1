@@ -3,9 +3,10 @@ import express, { Request, Response } from 'express';
 import User from '../models/User';
 import mongoose from 'mongoose';
 const router = express.Router();
+const { validateUser, validate } = require('../middleware/validation');
 
 // Dodawanie nowego użytkownika
-router.post('/users', async (req, res) => {
+router.post('/users', validateUser, validate, async (req, res) => {
     try {
         const newUser = new User(req.body);
         await newUser.save();

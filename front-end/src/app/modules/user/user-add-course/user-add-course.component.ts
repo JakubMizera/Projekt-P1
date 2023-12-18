@@ -35,7 +35,7 @@ export class UserAddCourseComponent implements OnInit {
       additionDate: [new Date()],
       expirationDate: [null, Validators.required],
       category: [CourseCategory.None],
-      courseId: [50123],
+      // courseId: [50123],
       // location: this.formBuilder.group({
       //   latitude: [null, [Validators.required, Validators.min(-90), Validators.max(90)]],
       //   longitude: [null, [Validators.required, Validators.min(-180), Validators.max(180)]],

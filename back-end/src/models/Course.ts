@@ -1,15 +1,17 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { CourseCategory } from '../interfaces/CourseCategory';
+
 enum Status {
   Active = 'Aktywny',
   Inactive = 'Nieaktywny',
 }
-enum CourseCategory {
-  None = 'Brak',
-  Shooting = 'Strzelectwo',
-  Parachuting = 'Spadochroniarstwo',
-  CarRacing = 'Wyścigi samochodowe',
-  Archery = 'Łucznictwo',
-}
+// enum CourseCategory {
+//   None = 'Brak',
+//   Shooting = 'Strzelectwo',
+//   Parachuing = 'Spadochroniarstwo',
+//   CarRacing = 'Wyścigi samochodowe',
+//   Archery = 'Łucznictwo',
+// }
 interface ICourse extends Document {
   // courseId: number;
   title: string;
@@ -25,9 +27,9 @@ interface ICourse extends Document {
   category: CourseCategory;
   requirements?: string[];
   location?: {
-      latitude: number;
-      longitude: number;
-      
+    latitude: number;
+    longitude: number;
+
   };
 }
 
@@ -43,11 +45,11 @@ const CourseSchema: Schema = new Schema({
   // isActive: { type: Boolean, required: true },
   additionDate: { type: Date, required: true },
   expirationDate: { type: Date, required: true },
-   category: { type: String, enum: Object.values(CourseCategory), required: true },
+  category: { type: String, enum: Object.keys(CourseCategory), required: true },
   requirements: [String],
   location: {
-      latitude: Number,
-      longitude: Number
+    latitude: Number,
+    longitude: Number
   }
 });
 

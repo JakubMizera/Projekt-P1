@@ -27,9 +27,9 @@ interface ICourse extends Document {
   category: CourseCategory;
   requirements?: string[];
   location?: {
-      latitude: number;
-      longitude: number;
-      
+    latitude: number;
+    longitude: number;
+
   };
 }
 
@@ -45,11 +45,11 @@ const CourseSchema: Schema = new Schema({
   // isActive: { type: Boolean, required: true },
   additionDate: { type: Date, required: true },
   expirationDate: { type: Date, required: true },
-   category: { type: String, enum: Object.values(CourseCategory), required: true },
+  category: { type: String, enum: Object.keys(CourseCategory), required: true },
   requirements: [String],
   location: {
-      latitude: Number,
-      longitude: Number
+    latitude: Number,
+    longitude: Number
   }
 });
 

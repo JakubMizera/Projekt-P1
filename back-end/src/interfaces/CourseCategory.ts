@@ -4,9 +4,5 @@ export enum CourseCategory {
     Parachuting = 'Spadochroniarstwo', 
     CarRacing = 'Wyścigi samochodowe',
     Archery = 'Łucznictwo',
-    // Brak= 'None',
-    // Strzelectwo= 'Shooting',
-    // Spadochroniarstwo= 'Parachuting',
-    // WyścigiSamochodowe= 'CarRacing',
   }
   

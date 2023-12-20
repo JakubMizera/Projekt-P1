@@ -43,9 +43,18 @@ passport.serializeUser((user: any, done) => {
   done(null, user._id);
 });
 
-// Deserialize User
-passport.deserializeUser((id, done) => {
-  User.findById(id as mongoose.Types.ObjectId, (err: any, user: any) => {
-    done(err, user);
-  });
+// // Deserialize User
+// passport.deserializeUser((id, done) => {
+//   User.findById(id as mongoose.Types.ObjectId, (err: any, user: any) => {
+//     done(err, user);
+//   });
+// });
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
 });
+

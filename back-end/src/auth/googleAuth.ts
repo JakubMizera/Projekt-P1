@@ -15,8 +15,8 @@ passport.use(new GoogleStrategy({
   async (accessToken, refreshToken, profile, done) => {
     try {
       // Check if user already exists in your database
-      console.log(accessToken);
-      console.log(profile);
+      // console.log(accessToken);
+      // console.log(profile);
       let user = await User.findOne({ googleId: profile.id });
       if (user) {
         return done(undefined, user);
@@ -54,6 +54,7 @@ passport.serializeUser((user: any, done) => {
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);
+    console.log(user)
     done(null, user);
   } catch (err) {
     done(err);

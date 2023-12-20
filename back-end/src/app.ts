@@ -60,7 +60,10 @@ mongoose.connect(process.env.MONGODB_URI as string)
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true
+}));
 app.use(express.json());
 
 app.use(session({
@@ -81,9 +84,8 @@ const PORT: string | number = process.env.PORT || 5000;
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email', 'openid'] }));
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-  res.redirect('/');
+  res.redirect('http://localhost:4200/user');
 });
-console.log("test");
 
 app.get('/', (req, res) => {
   res.send('Witaj w Adventure Sport!');

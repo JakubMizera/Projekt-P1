@@ -83,6 +83,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
   res.redirect('/');
 });
+console.log("test");
 
 app.get('/', (req, res) => {
   res.send('Witaj w Adventure Sport!');

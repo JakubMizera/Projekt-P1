@@ -2,7 +2,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/app.js",
-    "dev": "nodemon --watch 'src/**/*' -e ts --exec ts-node src/app.ts"
+    "dev": "nodemon --watch src/**/* -e ts --exec ts-node src/app.ts"
   },
   "dependencies": {
     "cookie-session": "^2.0.0",

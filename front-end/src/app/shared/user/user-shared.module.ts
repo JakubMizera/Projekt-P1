@@ -6,19 +6,19 @@ import { UserHeaderComponent } from './user-header/user-header.component';
 import { MaterialModule } from '../material/material.module';
 
 @NgModule({
-    declarations: [
-        CustomHeaderComponent,
-        UserCustomContainerComponent,
-        UserHeaderComponent
-    ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-    ],
-    exports: [
-        CustomHeaderComponent,
-        UserCustomContainerComponent,
-        UserHeaderComponent,
-    ]
+  declarations: [
+    CustomHeaderComponent,
+    UserCustomContainerComponent,
+    UserHeaderComponent
+  ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+  ],
+  exports: [
+    CustomHeaderComponent,
+    UserCustomContainerComponent,
+    UserHeaderComponent,
+  ]
 })
 export class UserSharedModule { }

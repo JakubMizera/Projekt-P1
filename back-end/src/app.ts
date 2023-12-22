@@ -57,8 +57,8 @@ dotenv.config();
 const app: Express = express();
 
 mongoose.connect(process.env.MONGODB_URI as string)
-    .then(() => console.log("MongoDB successfully connected"))
-    .catch(err => console.log(err));
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
 
 app.use(cors({
   origin: 'http://localhost:4200',
@@ -85,6 +85,28 @@ const PORT: string | number = process.env.PORT || 5000;
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email', 'openid'] }));
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
   res.redirect('http://localhost:4200/user');
+});
+
+app.get('/auth/check', (req, res) => {
+  if (req.isAuthenticated()) {
+    const user = req.user;
+    res.status(200).json({ isAuthenticated: true, user: { user } })
+  } else {
+    res.status(401).json({ isAuthenticated: false });
+  }
+})
+
+app.post('/auth/logout', (req, res) => {
+  req.logout(err => {
+    if (err) {
+      console.error('Logout error:', err);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+    req.session.destroy(() => { 
+      res.clearCookie('connect.sid');
+      res.status(200).json({ message: 'Logged out successfully' });
+    });
+  });
 });
 
 app.get('/', (req, res) => {

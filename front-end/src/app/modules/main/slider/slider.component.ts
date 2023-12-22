@@ -16,11 +16,11 @@ export class SliderComponent implements AfterViewInit {
       autoplay: true,
       interval: 4000,
       cover: true,
-      height: '10rem',
+      height: '20rem',
       focus: 'center',
       breakpoints: {
         768: {
-          height: '6rem',
+          height: '20rem',
         },
       },
     }).mount();

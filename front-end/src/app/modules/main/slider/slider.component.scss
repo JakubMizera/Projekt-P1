@@ -1,25 +1,24 @@
 .slider-container {
-  margin-top:50px;
+  margin-top: 50px;
   margin: 0 auto;
   overflow: hidden;
-  background-image: linear-gradient(to right, #808080 0%, #FFFFFF 100%);
+  height: 560px;
 }
 
 .slider-header {
   text-align: left;
-  padding: 20px;
+  padding: 30px;
 }
 
 .slider-header h1 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  text-transform: uppercase;
+  font-size: 27px;
+  color: #1a1a1a;
+  margin-left: 50px;
+  padding-top: 70px;
 }
 
 .splide {
-  margin-top:50px;
-
+  margin-top: 0px;
 
   .splide__slide {
     display: flex;
@@ -31,7 +30,7 @@
     text-transform: uppercase;
     box-sizing: border-box;
     border-radius: 20px;
-    margin : 0 10px;
+    margin: 0 10px;
   }
 
   .splide__slide img {
@@ -40,6 +39,15 @@
     object-fit: cover;
     border-radius: 10px;
   }
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
 
-
+  &:hover img {
+    transform: scale(2.5);
+  }
 }

@@ -1,5 +1,9 @@
 .our-services-container {
   text-align: center;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  background-color: #eeeeee71;
+
 
   h2 {
     font-size: 2em;
@@ -9,20 +13,28 @@
   p{
 
     font-size: 1.2em;
-
+    padding-bottom: 35px;
   }
 
   .services-items {
     display: flex;
-    justify-content: space-around;
+    margin: 10px;
+    justify-content: center;
+    gap: 60px;
+
 
     .service-item {
-      max-width: 200px;
+      max-width: 400px;
+      min-width: 100px;
+      background-color: #ffffff71;
+      border-radius: 3%;
+      padding: 25px;
+      box-shadow: 0 0 50px rgba(112, 112, 112, 0.5);
 
       img {
-         width: 600px;
+        width: 600px;
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
 
       }
 
@@ -35,6 +47,8 @@
       p {
         font-size: 1.2em;
       }
+
     }
+
   }
 }

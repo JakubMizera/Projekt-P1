@@ -7,9 +7,10 @@ router.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email', 'openid'] }));
 
 router.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }), (req: Request, res: Response) => {
-    res.redirect('http://localhost:4200/user');
-  });
+  passport.authenticate('google',
+    { failureRedirect: 'http://localhost:4200/login' }), (req: Request, res: Response) => {
+      res.redirect('http://localhost:4200/user');
+    });
 
 router.get('/auth/check', (req: Request, res: Response) => {
   if (req.isAuthenticated()) {

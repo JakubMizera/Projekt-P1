@@ -10,13 +10,11 @@ dotenv.config();
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID as string,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-  callbackURL: '/auth/google/callback'
+  callbackURL: '/api/auth/google/callback'
 },
   async (accessToken, refreshToken, profile, done) => {
     try {
       // Check if user already exists in your database
-      // console.log(accessToken);
-      // console.log(profile);
       let user = await User.findOne({ googleId: profile.id });
       if (user) {
         return done(undefined, user);
@@ -46,11 +44,6 @@ passport.serializeUser((user: any, done) => {
 });
 
 // // Deserialize User
-// passport.deserializeUser((id, done) => {
-//   User.findById(id as mongoose.Types.ObjectId, (err: any, user: any) => {
-//     done(err, user);
-//   });
-// });
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);
@@ -60,4 +53,3 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
-

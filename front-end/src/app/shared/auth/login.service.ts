@@ -18,14 +18,14 @@ export class LoginService {
   };
 
   checkAuthentication(): void {
-    this.httpClient.get<boolean>(`${this.baseUrl}/auth/check`, { withCredentials: true })
+    this.httpClient.get<boolean>(`${this.baseUrl}/api/auth/check`, { withCredentials: true })
       .subscribe(isAuthenticated => {
         this.authState.next(isAuthenticated);
       });
   };
 
   logout(): void {
-    this.httpClient.post(`${this.baseUrl}/auth/logout`, {})
+    this.httpClient.post(`${this.baseUrl}/api/auth/logout`, {})
       .subscribe(() => {
         this.authState.next(false);
       })

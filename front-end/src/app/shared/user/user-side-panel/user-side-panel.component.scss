@@ -14,7 +14,7 @@ aside {
   max-width: 306px;
   display: grid;
   grid-template-rows: 1fr minmax(auto, 600px) 200px;
-  box-shadow: 15px 0px 97px -11px #00000026;
+  box-shadow: 15px 0px 97px -11px $color-box-shadow;
 
   .brand {
     display: flex;

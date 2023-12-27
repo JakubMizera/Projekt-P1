@@ -1,9 +1,9 @@
 <header>
-  <div *ngIf="currentUser; else loginButton">
+  <div *ngIf="currentUser; else loginButton" class="container">
     <img *ngIf="currentUser.picture" [src]="currentUser.picture" alt="{{ currentUser.displayName }}"
       class="user-avatar">
     <span class="user-name">Witaj {{ currentUser.displayName }}</span>
-    <button mat-button (click)="logout()">
+    <button mat-stroked-button (click)="logout()">
       Wyloguj się
     </button>
   </div>

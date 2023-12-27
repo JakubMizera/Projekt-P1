@@ -14,8 +14,7 @@ router.get('/auth/google/callback',
 
 router.get('/auth/check', (req: Request, res: Response) => {
   if (req.isAuthenticated()) {
-    const user = req.user;
-    res.status(200).json({ isAuthenticated: true, user: { user } })
+    res.status(200).json({ isAuthenticated: true })
   } else {
     res.status(401).json({ isAuthenticated: false });
   }
@@ -28,7 +27,8 @@ router.post('/auth/logout', (req: Request, res: Response) => {
       return res.status(500).json({ message: 'Internal server error' });
     }
     req.session.destroy(() => {
-      res.clearCookie('connect.sid');
+      res.clearCookie('test', { path: '/' });
+      console.log(req.isAuthenticated())
       res.status(200).json({ message: 'Logged out successfully' });
     });
   });

@@ -1,65 +1,90 @@
-// routes/users.js
 import express, { Request, Response } from 'express';
-import User from '../models/User';
-import mongoose from 'mongoose';
+import { User } from './../models/User';
+import { IUser } from './../models/User';
+
 const router = express.Router();
-const { validateUser, validate } = require('../middleware/validation');
 
-// Dodawanie nowego użytkownika
-router.post('/users', validateUser, validate, async (req, res) => {
-    try {
-        const newUser = new User(req.body);
-        await newUser.save();
-        res.status(201).json(newUser);
-    } catch (err) {
-        res.status(400).json({ message: 'Error creating user', err });
-    }
+// Middleware to check if the user is authenticated
+function isAuthenticated(req: Request, res: Response, next: Function) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  return res.status(401).json({ message: 'Not authenticated' });
+}
+
+// Current user
+router.get('/users/current', isAuthenticated, (req: Request, res: Response) => {
+  const user = req.user as IUser;
+  if (!req.user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  res.json({
+    _id: user._id,
+    googleId: user.googleId,
+    displayName: user.displayName,
+    email: user.email,
+    picture: user.picture
+  });
+})
+
+// Get all users
+router.get('/users', isAuthenticated, async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
 });
 
-// Pobieranie listy użytkowników
-router.get('/users', async (req, res) => {
-    try {
-        const users = await User.find();
-        res.json(users);
-    } catch (err) {
-        res.status(500).json({ message: 'Error fetching users', err });
+// Get user by ID
+router.get('/users/:id', isAuthenticated, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
 });
 
-// Aktualizacja użytkownika
-router.put('/users/:id', async (req, res) => {
-    const id = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ message: 'Invalid user ID' });
-    }
-
-    try {
-        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
-        if (!updatedUser) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.json(updatedUser);
-    } catch (err) {
-        res.status(500).json({ message: 'Error updating user', err });
-    }
+// Create a new user
+router.post('/users', isAuthenticated, async (req, res) => {
+  try {
+    const newUser = new User(req.body);
+    await newUser.save();
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
 });
 
-// Usuwanie użytkownika
-router.delete('/users/:id', async (req, res) => {
-    const id = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ message: 'Invalid user ID' });
+// Update user
+router.put('/users/:id', isAuthenticated, async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
 
-    try {
-        const deletedUser = await User.findByIdAndDelete(id);
-        if (!deletedUser) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json({ message: 'User successfully deleted', user: deletedUser });
-    } catch (err) {
-        res.status(500).json({ message: 'Error deleting user', err });
+// Delete user
+router.delete('/users/:id', isAuthenticated, async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
 });
 
 export default router;

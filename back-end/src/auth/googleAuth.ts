@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import User from './../models/User';
+import { User } from './../models/User';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
@@ -24,11 +24,16 @@ passport.use(new GoogleStrategy({
       if (!email) {
         return done(new Error('No email found from Google profile.'));
       }
+      const picture = profile.photos?.[0]?.value;
+      if (!picture) {
+        return done(new Error('No pictures found from Google profile.'));
+      }
       // If not, create a new user in your database
       user = new User({
         googleId: profile.id,
         displayName: profile.displayName,
         email: email,
+        picture: picture,
       });
       await user.save();
       done(undefined, user);

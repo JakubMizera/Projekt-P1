@@ -1,7 +1,6 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { User } from './../models/User';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -17,26 +16,19 @@ passport.use(new GoogleStrategy({
       // Check if user already exists in your database
       let user = await User.findOne({ googleId: profile.id });
       if (user) {
-        return done(undefined, user);
-      }
-      // Extract email from profile if available
-      const email = profile.emails?.[0]?.value;
-      if (!email) {
-        return done(new Error('No email found from Google profile.'));
-      }
-      const picture = profile.photos?.[0]?.value;
-      if (!picture) {
-        return done(new Error('No pictures found from Google profile.'));
+        return done(null, user);
       }
       // If not, create a new user in your database
       user = new User({
         googleId: profile.id,
         displayName: profile.displayName,
-        email: email,
-        picture: picture,
+        email: profile.emails?.[0]?.value,
+        picture: profile.photos?.[0]?.value,
+        name: profile.name?.givenName,
+        surname: profile.name?.familyName,
       });
       await user.save();
-      done(undefined, user);
+      done(null, user);
     } catch (error: any) {
       done(error);
     }
@@ -45,10 +37,14 @@ passport.use(new GoogleStrategy({
 
 // Serialize User
 passport.serializeUser((user: any, done) => {
-  done(null, user._id);
+  try {
+    done(null, user._id);
+  } catch (error) {
+    done(error);
+  }
 });
 
-// // Deserialize User
+// Deserialize User
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);

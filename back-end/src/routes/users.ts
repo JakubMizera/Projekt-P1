@@ -18,12 +18,14 @@ router.get('/users/current', isAuthenticated, (req: Request, res: Response) => {
   if (!req.user) {
     return res.status(404).json({ message: 'User not found' });
   }
-  res.json({
+  res.status(200).json({
     _id: user._id,
     googleId: user.googleId,
     displayName: user.displayName,
     email: user.email,
-    picture: user.picture
+    picture: user.picture,
+    name: user.name,
+    surname: user.surname,
   });
 })
 
@@ -68,7 +70,7 @@ router.put('/users/:id', isAuthenticated, async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    res.json(user);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }

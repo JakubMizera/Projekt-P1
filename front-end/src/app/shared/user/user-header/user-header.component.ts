@@ -22,7 +22,6 @@ export class UserHeaderComponent implements OnInit {
     this.userService.getCurrentUser();
     this.userService.currentUser$.subscribe(user => {
       this.currentUser = user;
-      console.log(user);
     })
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { CourseCategory } from "src/app/shared/interfaces/course-category.model";
@@ -27,6 +28,7 @@ export class UserCoursesEditComponent implements OnInit, OnDestroy {
     private apiCoursesService: ApiCoursesService,
     private fb: FormBuilder,
     private router: Router,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -76,10 +78,19 @@ export class UserCoursesEditComponent implements OnInit, OnDestroy {
       };
 
       this.apiCoursesService.updateCourse(this.id, updatedCourse).subscribe({
-        next: () => this.router.navigate(['user/courses']),
+        next: () => {
+          this.openSnackBar('Zmiany w kursie zostały zapisane', 'Zamknij');
+          this.router.navigate(['user/courses']);
+        },
         error: (err) => console.error(`Error updating course: ${err}`),
       });
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000
+    });
   }
 
 }

@@ -15,6 +15,7 @@ import { getPolishPaginatorIntl } from './paginator-translate.intl';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confimation-dialog/confirmation-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const materialModules = [
   MatInputModule,
@@ -30,6 +31,7 @@ const materialModules = [
   MatPaginatorModule,
   MatMenuModule,
   MatDialogModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/shared/interfaces/user.model';
 import { UserService } from 'src/app/shared/user/user.service';
 
@@ -15,6 +16,7 @@ export class UserSettingsComponent implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +40,9 @@ export class UserSettingsComponent implements OnInit {
       };
 
       this.userService.updateCurrentUser(updatedUserData as User).subscribe({
-        next: () => { },
+        next: () => {
+          this.openSnackBar('Ustawienia zostały zapisane', 'Zamknij');
+        },
         error: (error) => {
           console.error('Error updating user settings', error);
         }
@@ -46,4 +50,9 @@ export class UserSettingsComponent implements OnInit {
     }
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000
+    });
+  }
 }

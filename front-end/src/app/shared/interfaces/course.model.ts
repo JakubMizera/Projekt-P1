@@ -1,11 +1,10 @@
 import { CourseCategory } from "./course-category.model";
 import { Status } from "./course-status.model";
-import { User } from "./user.model";
 
 export interface Course {
   _id: string,
   courseId: number,
-  author: User,
+  createdBy: string,
   title: string,
   description: string,
   address: string,

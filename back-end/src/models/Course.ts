@@ -1,19 +1,16 @@
 import mongoose, { Document, Schema } from 'mongoose';
 import { CourseCategory } from '../interfaces/CourseCategory';
-
-enum Status {
-  Active = 'Aktywny',
-  Inactive = 'Nieaktywny',
-}
+import { CourseStatus } from '../interfaces/CourseStatus';
 
 interface ICourse extends Document {
+  createdBy: string;
   title: string;
   description: string;
   address: string;
   images?: string[];
   price: number;
   accountNumber: number;
-  status: Status;
+  status: CourseStatus;
   additionDate: Date;
   expirationDate: Date;
   category: CourseCategory;
@@ -21,11 +18,11 @@ interface ICourse extends Document {
   location?: {
     latitude: number;
     longitude: number;
-
   };
 }
 
 const CourseSchema: Schema = new Schema({
+  createdBy: { type: String, ref: 'User', required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   address: { type: String, required: true },

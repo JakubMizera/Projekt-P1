@@ -5,6 +5,7 @@ import { CourseCategory } from 'src/app/shared/interfaces/course-category.model'
 import { Course } from 'src/app/shared/interfaces/course.model';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
 import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
+import { UserService } from 'src/app/shared/user/user.service';
 
 @Component({
   selector: 'app-user-add-course',
@@ -22,6 +23,7 @@ export class UserAddCourseComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiCoursesService: ApiCoursesService,
     private router: Router,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -35,12 +37,14 @@ export class UserAddCourseComponent implements OnInit {
       additionDate: [new Date()],
       expirationDate: [null, Validators.required],
       category: [CourseCategory.None],
-      // courseId: [50123],
-      // location: this.formBuilder.group({
-      //   latitude: [null, [Validators.required, Validators.min(-90), Validators.max(90)]],
-      //   longitude: [null, [Validators.required, Validators.min(-180), Validators.max(180)]],
-      // }),
+      createdBy: [null, Validators.required],
     });
+
+    this.userService.currentUser$.subscribe(user => {
+      if (user && user._id) {
+        this.courseForm.patchValue({ createdBy: user._id });
+      }
+    })
   }
 
   onSubmit(): void {

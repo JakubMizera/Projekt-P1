@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -37,14 +36,19 @@ export class ApiCoursesService {
   }
 
   updateCourse(id: string, course: Course): Observable<Course> {
-    return this.httpClient.put<Course>(`${this.apiUrl}/courses/${id}`, course).pipe(
-      tap(updatedCourse => {
-        const currentCourses = this.coursesSubject.getValue();
-        this.coursesSubject.next(
-          currentCourses.map(course => course._id === id ? updatedCourse : course)
-        )
-      })
-    )
+    return this.httpClient.put<Course>
+      (
+        `${this.apiUrl}/courses/${id}`,
+        course,
+        { withCredentials: true }
+      ).pipe(
+        tap(updatedCourse => {
+          const currentCourses = this.coursesSubject.getValue();
+          this.coursesSubject.next(
+            currentCourses.map(course => course._id === id ? updatedCourse : course)
+          )
+        })
+      )
   }
 
   deleteCourse(id: string): Observable<Course> {

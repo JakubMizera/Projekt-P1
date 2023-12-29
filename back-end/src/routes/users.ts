@@ -1,16 +1,9 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { User } from './../models/User';
 import { IUser } from './../models/User';
+import { isAuthenticated } from '../middleware/isAuthenticated';
 
 const router = express.Router();
-
-// Middleware to check if the user is authenticated
-function isAuthenticated(req: Request, res: Response, next: Function) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  return res.status(401).json({ message: 'Not authenticated' });
-}
 
 // Current user
 router.get('/users/current', isAuthenticated, (req: Request, res: Response) => {

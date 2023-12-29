@@ -26,7 +26,7 @@ export class CourseOwnerGuard {
     return this.userService.currentUser$.pipe(
       switchMap(user => {
         if (!user || !user._id) {
-          this.router.navigate(['/login']);
+          this.router.navigate(['user/unauthorized']);
           return of(false);
         }
         return this.apiCoursesService.getCourseById(courseId).pipe(

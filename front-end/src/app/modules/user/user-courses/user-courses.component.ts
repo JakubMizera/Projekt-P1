@@ -35,7 +35,6 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
       this.dataSource = new MatTableDataSource(courses);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource.data);
     })
   }
 
@@ -49,11 +48,10 @@ export class UserCoursesComponent implements OnInit, OnDestroy {
   }
 
   navigateToCourseEdit(id: string): void {
-    this.router.navigate(['user/courses', id]);
+    this.router.navigate(['user/courses', id, 'edit']);
   }
 
   deleteCourse(id: string): void {
-    // this.apiCoursesService.deleteCourse(id).subscribe();
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
     dialogRef.afterClosed().subscribe(confirmed => {

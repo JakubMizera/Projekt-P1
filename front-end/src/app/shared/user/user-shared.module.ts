@@ -5,6 +5,7 @@ import { UserCustomContainerComponent } from './user-custom-container/user-custo
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { MaterialModule } from '../material/material.module';
 import { UserFormContainer } from './user-form-container/user-form-container.component';
+import { UserUnauthorizedComponent } from './user-unauthorized/user-unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { UserFormContainer } from './user-form-container/user-form-container.com
     UserCustomContainerComponent,
     UserHeaderComponent,
     UserFormContainer,
+    UserUnauthorizedComponent,
   ],
   imports: [
     CommonModule,

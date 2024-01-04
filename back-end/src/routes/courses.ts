@@ -30,6 +30,18 @@ router.get('/courses/:id', async (req: Request, res: Response) => {
   }
 });
 
+//Pobieranie wszystkichj kursów użytkownika
+router.get('/courses/user/:userId', async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    const userCourses = await Course.find({ createdBy: userId });
+    res.json(userCourses);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching courses for the user' });
+  }
+});
+
+
 // Dodawanie nowego kursu
 router.post('/courses', validateCourse, validate, async (req, res) => {
   try {

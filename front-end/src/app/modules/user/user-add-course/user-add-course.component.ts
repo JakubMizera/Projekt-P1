@@ -14,6 +14,7 @@ import { UserService } from 'src/app/shared/user/user.service';
 export class UserAddCourseComponent implements OnInit {
   courseForm!: FormGroup;
   base64Images: string[] = [];
+  imagePreviews: string[] = []; 
   courseCategories = Object.keys(CourseCategory).map(key => ({
     key: key,
     value: CourseCategory[key as keyof typeof CourseCategory]
@@ -71,10 +72,18 @@ export class UserAddCourseComponent implements OnInit {
       Array.from(input.files).forEach(file => {
         const reader = new FileReader();
         reader.onload = (e: any) => {
-          this.base64Images.push(e.target.result); // Storing base64 string
+          this.base64Images.push(e.target.result);
+          this.imagePreviews.push(e.target.result);
         };
         reader.readAsDataURL(file); // Convert to base64
       });
+    }
+  }
+
+  deleteImage(index: number): void {
+    if (index >= 0 && index < this.imagePreviews.length) {
+      this.imagePreviews.splice(index, 1);
+      this.base64Images.splice(index, 1);
     }
   }
 

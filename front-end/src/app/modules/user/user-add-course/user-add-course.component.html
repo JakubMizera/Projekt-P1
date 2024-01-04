@@ -70,7 +70,16 @@
     </mat-form-field>
 
     <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" multiple hidden>
-    <button mat-button (click)="fileInput.click()" type="button">Dodaj zdjęcie...</button>
+    <button mat-stroked-button (click)="fileInput.click()" type="button">Dodaj zdjęcie...</button>
+
+    <div class="image-previews">
+      <div *ngFor="let image of imagePreviews; let i = index" class="image-preview">
+        <img [src]="image" class="thumbnail">
+        <button (click)="deleteImage(i)" class="delete-button">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    </div>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="!courseForm.valid">Dodaj</button>
   </form>

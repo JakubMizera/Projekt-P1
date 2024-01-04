@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CourseCategory } from 'src/app/shared/interfaces/course-category.model';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
+import { Course } from 'src/app/shared/interfaces/course.model';
+import { CourseBaseComponentComponent } from 'src/app/shared/user/course-base-component/course-base-component.component';
 import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
 import { UserService } from 'src/app/shared/user/user.service';
 
@@ -12,10 +14,8 @@ import { UserService } from 'src/app/shared/user/user.service';
   templateUrl: './user-add-course.component.html',
   styleUrls: ['./user-add-course.component.scss']
 })
-export class UserAddCourseComponent implements OnInit {
+export class UserAddCourseComponent extends CourseBaseComponentComponent implements OnInit {
   courseForm!: FormGroup;
-  base64Images: string[] = [];
-  imagePreviews: string[] = []; 
   courseCategories = Object.keys(CourseCategory).map(key => ({
     key: key,
     value: CourseCategory[key as keyof typeof CourseCategory]
@@ -26,8 +26,10 @@ export class UserAddCourseComponent implements OnInit {
     private apiCoursesService: ApiCoursesService,
     private router: Router,
     private userService: UserService,
-    private snackBar: MatSnackBar,
-  ) { }
+    snackBar: MatSnackBar,
+  ) {
+    super(snackBar);
+  }
 
   ngOnInit(): void {
     this.courseForm = this.formBuilder.group({
@@ -52,12 +54,11 @@ export class UserAddCourseComponent implements OnInit {
 
   onSubmit(): void {
     if (this.courseForm.valid) {
-      // Create a course object including the Base64 images
-      const courseData = {
+      const courseData: Course = {
         ...this.courseForm.value,
         images: this.base64Images
       };
-  
+
       this.apiCoursesService.addCourse(courseData).subscribe({
         next: () => {
           this.openSnackBar('Kurs został stworzony', 'Zamknij');
@@ -66,33 +67,6 @@ export class UserAddCourseComponent implements OnInit {
         },
         error: (error) => console.error(error),
       });
-    }
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 3000
-    });
-  }
-
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      Array.from(input.files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.base64Images.push(e.target.result);
-          this.imagePreviews.push(e.target.result);
-        };
-        reader.readAsDataURL(file); // Convert to base64
-      });
-    }
-  }
-
-  deleteImage(index: number): void {
-    if (index >= 0 && index < this.imagePreviews.length) {
-      this.imagePreviews.splice(index, 1);
-      this.base64Images.splice(index, 1);
     }
   }
 

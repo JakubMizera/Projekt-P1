@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { CourseCategory } from "src/app/shared/interfaces/course-category.model";
 import { Course } from "src/app/shared/interfaces/course.model";
+import { CourseBaseComponentComponent } from "src/app/shared/user/course-base-component/course-base-component.component";
 import { ApiCoursesService } from "src/app/shared/user/user-courses.api.service";
 
 @Component({
@@ -12,12 +13,10 @@ import { ApiCoursesService } from "src/app/shared/user/user-courses.api.service"
   templateUrl: './user-courses-edit.component.html',
   styleUrls: ['./user-courses-edit.component.scss']
 })
-export class UserCoursesEditComponent implements OnInit, OnDestroy {
+export class UserCoursesEditComponent extends CourseBaseComponentComponent implements OnInit, OnDestroy {
   editCourseForm!: FormGroup;
   routeSubscription!: Subscription;
   courseSubscription!: Subscription;
-  base64Images: string[] = [];
-  imagePreviews: string[] = [];
   hasImageChanged = false;
   id!: string;
   course!: Course;
@@ -31,23 +30,16 @@ export class UserCoursesEditComponent implements OnInit, OnDestroy {
     private apiCoursesService: ApiCoursesService,
     private fb: FormBuilder,
     private router: Router,
-    private snackBar: MatSnackBar,
-  ) { }
+    snackBar: MatSnackBar,
+  ) {
+    super(snackBar);
+  }
 
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(params => {
       this.id = params['_id'];
       this.loadCourse(this.id);
     })
-  }
-
-  ngOnDestroy(): void {
-    if (this.routeSubscription) {
-      this.routeSubscription.unsubscribe();
-    }
-    if (this.courseSubscription) {
-      this.courseSubscription.unsubscribe();
-    }
   }
 
   loadCourse(id: string): void {
@@ -93,33 +85,22 @@ export class UserCoursesEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 3000
-    });
+  override onFileSelected(event: Event): void {
+    super.onFileSelected(event);
+    this.hasImageChanged = true;
+  };
+
+  override deleteImage(index: number): void {
+    super.deleteImage(index);
+    this.hasImageChanged = true;
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      Array.from(input.files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.base64Images.push(e.target.result);
-          this.imagePreviews.push(e.target.result);
-        };
-        this.hasImageChanged = true;
-        reader.readAsDataURL(file); // Convert to base64
-      });
+  ngOnDestroy(): void {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+    if (this.courseSubscription) {
+      this.courseSubscription.unsubscribe();
     }
   }
-
-  deleteImage(index: number): void {
-    if (index >= 0 && index < this.imagePreviews.length) {
-      this.imagePreviews.splice(index, 1);
-      this.base64Images.splice(index, 1);
-      this.hasImageChanged = true;
-    }
-  }
-
 }

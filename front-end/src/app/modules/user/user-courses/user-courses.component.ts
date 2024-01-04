@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
 import { Course } from 'src/app/shared/interfaces/course.model';
 import { ConfirmationDialogComponent } from 'src/app/shared/material/confimation-dialog/confirmation-dialog.component';
-import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
+import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
 
 @Component({
   selector: 'app-user-courses',

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { Course } from "src/app/shared/interfaces/course.model";
 import { CourseBaseComponent } from "src/app/shared/user/course-base-component/course-base.component";
-import { ApiCoursesService } from "src/app/shared/user/user-courses.api.service";
+import { ApiCoursesService } from "src/app/shared/user/api-courses.service";
 
 @Component({
   selector: 'app-user-courses-edit',

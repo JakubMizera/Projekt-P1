@@ -30,7 +30,7 @@ router.get('/courses/:id', async (req: Request, res: Response) => {
   }
 });
 
-//Pobieranie wszystkichj kursów użytkownika
+// Pobieranie wszystkich kursów użytkownika
 router.get('/courses/user/:userId', async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;

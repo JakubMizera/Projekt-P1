@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/user/user.service';
-import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
+import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
 
 @Injectable({
   providedIn: 'root'

@@ -10,6 +10,7 @@ import { UserCoursesEditComponent } from "./user-courses-edit/user-courses-edit.
 import { AuthGuard } from "src/app/shared/guard/auth.login.guard";
 import { CourseOwnerGuard } from "src/app/shared/guard/course.owner.guard";
 import { UserUnauthorizedComponent } from "src/app/shared/user/user-unauthorized/user-unauthorized.component";
+import { UserPanelComponent } from "./user-panel/user-panel.component";
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
     component: UserSidePanelComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'courses', pathMatch: 'full' },
+      { path: '', redirectTo: 'panel', pathMatch: 'full' },
+      { path: 'panel', component: UserPanelComponent },
       { path: 'courses', component: UserCoursesComponent },
       {
         path: 'courses/:_id/edit',

@@ -6,7 +6,7 @@ import { CourseCategory } from 'src/app/shared/interfaces/course-category.model'
 import { Status } from 'src/app/shared/interfaces/course-status.model';
 import { Course } from 'src/app/shared/interfaces/course.model';
 import { CourseBaseComponent } from 'src/app/shared/user/course-base-component/course-base.component';
-import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
+import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
 import { UserService } from 'src/app/shared/user/user.service';
 
 @Component({

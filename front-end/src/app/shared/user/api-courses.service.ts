@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Course } from '../interfaces/course.model';
+import { ApiUserCoursesService } from './api-user-courses.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,17 @@ export class ApiCoursesService {
   private coursesSubject = new BehaviorSubject<Course[]>([]);
   public courses$ = this.coursesSubject.asObservable();
 
-  constructor(private httpClient: HttpClient) {
-    this.loadInitialData();
+  constructor(
+    private httpClient: HttpClient,
+    private apiUserCoursesService: ApiUserCoursesService,
+  ) {
+    this.loadInitialCourses();
+    this.apiUserCoursesService.courseDeleted$.subscribe(() => {
+      this.loadInitialCourses();
+    })
   }
 
-  private loadInitialData(): void {
+  private loadInitialCourses(): void {
     this.httpClient.get<Course[]>(`${this.apiUrl}/courses`).subscribe(courses => {
       this.coursesSubject.next(courses);
     });

@@ -69,7 +69,8 @@
       </mat-error>
     </mat-form-field>
 
-    <button mat-button disabled="true">Dodaj zdjęcie...</button>
+    <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" multiple hidden>
+    <button mat-button (click)="fileInput.click()" type="button">Dodaj zdjęcie...</button>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="!courseForm.valid">Dodaj</button>
   </form>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CourseCategory } from 'src/app/shared/interfaces/course-category.model';
-import { Course } from 'src/app/shared/interfaces/course.model';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
 import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
 import { UserService } from 'src/app/shared/user/user.service';
@@ -14,6 +13,7 @@ import { UserService } from 'src/app/shared/user/user.service';
 })
 export class UserAddCourseComponent implements OnInit {
   courseForm!: FormGroup;
+  base64Images: string[] = [];
   courseCategories = Object.keys(CourseCategory).map(key => ({
     key: key,
     value: CourseCategory[key as keyof typeof CourseCategory]
@@ -49,12 +49,32 @@ export class UserAddCourseComponent implements OnInit {
 
   onSubmit(): void {
     if (this.courseForm.valid) {
-      const newCourse: Course = this.courseForm.value;
-      this.apiCoursesService.addCourse(newCourse).subscribe({
-        next: () => this.router.navigate(['/user/courses']),
+      // Create a course object including the Base64 images
+      const courseData = {
+        ...this.courseForm.value,
+        images: this.base64Images
+      };
+  
+      this.apiCoursesService.addCourse(courseData).subscribe({
+        next: () => {
+          this.router.navigate(['/user/courses']);
+          this.courseForm.reset();
+        },
         error: (error) => console.error(error),
-      })
-      this.courseForm.reset();
+      });
+    }
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      Array.from(input.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.base64Images.push(e.target.result); // Storing base64 string
+        };
+        reader.readAsDataURL(file); // Convert to base64
+      });
     }
   }
 

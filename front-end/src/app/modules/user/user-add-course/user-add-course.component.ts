@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CourseCategory } from 'src/app/shared/interfaces/course-category.model';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
@@ -25,6 +26,7 @@ export class UserAddCourseComponent implements OnInit {
     private apiCoursesService: ApiCoursesService,
     private router: Router,
     private userService: UserService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -58,12 +60,19 @@ export class UserAddCourseComponent implements OnInit {
   
       this.apiCoursesService.addCourse(courseData).subscribe({
         next: () => {
+          this.openSnackBar('Kurs został stworzony', 'Zamknij');
           this.router.navigate(['/user/courses']);
           this.courseForm.reset();
         },
         error: (error) => console.error(error),
       });
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000
+    });
   }
 
   onFileSelected(event: Event): void {

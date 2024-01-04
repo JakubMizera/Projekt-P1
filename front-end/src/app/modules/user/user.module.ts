@@ -5,7 +5,6 @@ import { UserContactComponent } from './user-contact/user-contact.component';
 import { UserCoursesComponent } from './user-courses/user-courses.component';
 import { UserPurchasedComponent } from './user-purchased/user-purchased.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
-import { UserViewComponent } from './user-view/user-view.component';
 import { UserRoutingModule } from './user-routing.module';
 import { RouterModule } from '@angular/router';
 import { UserSidePanelComponent } from '../../shared/user/user-side-panel/user-side-panel.component';
@@ -14,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserCoursesEditComponent } from './user-courses-edit/user-courses-edit.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,9 @@ import { UserCoursesEditComponent } from './user-courses-edit/user-courses-edit.
     UserCoursesComponent,
     UserPurchasedComponent,
     UserSettingsComponent,
-    UserViewComponent,
     UserSidePanelComponent,
     UserCoursesEditComponent,
+    UserPanelComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +41,6 @@ import { UserCoursesEditComponent } from './user-courses-edit/user-courses-edit.
     UserCoursesComponent,
     UserPurchasedComponent,
     UserSettingsComponent,
-    UserViewComponent,
     UserCoursesEditComponent,
   ]
 })

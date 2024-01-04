@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { CourseCategory } from 'src/app/shared/interfaces/course-category.model';
 import { Status } from 'src/app/shared/interfaces/course-status.model';
 import { Course } from 'src/app/shared/interfaces/course.model';
-import { CourseBaseComponentComponent } from 'src/app/shared/user/course-base-component/course-base-component.component';
+import { CourseBaseComponent } from 'src/app/shared/user/course-base-component/course-base.component';
 import { ApiCoursesService } from 'src/app/shared/user/user-courses.api.service';
 import { UserService } from 'src/app/shared/user/user.service';
 
@@ -14,12 +14,8 @@ import { UserService } from 'src/app/shared/user/user.service';
   templateUrl: './user-add-course.component.html',
   styleUrls: ['./user-add-course.component.scss']
 })
-export class UserAddCourseComponent extends CourseBaseComponentComponent implements OnInit {
+export class UserAddCourseComponent extends CourseBaseComponent implements OnInit {
   courseForm!: FormGroup;
-  courseCategories = Object.keys(CourseCategory).map(key => ({
-    key: key,
-    value: CourseCategory[key as keyof typeof CourseCategory]
-  }))
 
   constructor(
     private formBuilder: FormBuilder,

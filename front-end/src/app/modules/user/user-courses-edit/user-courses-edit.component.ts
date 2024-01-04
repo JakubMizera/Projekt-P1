@@ -3,9 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { CourseCategory } from "src/app/shared/interfaces/course-category.model";
 import { Course } from "src/app/shared/interfaces/course.model";
-import { CourseBaseComponentComponent } from "src/app/shared/user/course-base-component/course-base-component.component";
+import { CourseBaseComponent } from "src/app/shared/user/course-base-component/course-base.component";
 import { ApiCoursesService } from "src/app/shared/user/user-courses.api.service";
 
 @Component({
@@ -13,23 +12,19 @@ import { ApiCoursesService } from "src/app/shared/user/user-courses.api.service"
   templateUrl: './user-courses-edit.component.html',
   styleUrls: ['./user-courses-edit.component.scss']
 })
-export class UserCoursesEditComponent extends CourseBaseComponentComponent implements OnInit, OnDestroy {
+export class UserCoursesEditComponent extends CourseBaseComponent implements OnInit, OnDestroy {
   editCourseForm!: FormGroup;
   routeSubscription!: Subscription;
   courseSubscription!: Subscription;
   hasImageChanged = false;
   id!: string;
   course!: Course;
-  courseCategories = Object.keys(CourseCategory).map(key => ({
-    key: key,
-    value: CourseCategory[key as keyof typeof CourseCategory]
-  }))
 
   constructor(
-    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private apiCoursesService: ApiCoursesService,
-    private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     snackBar: MatSnackBar,
   ) {
     super(snackBar);
@@ -56,7 +51,7 @@ export class UserCoursesEditComponent extends CourseBaseComponentComponent imple
   }
 
   initializeForm(): void {
-    this.editCourseForm = this.fb.group({
+    this.editCourseForm = this.formBuilder.group({
       title: new FormControl(this.course.title, Validators.required),
       description: new FormControl(this.course.description, Validators.required),
       address: new FormControl(this.course.address, Validators.required),

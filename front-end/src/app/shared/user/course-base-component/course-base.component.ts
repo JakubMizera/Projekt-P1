@@ -1,10 +1,18 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CourseCategory } from '../../interfaces/course-category.model';
 
-export class CourseBaseComponentComponent {
+export class CourseBaseComponent {
   protected base64Images: string[] = [];
   protected imagePreviews: string[] = [];
 
-  constructor(protected snackBar: MatSnackBar) { }
+  courseCategories = Object.keys(CourseCategory).map(key => ({
+    key: key,
+    value: CourseCategory[key as keyof typeof CourseCategory]
+  }))
+
+  constructor(
+    protected snackBar: MatSnackBar
+  ) { }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, { duration: 3000 });

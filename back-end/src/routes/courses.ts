@@ -3,11 +3,12 @@ import Course from '../models/Course';
 import { checkCourseOwner } from '../middleware/checkCourseOwner';
 import { isAuthenticated } from '../middleware/isAuthenticated';
 const { validateCourse, validate } = require('../middleware/validation');
+import updateCourseStatus from '../middleware/updateCourseStatus';
 
 const router = express.Router();
 
 // Pobieranie wszystkich kursów
-router.get('/courses', async (req, res) => {
+router.get('/courses', updateCourseStatus, async (req, res) => {
   try {
     const courses = await Course.find();
     res.json(courses);
@@ -17,7 +18,7 @@ router.get('/courses', async (req, res) => {
 });
 
 // Pobieranie kursu po id
-router.get('/courses/:id', async (req: Request, res: Response) => {
+router.get('/courses/:id',updateCourseStatus, async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const course = await Course.findById(id);
@@ -30,8 +31,8 @@ router.get('/courses/:id', async (req: Request, res: Response) => {
   }
 });
 
-// Pobieranie wszystkich kursów użytkownika
-router.get('/courses/user/:userId', async (req: Request, res: Response) => {
+//Pobieranie wszystkichj kursów użytkownika
+router.get('/courses/user/:userId',updateCourseStatus, async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;
     const userCourses = await Course.find({ createdBy: userId });

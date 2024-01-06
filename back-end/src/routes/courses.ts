@@ -31,8 +31,8 @@ router.get('/courses/:id', updateCourseStatus, async (req: Request, res: Respons
   }
 });
 
-//Pobieranie wszystkichj kursów użytkownika
-router.get('/courses/user/:userId', updateCourseStatus, async (req: Request, res: Response) => {
+// Pobieranie wszystkich kursów użytkownika
+router.get('/courses/user/:userId', isAuthenticated, updateCourseStatus, async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;
     const userCourses = await Course.find({ createdBy: userId });
@@ -68,7 +68,7 @@ router.put('/courses/:id', isAuthenticated, checkCourseOwner, updateCourseStatus
 });
 
 // Usuwanie kursu
-router.delete('/courses/:id', async (req, res) => {
+router.delete('/courses/:id', isAuthenticated, checkCourseOwner, async (req, res) => {
   try {
     const deletedCourse = await Course.findByIdAndDelete(req.params.id);
     if (!deletedCourse) {

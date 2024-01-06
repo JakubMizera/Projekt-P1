@@ -59,7 +59,7 @@ export class ApiCoursesService {
   }
 
   deleteCourse(id: string): Observable<Course> {
-    return this.httpClient.delete<Course>(`${this.apiUrl}/courses/${id}`).pipe(
+    return this.httpClient.delete<Course>(`${this.apiUrl}/courses/${id}`, { withCredentials: true }).pipe(
       tap(() => {
         const currentCourses = this.coursesSubject.getValue();
         this.coursesSubject.next(currentCourses.filter(course => course._id !== id));

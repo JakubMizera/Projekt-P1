@@ -11,21 +11,21 @@ export class ApiUserCoursesService {
   private readonly apiUrl = 'http://localhost:5000/api';
   private userCoursesSubject = new BehaviorSubject<Course[]>([]);
   public userCourses$ = this.userCoursesSubject.asObservable();
-  
+
   private courseDeletedSubject = new Subject<string>(); // Subject to emit deleted course ID
   courseDeleted$ = this.courseDeletedSubject.asObservable();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getUserCourses(userId: string): void {
-    this.httpClient.get<Course[]>(`${this.apiUrl}/courses/user/${userId}`)
+    this.httpClient.get<Course[]>(`${this.apiUrl}/courses/user/${userId}`, { withCredentials: true })
       .subscribe(courses => {
         this.userCoursesSubject.next(courses);
       });
   }
 
-  deleteUserCourse(courseId: string, userId: string): Observable<any> {
-    return this.httpClient.delete(`${this.apiUrl}/courses/${courseId}`).pipe(
+  deleteUserCourse(courseId: string, userId: string): Observable<Course> {
+    return this.httpClient.delete<Course>(`${this.apiUrl}/courses/${courseId}`, { withCredentials: true }).pipe(
       tap(() => {
         // this.getUserCourses(userId); // Refresh user courses after deletion
         const currentUserCourses = this.userCoursesSubject.getValue();

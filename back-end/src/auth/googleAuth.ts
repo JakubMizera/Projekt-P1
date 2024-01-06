@@ -13,12 +13,12 @@ passport.use(new GoogleStrategy({
 },
   async (accessToken, refreshToken, profile, done) => {
     try {
-      // Check if user already exists in your database
+      // Check if user already exists in database
       let user = await User.findOne({ googleId: profile.id });
       if (user) {
         return done(null, user);
       }
-      // If not, create a new user in your database
+      // If not, create a new user in database
       user = new User({
         googleId: profile.id,
         displayName: profile.displayName,
@@ -48,7 +48,6 @@ passport.serializeUser((user: any, done) => {
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);
-    console.log(user)
     done(null, user);
   } catch (err) {
     done(err);

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Component, OnInit } from '@angular/core';
 import { MapComponent } from './map.component';
 
 describe('MapComponent', () => {

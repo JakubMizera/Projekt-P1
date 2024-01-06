@@ -1,0 +1,108 @@
+@import './../../../../styles/variables';
+
+.container {
+  background-image: url('./../../../../assets/images/back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-wrapper {
+  background-color: #fff;
+  width: 500px; /* Możesz dostosować szerokość do własnych potrzeb */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  textarea {
+    height: 100px;
+  }
+
+  .contact-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    background: linear-gradient(to right, #02459c, #17408d, #5353a0);
+    color: #fff;
+    border: none;
+    transition: background-color 0.30s ease, transform 0.30s ease;
+
+    &:hover {
+      background-color: darken($color: #5353a0, $amount: 5%);
+      transform: scale(1.1);
+    }
+  }
+}
+
+.social-media-logos {
+  display: flex;
+  gap: 25px;
+
+  img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-wrapper {
+    width: auto;
+    padding: 20px;
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    width: calc(100% - 20px);
+  }
+
+  .content-column {
+    gap: 15px;
+  }
+}

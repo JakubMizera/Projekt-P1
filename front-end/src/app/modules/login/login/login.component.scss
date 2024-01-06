@@ -1,52 +1,88 @@
 @import './../../../../styles/variables';
 
 .container {
-  background-image: url('./../../../../assets/images/Main.png');
+  background-image: url('./../../../../assets/images/back.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
-  .login-wrapper {
-    background-color: #fff;
-    height: 70vh;
-    width: 400px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
+.login-wrapper {
+  background-color: #fff;
+  height: 60vh;
+  width: 900px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    .google-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      font-size: 1.3rem;
-      border-radius: 4px;
-      cursor: pointer;
-      width: 270px;
-      height: 50px;
-      background-color: #e4e4e4;
+.left-column {
+  flex: 1;
+  padding: 20px;
+  height: 100%;
+  background-image: url('./../../../../assets/images/image5.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-      &:hover {
-        background-color: $color-hover-gray;
-      }
-
-      svg {
-        width: 20px;
-      }
-    }
+.right-column {
+  font-size: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  h1 {
+    padding-bottom: 0px;
+    font-weight: bold;
+  }
+  p {
+    padding-bottom: 30px;
   }
 }
 
-h1 {
-  font-size: 2rem;
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.0rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 270px;
+  height: 50px;
+  color: #fff;
+  background: linear-gradient(to right, #02459c, #17408d, #5353a0 );
+  transition: transform 0.2s ease;
+
 }
 
-h2 {
-  font-size: 1.5rem;
+.google-btn:hover {
+  background-color: $color-hover-gray;
+  transform: scale(1.1);
 }
 
+.social-media-logos {
+  display: flex;
+  gap: 25px;
+}
+
+.social-media-logos img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+.social-media-logos img:hover {
+  width: 40px;
+  height: 40px;
+  transform: scale(1.3);
+}

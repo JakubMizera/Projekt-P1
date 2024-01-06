@@ -1,53 +1,73 @@
+
 .slider-container {
-  margin-top: 50px;
-  margin: 0 auto;
+  margin: 50px auto;
   overflow: hidden;
-  height: 560px;
+  position: relative;
+  width: 100%;
 }
 
 .slider-header {
-  text-align: left;
+  text-align: center;
   padding: 30px;
-}
+  //h {
+   // font-size: 2rem;
+   // color: #1a1a1a;
+   // margin: 0;
+ h1 {
+      font-size: 2em;
+      padding-top: 20px;
+      margin-bottom: 0.7em;
+      font-weight: bold;
+    }
+    p{
 
-.slider-header h1 {
-  font-size: 27px;
-  color: #1a1a1a;
-  margin-left: 50px;
-  padding-top: 70px;
+      font-size: 1.2em;
+      padding-bottom: 10px;
+    }
 }
 
 .splide {
-  margin-top: 0px;
+  .splide__track {
+    .splide__list {
+      .splide__slide {
+        margin: 0 5px;
+        transition: transform 0.5s ease;
+        overflow: hidden;
+        position: relative;
+        img {
+          transition: transform 0.3s ease;
+        }
+        &:hover {
+          transform: scale(1.50);
+        }
+      }
+    }
+  }
 
-  .splide__slide {
+  .splide__arrow {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    text-transform: uppercase;
-    box-sizing: border-box;
-    border-radius: 20px;
-    margin: 0 10px;
-  }
-
-  .splide__slide img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover img {
-    transform: scale(2.5);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    &.splide__arrow--prev {
+      left: 10px;
+    }
+    &.splide__arrow--next {
+      right: 10px;
+    }
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: center / contain no-repeat;
+    }
   }
 }

@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductsViewComponent } from './products-view/products-view.component';
+import { ProductsRoutingModule } from './products-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProductsViewComponent } from './products-view/products-view.component';
     ReactiveFormsModule,
     MaterialModule,
     SharedModule,
+    ProductsRoutingModule,
   ],
   exports: [],
 })

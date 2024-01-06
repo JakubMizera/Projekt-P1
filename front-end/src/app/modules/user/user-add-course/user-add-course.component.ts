@@ -58,7 +58,7 @@ export class UserAddCourseComponent extends CourseBaseComponent implements OnIni
       this.apiCoursesService.addCourse(courseData).subscribe({
         next: () => {
           this.openSnackBar('Kurs został stworzony', 'Zamknij');
-          this.router.navigate(['/user/courses']);
+          this.router.navigate(['/user/panel']);
           this.courseForm.reset();
         },
         error: (error) => console.error(error),

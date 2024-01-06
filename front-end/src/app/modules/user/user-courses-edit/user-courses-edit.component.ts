@@ -73,7 +73,7 @@ export class UserCoursesEditComponent extends CourseBaseComponent implements OnI
       this.apiCoursesService.updateCourse(this.id, updatedCourse).subscribe({
         next: () => {
           this.openSnackBar('Zmiany w kursie zostały zapisane', 'Zamknij');
-          this.router.navigate(['user/courses']);
+          this.router.navigate(['user/panel']);
         },
         error: (err) => console.error(`Error updating course: ${err}`),
       });

@@ -3,7 +3,7 @@ import Course from '../models/Course';
 import { checkCourseOwner } from '../middleware/checkCourseOwner';
 import { isAuthenticated } from '../middleware/isAuthenticated';
 const { validateCourse, validate } = require('../middleware/validation');
-import updateCourseStatus from '../middleware/updateCourseStatus';
+import { updateCourseStatus } from '../middleware/updateCourseStatus';
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.get('/courses', updateCourseStatus, async (req, res) => {
 });
 
 // Pobieranie kursu po id
-router.get('/courses/:id',updateCourseStatus, async (req: Request, res: Response) => {
+router.get('/courses/:id', updateCourseStatus, async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const course = await Course.findById(id);
@@ -32,7 +32,7 @@ router.get('/courses/:id',updateCourseStatus, async (req: Request, res: Response
 });
 
 //Pobieranie wszystkichj kursów użytkownika
-router.get('/courses/user/:userId',updateCourseStatus, async (req: Request, res: Response) => {
+router.get('/courses/user/:userId', updateCourseStatus, async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;
     const userCourses = await Course.find({ createdBy: userId });
@@ -55,7 +55,7 @@ router.post('/courses', validateCourse, validate, async (req, res) => {
 });
 
 // Aktualizacja istniejącego kursu
-router.put('/courses/:id', isAuthenticated, checkCourseOwner, async (req, res) => {
+router.put('/courses/:id', isAuthenticated, checkCourseOwner, updateCourseStatus, async (req, res) => {
   try {
     const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedCourse) {

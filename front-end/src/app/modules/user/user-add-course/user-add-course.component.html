@@ -60,8 +60,8 @@
     <mat-form-field appearance="fill">
       <mat-label>Kategoria</mat-label>
       <mat-select formControlName="category">
-        <mat-option *ngFor="let category of courseCategories" [value]="category.key">
-          {{category.value}}
+        <mat-option *ngFor="let category of courseCategories" [value]="category.value">
+          {{ category.value }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="courseForm.get('category')?.errors?.['required']">

@@ -59,7 +59,7 @@ export class UserCoursesEditComponent extends CourseBaseComponent implements OnI
       accountNumber: new FormControl(this.course.accountNumber, Validators.required),
       status: new FormControl(this.course.status, Validators.required),
       expirationDate: new FormControl(this.course.expirationDate, Validators.required),
-      category: new FormControl(this.course.category),
+      category: new FormControl(this.course.category, Validators.required),
     });
   }
 

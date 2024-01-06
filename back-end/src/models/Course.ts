@@ -32,7 +32,7 @@ const CourseSchema: Schema = new Schema({
   status: { type: String, required: true },
   additionDate: { type: Date, required: true },
   expirationDate: { type: Date, required: true },
-  category: { type: String, enum: Object.keys(CourseCategory), required: true },
+  category: { type: String, enum: Object.values(CourseCategory), required: true },
   requirements: [String],
   location: {
     latitude: Number,

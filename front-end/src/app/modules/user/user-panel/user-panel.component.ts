@@ -8,7 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { UserService } from 'src/app/shared/user/user.service';
 import { Router } from '@angular/router';
 import { ConfirmationDialogComponent } from 'src/app/shared/material/confimation-dialog/confirmation-dialog.component';
-import { ApiUserCoursesService } from 'src/app/shared/user/api-user-courses.service';
+import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
 
 @Component({
   selector: 'app-user-panel',
@@ -19,7 +19,6 @@ export class UserPanelComponent implements OnInit {
   displayedColumns: string[] = ['title', 'status', 'price', 'options'];
   dataSource!: MatTableDataSource<Course>;
   Status = Status;
-  userId!: string;
 
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
@@ -28,21 +27,18 @@ export class UserPanelComponent implements OnInit {
     private dialog: MatDialog,
     private userService: UserService,
     private router: Router,
-    private apiUserCoursesService: ApiUserCoursesService,
+    private apiCoursesService: ApiCoursesService,
   ) { }
 
   ngOnInit(): void {
     this.userService.currentUser$.subscribe(user => {
       if (user && user._id) {
-        this.apiUserCoursesService.getUserCourses(user._id);
-        this.userId = user._id;
+        this.apiCoursesService.getUserCourses(user._id).subscribe(courses => {
+          this.dataSource = new MatTableDataSource(courses);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        })
       }
-    });
-
-    this.apiUserCoursesService.userCourses$.subscribe(courses => {
-      this.dataSource = new MatTableDataSource(courses);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
     })
   }
 
@@ -60,7 +56,7 @@ export class UserPanelComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.apiUserCoursesService.deleteUserCourse(id, this.userId).subscribe()
+        this.apiCoursesService.deleteCourse(id).subscribe()
       }
     })
   }

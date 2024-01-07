@@ -67,22 +67,23 @@
 }
 
 .google-btn:hover {
-  background-color: $color-hover-gray;
   transform: scale(1.1);
 }
-
-.social-media-logos {
-  display: flex;
-  gap: 25px;
-}
-
-.social-media-logos img {
+.social-links a {
+  margin: 0 10px;
+  color: #ffffff;
+  border: 1px solid #ffffff00;
+  padding: 10px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s;
+  background-color: #002a58;
 }
-.social-media-logos img:hover {
-  width: 40px;
-  height: 40px;
+
+.social-links a:hover {
   transform: scale(1.3);
 }

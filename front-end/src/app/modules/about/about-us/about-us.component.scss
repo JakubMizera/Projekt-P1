@@ -1,6 +1,6 @@
 @import './../../../../styles/variables';
 
-//Sekcja Header
+/* Sekcja Header */
 .about-us-container {
   background: $color-background-gradient;
   height: 400px;
@@ -15,7 +15,8 @@
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
-//Sekcja Onas1
+
+/* Sekcja O nas 1 */
 .dream-vanity {
   display: flex;
   justify-content: space-between;
@@ -72,44 +73,45 @@
   width: 100%;
   display: block;
 }
-/*Sekcja Onas2
- Odwrócenie kolejności dla drugiej sekcji */
+
+/* Sekcja O nas 2 - Odwrócenie kolejności dla drugiej sekcji */
 .dream-vanity.reverse {
   flex-direction: row-reverse;
 }
 
-@media (max-width: 1200px) { /* Dostosuj szerokość do mniejszych ekranów */
+/* Responsywność */
+@media (max-width: 1200px) {
   .dream-vanity {
     width: auto;
     padding: 20px;
     flex-direction: column;
   }
 
-  .content, .image-container { /* Pełna szerokość na mniejszych ekranach */
+  .content, .image-container {
     max-width: 100%;
     flex-basis: 100%;
   }
 }
 
-
-//Sekcja Kim Jesteśmy
+/* Sekcja Kim Jesteśmy */
 .our-services-container {
   text-align: center;
   padding-top: 90px;
   padding-bottom: 100px;
   background-color: #eeeeeece;
-
+}
 
   h2 {
     font-size: 2em;
     margin-bottom: 1em;
     font-weight: bold;
-  }
-  p{
 
+
+  p {
     font-size: 1.2em;
     padding-bottom: 35px;
   }
+}
 
   .services-items {
     display: flex;
@@ -117,7 +119,6 @@
     justify-content: center;
     gap: 40px;
     padding-top: 20px;
-
 
     .service-item {
       max-width: 350px;
@@ -127,7 +128,6 @@
       padding: 17px;
       box-shadow: 0 0 50px rgba(112, 112, 112, 0.5);
       transition: background-color 0.70s ease, transform 0.90s ease;
-
 
       img {
         width: 180px;
@@ -141,22 +141,21 @@
         margin: 0.5em 0;
         font-weight: bold;
       }
-      p{
+
+      p {
         font-size: 1rem;
         text-align: justify;
       }
 
-            &.service-item:hover {
-              background-color: #88a8ff32;
-              transform: scale(1.1);
+      &:hover {
+        background-color: #88a8ff32;
+        transform: scale(1.1);
+      }
 
-       }
     }
-
   }
-}
 
-//Sekcja-Opinie
+/* Sekcja Opinie */
 .feedback-section {
   padding: 40px;
   align-items: center;
@@ -164,72 +163,58 @@
   max-width: 1000px;
   margin: 0 auto;
   padding-bottom: 100px;
-}
 
-
-.feedback-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background-color: #e0e0e0;
-  box-shadow: 0 0 50px rgba(112, 112, 112, 0.5);
-}
-
-.client-image {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-}
-
-.feedback-content {
-  text-align: left;
-  flex: 0.7;
-}
-
-.rating {
-  color: #0077ff;
-  margin-bottom: 10px;
-}
-
-.rating .fa {
-  font-size: 18px;
-}
-
-blockquote {
-  font-style: italic;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-cite {
-  display: block;
-  color: #999;
-}
-
-h2 {
-
-  font-size: 2em;
-  padding-top: 20px;
-  margin-bottom: 1em;
-  font-weight: bold;
-}
-p{
-
-  font-size: 1.2em;
-  padding-bottom: 35px;
-}
-
-@media (max-width: 768px) {
   .feedback-container {
-    flex-direction: column;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #e0e0e0;
+    box-shadow: 0 0 50px rgba(112, 112, 112, 0.5);
   }
 
   .client-image {
-    margin-bottom: 20px;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
   }
 
   .feedback-content {
-    text-align: center;
+    text-align: left;
+    flex: 0.7;
+  }
+
+  .rating {
+    color: #0077ff;
+    margin-bottom: 10px;
+  }
+
+  .rating .fa {
+    font-size: 18px;
+  }
+
+  blockquote {
+    font-style: italic;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  cite {
+    display: block;
+    color: #999;
+  }
+
+  @media (max-width: 768px) {
+    .feedback-container {
+      flex-direction: column;
+    }
+
+    .client-image {
+      margin-bottom: 20px;
+    }
+
+    .feedback-content {
+      text-align: center;
+    }
   }
 }
-

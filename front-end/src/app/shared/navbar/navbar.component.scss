@@ -4,22 +4,21 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  padding: 50px 20px;
-  background-color: transparent;
+  padding: 20px 10px;
+  background-color: #fff;
 
   .left-side {
     display: flex;
     align-items: center;
 
     .logo {
-      width: 80px;
+      width: 90px;
       aspect-ratio: 16/10;
     }
 
     .brand {
-      color: #fff;
+      color: #000000;
       font-size: 1.5rem;
-      letter-spacing: 1px;
       font-weight: bold;
     }
   }
@@ -29,17 +28,18 @@
     justify-content: center;
 
     .nav-link {
-      font-size: 22px;
+      font-size: 18px;
       text-decoration: none;
       padding: 10px 20px;
       text-align: center;
       font: normal normal medium 24px/32px Forma DJR Text;
       letter-spacing: 0.58px;
-      color: #E3F4FF;
+      color: #000000;
       opacity: 1;
+      align-content: center;
 
       &:hover {
-        color: #ddd;
+        color: #444444;
       }
     }
   }
@@ -49,11 +49,13 @@
     justify-content: flex-end;
 
     .fa-user-circle {
-      color: #fff;
+      color: #000000;
       font-size: 1.75rem;
       margin-left: 1rem;
       margin-right: 1rem;
+      &:hover {
+        color: #003274;
     }
   }
-
+}
 }

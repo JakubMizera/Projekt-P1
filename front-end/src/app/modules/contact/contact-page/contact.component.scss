@@ -1,9 +1,7 @@
 @import './../../../../styles/variables';
 
 .container {
-  background-image: url('./../../../../assets/images/back.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: $color-background-gradient;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -63,7 +61,7 @@
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
-    background: linear-gradient(to right, #02459c, #17408d, #5353a0);
+    background: $color-background-gradient;
     color: #fff;
     border: none;
     transition: background-color 0.30s ease, transform 0.30s ease;

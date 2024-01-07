@@ -1,3 +1,5 @@
+@import './../../../../styles/variables';
+
 .contact-form {
   z-index: 20;
   position: relative;
@@ -55,7 +57,7 @@
   position:relative;
   z-index: 10;
   margin: auto;
-  background: linear-gradient(to right, #02459c, #17408d, #5353a0 );
+  background: $color-background-gradient ;
   color: #ffffff;
   padding: 50px 0;
   display: flex;

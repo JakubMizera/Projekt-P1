@@ -61,7 +61,7 @@
   width: 270px;
   height: 50px;
   color: #fff;
-  background: linear-gradient(to right, #02459c, #17408d, #5353a0 );
+  background: $color-background-gradient ;
   transition: transform 0.2s ease;
 
 }

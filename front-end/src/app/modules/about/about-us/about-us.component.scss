@@ -1,0 +1,235 @@
+@import './../../../../styles/variables';
+
+//Sekcja Header
+.about-us-container {
+  background: $color-background-gradient;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-overlay {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+//Sekcja Onas1
+.dream-vanity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  box-sizing: border-box;
+  width: 1200px;
+  margin: auto;
+}
+
+.content {
+  max-width: 40%;
+  flex: 0 0 40%;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.more-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: none;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.more-button:hover {
+  background: black;
+  color: white;
+}
+
+.image-container {
+  max-width: 50%;
+  flex: 0 0 50%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover {
+  transform: scale(1);
+}
+
+.vanity-image {
+  width: 100%;
+  display: block;
+}
+/*Sekcja Onas2
+ Odwrócenie kolejności dla drugiej sekcji */
+.dream-vanity.reverse {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 1200px) { /* Dostosuj szerokość do mniejszych ekranów */
+  .dream-vanity {
+    width: auto;
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .content, .image-container { /* Pełna szerokość na mniejszych ekranach */
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+
+//Sekcja Kim Jesteśmy
+.our-services-container {
+  text-align: center;
+  padding-top: 90px;
+  padding-bottom: 100px;
+  background-color: #eeeeeece;
+
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    font-weight: bold;
+  }
+  p{
+
+    font-size: 1.2em;
+    padding-bottom: 35px;
+  }
+
+  .services-items {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 20px;
+
+
+    .service-item {
+      max-width: 350px;
+      min-width: 100px;
+      background-color: #ffffff71;
+      border-radius: 3%;
+      padding: 17px;
+      box-shadow: 0 0 50px rgba(112, 112, 112, 0.5);
+      transition: background-color 0.70s ease, transform 0.90s ease;
+
+
+      img {
+        width: 180px;
+        height: 180px;
+        border-radius: 100%;
+
+      }
+
+      h3 {
+        font-size: 1.5em;
+        margin: 0.5em 0;
+        font-weight: bold;
+      }
+      p{
+        font-size: 1rem;
+        text-align: justify;
+      }
+
+            &.service-item:hover {
+              background-color: #88a8ff32;
+              transform: scale(1.1);
+
+       }
+    }
+
+  }
+}
+
+//Sekcja-Opinie
+.feedback-section {
+  padding: 40px;
+  align-items: center;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
+
+
+.feedback-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #e0e0e0;
+  box-shadow: 0 0 50px rgba(112, 112, 112, 0.5);
+}
+
+.client-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.feedback-content {
+  text-align: left;
+  flex: 0.7;
+}
+
+.rating {
+  color: #0077ff;
+  margin-bottom: 10px;
+}
+
+.rating .fa {
+  font-size: 18px;
+}
+
+blockquote {
+  font-style: italic;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+cite {
+  display: block;
+  color: #999;
+}
+
+h2 {
+
+  font-size: 2em;
+  padding-top: 20px;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+p{
+
+  font-size: 1.2em;
+  padding-bottom: 35px;
+}
+
+@media (max-width: 768px) {
+  .feedback-container {
+    flex-direction: column;
+  }
+
+  .client-image {
+    margin-bottom: 20px;
+  }
+
+  .feedback-content {
+    text-align: center;
+  }
+}
+

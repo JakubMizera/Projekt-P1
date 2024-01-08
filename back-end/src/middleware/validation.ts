@@ -6,21 +6,23 @@ import { CourseCategory } from '../interfaces/CourseCategory';
 
 // Walidacja użytkownika
 exports.validateUser = [
-  check('email').isEmail().withMessage('Nieprawidłowy adres email'),
   check('firstName').not().isEmpty().withMessage('Imię jest wymagane'),
   check('lastName').not().isEmpty().withMessage('Nazwisko jest wymagane'),
-  // check('phoneNumber').isMobilePhone().withMessage('Nieprawidłowy numer telefonu'),
 ];
 
 // Walidacja kursu
 exports.validateCourse = [
   //Tytył kursu
   check('title').not().isEmpty().withMessage('Tytuł jest wymagany')
-  // .isLength({ max: 5}).withMessage('Tytuł nie może przekraczać 50 znaków'),
+  .isLength({ max: 100 })
+  .withMessage('Tytuł kursu może zawierać maksymalnie 100 znaków.')
+  .matches(/^[a-zA-Z0-9\s]+$/)
+  .withMessage('Tytuł kursu może zawierać tylko litery, cyfry i spacje.')
   ,
 
   //Opis kursu
-  check('description').not().isEmpty().withMessage('Opis jest wymagany'),
+  check('description').not().isEmpty().withMessage('Opis jest wymagany')
+  .isLength({ max: 1000 }),
 
   //Cena kursu
   check('price').not().isEmpty().withMessage('Cena jest wymagana')
@@ -30,8 +32,13 @@ exports.validateCourse = [
 
 
   //Numer konta
-  check('accountNumber').not().isEmpty().withMessage('Numer konta jest wymagany'),
+  // check('accountNumber')
+  //   .isLength({ min: 26, max: 26 })
+  //   .withMessage('Numer konta musi zawierać dokładnie 26 znaków.')
+  //   .matches(/^[0-9]+$/)
+  //   .withMessage('Numer konta może zawierać tylko cyfry.')
 ];
+
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);

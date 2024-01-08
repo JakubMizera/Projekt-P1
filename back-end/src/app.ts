@@ -8,7 +8,7 @@ import passport from 'passport';
 import session from 'express-session';
 import './auth/googleAuth';
 import authRouter from './routes/auth';
-import contactRouter from './routes/contact';
+import contactRouter from './routes/contacts';
 
 dotenv.config();
 const app: Express = express();

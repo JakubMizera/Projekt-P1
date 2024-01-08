@@ -39,6 +39,26 @@ exports.validateCourse = [
   //   .withMessage('Numer konta może zawierać tylko cyfry.')
 ];
 
+export const validateContact = [
+  // Walidacja nazwy
+  check('name')
+    .trim()
+    .not().isEmpty().withMessage('Pole imię i nazwisko jest wymagane.')
+    .isLength({ min: 2, max: 50 }).withMessage('Imię i nazwisko musi zawierać od 2 do 50 znaków.')
+    .matches(/^[a-zA-Z\s]*$/).withMessage('Imię i nazwisko może zawierać tylko litery i spacje.'),
+
+  // Walidacja e-maila
+  check('email')
+    .trim()
+    .isEmail().withMessage('Nieprawidłowy format adresu e-mail.')
+    .normalizeEmail(),
+
+  // Walidacja wiadomości
+  check('message')
+    .trim()
+    .not().isEmpty().withMessage('Pole wiadomości jest wymagane.')
+    .isLength({ min: 2, max: 1000 }).withMessage('Wiadomość musi zawierać od 10 do 1000 znaków.')
+];
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);

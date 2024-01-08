@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import Contact from '../models/Contact';
+import { validationResult } from 'express-validator';
+const { validateContact } = require('../middleware/validation');
 
 const router = express.Router();
 
@@ -33,7 +35,12 @@ router.get('/contacts/:id', async (req: Request, res: Response) => {
   }
 });
 
-router.post('/contacts', async (req: Request, res: Response) => {
+router.post('/contacts', validateContact, async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
     const newContact = new Contact({
       name: req.body.name,
@@ -51,18 +58,30 @@ router.post('/contacts', async (req: Request, res: Response) => {
   }
 });
 
-router.put('/contacts/:id', async (req: Request, res: Response) => {
+
+router.put('/contacts/:id', validateContact, async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
-    const updatedContact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedContact = await Contact.findByIdAndUpdate(
+      req.params.id, 
+      req.body, 
+      { new: true, runValidators: true } 
+    );
+
     if (!updatedContact) {
       return res.status(404).json({ message: 'Contact not found' });
     }
+
     res.json(updatedContact);
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(400).json({ message: error.message });
     } else {
-      res.status(400).json({ message: "An unknown error occurred" });
+      res.status(500).json({ message: "An unknown error occurred" });
     }
   }
 });

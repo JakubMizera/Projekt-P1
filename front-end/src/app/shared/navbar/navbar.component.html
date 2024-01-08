@@ -11,7 +11,14 @@
       <a routerLink="/contact" class="nav-link">Kontakt</a>
     </div>
     <div class="right-side">
-     <!-- <i class="fas fa-search search-icon"></i> --->
-      <i class="fas fa-user-circle" routerLink="/user" ></i>
+      <div *ngIf="currentUser; else loginButton" class="user-info" routerLink="/user">
+        <img *ngIf="currentUser.picture" [src]="currentUser.picture" alt="{{ currentUser.displayName }}"
+          class="user-avatar">
+        <span class="user-name">{{ currentUser.displayName }}</span>
+      </div>
+      <ng-template #loginButton>
+        <i class="fas fa-user-circle" routerLink="/user"></i>
+      </ng-template>
+
     </div>
 </nav>

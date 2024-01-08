@@ -19,18 +19,47 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'panel', pathMatch: 'full' },
-      { path: 'panel', component: UserPanelComponent },
-      { path: 'courses', component: UserCoursesComponent },
+      {
+        path: 'panel',
+        component: UserPanelComponent,
+        data: { title: 'Panel użytkownika' }
+      },
+      {
+        path: 'courses',
+        component: UserCoursesComponent,
+        data: { title: 'Kursy' }
+      },
       {
         path: 'courses/:_id/edit',
         component: UserCoursesEditComponent,
+        data: { title: 'Edycja kursu' },
         canActivate: [CourseOwnerGuard]
       },
-      { path: 'purchased', component: UserPurchasedComponent },
-      { path: 'settings', component: UserSettingsComponent },
-      { path: 'addcourse', component: UserAddCourseComponent },
-      { path: 'contact', component: UserContactComponent },
-      { path: 'unauthorized', component: UserUnauthorizedComponent },
+      {
+        path: 'purchased',
+        component: UserPurchasedComponent,
+        data: { title: 'Zakupione' }
+      },
+      {
+        path: 'settings',
+        component: UserSettingsComponent,
+        data: { title: 'Ustawienia' }
+      },
+      {
+        path: 'addcourse',
+        component: UserAddCourseComponent,
+        data: { title: 'Dodaj kurs' }
+      },
+      {
+        path: 'contact',
+        component: UserContactComponent
+        , data: { title: 'Kontakt' }
+      },
+      {
+        path: 'unauthorized',
+        component: UserUnauthorizedComponent,
+        data: { title: 'Nieautoryzowany' }
+      },
     ]
   },
 ]

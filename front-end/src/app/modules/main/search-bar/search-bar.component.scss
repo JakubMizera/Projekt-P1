@@ -1,48 +1,78 @@
 @import './../../../../styles/variables';
 
+/* Sekcja Header */
 .search-bar-container {
+  background-color: #fff;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 128px;
   max-width: 1050px;
-  padding-bottom: 20px;
+  position: relative;
+  box-shadow: $box-shadow-standard;
+}
 
-  .input-with-button {
-    position: relative;
-    background-color: #ebebeb;
-    height: 50px;
-    border-radius: 23px;
-    width: 95%;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    }
+.input-with-button {
+  position: relative;
+  background-color: #ebebeb;
+  height: 50px;
+  border-radius: 23px;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
 
-    .search-input {
-      width: 100%;
-      font-size: 1.2rem;
-      border-color:#020202
-    }
+.search-input {
+  width: 100%;
+  font-size: 1.2rem;
+  border: none;
+  background: none;
+  padding-left: 10px;
+}
 
-    .searchBtn {
-      position: absolute;
-      right: 5px;
-      top: 6px;
-      background: $button-background;
-      width: 66px;
-      height: 38px;
-      border-radius: 23px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
+.searchBtn {
+  position: absolute;
+  right: 5px;
+  top: 6px;
+  background-color: $color-main-blue;
+  width: 66px;
+  height: 38px;
+  border-radius: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s;
 
-      i {
-        font-size: 1rem;
-        color: #fff;
-      }
-    }
+  &:hover{
+    background-color: $color-main2-blue;
+    transform: scale(1.1);
   }
+}
+//Icon
+.searchBtn i {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* Przycisk "Wszystkie produkty" */
+.all-products-btn {
+  position: absolute;
+  bottom: -56px; /* Umieszczenie poniżej dolnej krawędzi kontenera */
+  left: 9%; /* Wycentrowanie w poziomie */
+  transform: translateX(-50%); /* Korekta pozycjonowania */
+  background-color: $color-main-blue;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+.all-products-btn:hover {
+  background-color: $color-main2-blue;
+}
 

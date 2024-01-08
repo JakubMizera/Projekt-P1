@@ -3,10 +3,31 @@
     <div class="content-column">
       <h1>Skontaktuj się z nami!</h1>
       <p>Masz pytania? Chętnie na nie odpowiemy.</p>
-      <form class="contact-form">
-        <input type="text" placeholder="Twoje imię" required>
-        <input type="email" placeholder="Twój email" required>
-        <textarea placeholder="Twoja wiadomość" required></textarea>
+      <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Twoje imię</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngIf="contactForm.get('name')?.errors?.['required']">
+            Imię jest wymagane
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Twoj email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="contactForm.get('email')?.errors?.['required']">
+            Email jest wymagany
+          </mat-error>
+          <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+            Wprowadź poprawny adres email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Twoja wiadomość</mat-label>
+          <textarea matInput formControlName="message" required></textarea>
+          <mat-error *ngIf="contactForm.get('message')?.errors?.['required']">
+            Wiadomość jest wymagana
+          </mat-error>
+        </mat-form-field>
         <button type="submit" class="contact-btn">Wyślij wiadomość</button>
       </form>
       <div class="social-links">

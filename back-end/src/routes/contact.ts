@@ -1,29 +1,14 @@
 import express, { Request, Response } from 'express';
-import Contact from '../models/Contact'; 
+import Contact from '../models/Contact';
 
 const router = express.Router();
 
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/contacts', async (req: Request, res: Response) => {
   try {
-    const contacts = await Contact.find(); 
-    res.json(contacts); 
+    const contacts = await Contact.find();
+    res.json(contacts);
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      res.status(500).json({ message: error.message }); 
-    } else {
-      res.status(500).json({ message: "An unknown error occurred" }); 
-    }
-  }
-});
-router.get('/:id', async (req: Request, res: Response) => {
-  try {
-    const contact = await Contact.findById(req.params.id);
-    if (!contact) {
-      return res.status(404).json({ message: 'Contact not found' });
-    }
-    res.json(contact);
-  } catch (error: unknown) { 
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
     } else {
@@ -31,7 +16,24 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
   }
 });
-router.post('/', async (req: Request, res: Response) => {
+
+router.get('/contacts/:id', async (req: Request, res: Response) => {
+  try {
+    const contact = await Contact.findById(req.params.id);
+    if (!contact) {
+      return res.status(404).json({ message: 'Contact not found' });
+    }
+    res.json(contact);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "An unknown error occurred" });
+    }
+  }
+});
+
+router.post('/contacts', async (req: Request, res: Response) => {
   try {
     const newContact = new Contact({
       name: req.body.name,
@@ -48,7 +50,8 @@ router.post('/', async (req: Request, res: Response) => {
     }
   }
 });
-  router.put('/:id', async (req: Request, res: Response) => {
+
+router.put('/contacts/:id', async (req: Request, res: Response) => {
   try {
     const updatedContact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedContact) {
@@ -64,7 +67,7 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/contacts/:id', async (req: Request, res: Response) => {
   try {
     const contact = await Contact.findByIdAndDelete(req.params.id);
     if (!contact) {

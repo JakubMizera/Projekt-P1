@@ -9,6 +9,8 @@ import session from 'express-session';
 import './auth/googleAuth';
 import authRouter from './routes/auth';
 import contactRouter from './routes/contact';
+
+dotenv.config();
 const app: Express = express();
 
 mongoose.connect(process.env.MONGODB_URI as string)
@@ -35,7 +37,7 @@ app.use(passport.session());
 app.use('/api', authRouter);
 app.use('/api', coursesRouter);
 app.use('/api', userRouter);
-app.use('/api/contacts', contactRouter);
+app.use('/api', contactRouter);
 const PORT: string | number = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {

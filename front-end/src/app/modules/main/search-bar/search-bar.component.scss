@@ -62,12 +62,11 @@
   position: absolute;
   bottom: -56px; /* Umieszczenie poniżej dolnej krawędzi kontenera */
   left: 9%; /* Wycentrowanie w poziomie */
-  transform: translateX(-50%); /* Korekta pozycjonowania */
+  transform: translateX(-50%); /* Korekta pozyzcjonowania */
   background-color: $color-main-blue;
   color: #fff;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 25px;
   font-size: 1rem;
   transition: transform 0.3s;
 }

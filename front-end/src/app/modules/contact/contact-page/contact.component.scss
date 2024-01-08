@@ -2,7 +2,7 @@
 
 .container {
   background: $color-background-gradient;
-  height: 100vh;
+  height: calc(100vh - 96px); //Wysokość kontenera - wysokość banera
   display: flex;
   justify-content: center;
   align-items: center;

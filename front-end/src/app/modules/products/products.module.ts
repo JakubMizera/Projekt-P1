@@ -20,6 +20,7 @@ import { ProductsRoutingModule } from './products-routing.module';
     MaterialModule,
     SharedModule,
     ProductsRoutingModule,
+    SharedModule,
   ],
   exports: [],
 })

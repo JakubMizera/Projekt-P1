@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { AboutUsComponent } from "./about-us/about-us.component";
 import { CommonModule } from "@angular/common";
 import { AboutRoutingModule } from "./about-routing.module";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -10,6 +11,7 @@ import { AboutRoutingModule } from "./about-routing.module";
     imports: [
         CommonModule,
         AboutRoutingModule,
+        SharedModule,
     ],
     exports: [
         AboutUsComponent,

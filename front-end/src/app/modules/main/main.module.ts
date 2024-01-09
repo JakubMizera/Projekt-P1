@@ -7,6 +7,8 @@ import { OurServicesComponent } from './our-services/our-services.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SliderComponent } from './slider/slider.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     OurServicesComponent,
     SearchBarComponent,
     SliderComponent,
+    PrivacyPolicyComponent,
+    TermsOfServiceComponent,
   ],
   imports: [
     CommonModule,

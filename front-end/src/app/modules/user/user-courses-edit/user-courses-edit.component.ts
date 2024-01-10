@@ -16,7 +16,6 @@ export class UserCoursesEditComponent extends CourseBaseComponent implements OnI
   editCourseForm!: FormGroup;
   routeSubscription!: Subscription;
   courseSubscription!: Subscription;
-  hasImageChanged = false;
   id!: string;
   course!: Course;
 
@@ -78,16 +77,6 @@ export class UserCoursesEditComponent extends CourseBaseComponent implements OnI
         error: (err) => console.error(`Error updating course: ${err}`),
       });
     }
-  }
-
-  override onFileSelected(event: Event): void {
-    super.onFileSelected(event);
-    this.hasImageChanged = true;
-  };
-
-  override deleteImage(index: number): void {
-    super.deleteImage(index);
-    this.hasImageChanged = true;
   }
 
   ngOnDestroy(): void {

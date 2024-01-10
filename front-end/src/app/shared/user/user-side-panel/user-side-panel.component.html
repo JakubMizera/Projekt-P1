@@ -4,9 +4,13 @@
     <span class="brandName">AdventureSport</span>
   </div>
   <div class="forwardBtns">
-    <button class="asideBtn" routerLink="panel">
+    <button class="asideBtn" *ngIf="userService.getCurrentUserValue()?.role === 'User'" routerLink="panel">
       <mat-icon class="icon">edit_calendar</mat-icon>
       Panel użytkownika
+    </button>
+    <button class="asideBtn" *ngIf="userService.getCurrentUserValue()?.role === 'Admin'" routerLink="admin-panel">
+      <mat-icon class="icon">edit_calendar</mat-icon>
+      Panel administratora
     </button>
     <button class="asideBtn" routerLink="courses">
       <mat-icon class="icon">list</mat-icon>

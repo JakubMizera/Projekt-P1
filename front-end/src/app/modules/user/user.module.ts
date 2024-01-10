@@ -14,6 +14,7 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserCoursesEditComponent } from './user-courses-edit/user-courses-edit.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
+import { UserAdminPanelComponent } from './user-admin-panel/user-admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
     UserSidePanelComponent,
     UserCoursesEditComponent,
     UserPanelComponent,
+    UserAdminPanelComponent,
   ],
   imports: [
     CommonModule,

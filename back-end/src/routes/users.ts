@@ -19,6 +19,7 @@ router.get('/users/current', isAuthenticated, (req: Request, res: Response) => {
     picture: user.picture,
     name: user.name,
     surname: user.surname,
+    role: user.role,
   });
 })
 

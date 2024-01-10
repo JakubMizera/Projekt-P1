@@ -11,6 +11,9 @@ import { AuthGuard } from "src/app/shared/guard/auth.login.guard";
 import { CourseOwnerGuard } from "src/app/shared/guard/course.owner.guard";
 import { UserUnauthorizedComponent } from "src/app/shared/user/user-unauthorized/user-unauthorized.component";
 import { UserPanelComponent } from "./user-panel/user-panel.component";
+import { UserAdminPanelComponent } from "./user-admin-panel/user-admin-panel.component";
+import { RoleGuard } from "src/app/shared/guard/role.guard";
+import { UserRole } from "src/app/shared/interfaces/user-role.model";
 
 const routes: Routes = [
   {
@@ -23,6 +26,12 @@ const routes: Routes = [
         path: 'panel',
         component: UserPanelComponent,
         data: { title: 'Panel użytkownika' }
+      },
+      {
+        path: 'admin-panel',
+        component: UserAdminPanelComponent,
+        canActivate: [RoleGuard],
+        data: { title: 'Panel administatora', accessRole: UserRole.Admin }
       },
       {
         path: 'courses',

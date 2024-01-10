@@ -1,3 +1,5 @@
+import { UserRole } from "./user-role.model";
+
 export interface User {
   _id: string,
   googleId: string;
@@ -6,4 +8,5 @@ export interface User {
   picture?: string;
   name?: string;
   surname?: string;
+  role: UserRole;
 }

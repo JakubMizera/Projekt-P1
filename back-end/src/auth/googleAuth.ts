@@ -2,6 +2,7 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { User } from './../models/User';
 import dotenv from 'dotenv';
+import { UserRole } from '../interfaces/UserRole';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ passport.use(new GoogleStrategy({
         picture: profile.photos?.[0]?.value,
         name: profile.name?.givenName,
         surname: profile.name?.familyName,
+        role: UserRole.User,
       });
       await user.save();
       done(null, user);

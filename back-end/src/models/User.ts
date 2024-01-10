@@ -1,4 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose';
+import { UserRole } from '../interfaces/UserRole';
 
 export interface IUser extends Document {
   googleId: string;
@@ -7,6 +8,7 @@ export interface IUser extends Document {
   picture?: string;
   name?: string;
   surname?: string;
+  role: UserRole;
 }
 
 const UserSchema: Schema = new Schema({
@@ -35,6 +37,11 @@ const UserSchema: Schema = new Schema({
     type: String,
     required: false,
   },
+  role: {
+    type: String,
+    enum: Object.values(UserRole),
+    required: true,
+  }
 });
 
 export const User = mongoose.model<IUser>('User', UserSchema);

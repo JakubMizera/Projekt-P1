@@ -26,9 +26,12 @@ router.post('/auth/logout', (req: Request, res: Response) => {
       console.error('Logout error:', err);
       return res.status(500).json({ message: 'Internal server error' });
     }
-    req.session.destroy(() => {
-      res.clearCookie('test', { path: '/' });
-      console.log(req.isAuthenticated())
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Session destroy error', err);
+        return res.status(500).json({ message: 'Internal server error'});
+      }
+      res.clearCookie('connect.sid', { path: '/' });
       res.status(200).json({ message: 'Logged out successfully' });
     });
   });

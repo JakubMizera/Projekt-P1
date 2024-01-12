@@ -20,17 +20,19 @@ aside {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 10px 10px 10px 5px;
+    height: 96.25px;
     cursor: pointer;
 
-    img {
-      margin-left: -20px;
-      width: 98px;
+    .logo {
+      width: 90px;
       aspect-ratio: 16/10;
     }
 
     .brandName {
-      font-size: 26px;
+      font-size: 1.7rem;
+      color: black;
+      font-weight: bold;
     }
   }
 

@@ -1,11 +1,11 @@
 <header>
-  <div class="header">
-    <span class="header-title">{{title}}</span>
+  <div class="custom-box">
+    <span class="custom-box-title">{{title}}</span>
   </div>
   <div *ngIf="currentUser; else loginButton" class="container">
     <img *ngIf="currentUser.picture" [src]="currentUser.picture" alt="{{ currentUser.displayName }}"
       class="user-avatar">
-    <span class="user-name">Witaj {{ currentUser.displayName }}</span>
+    <span class="user-name">{{ currentUser.displayName }}</span>
     <button mat-stroked-button (click)="logout()">
       Wyloguj się
     </button>

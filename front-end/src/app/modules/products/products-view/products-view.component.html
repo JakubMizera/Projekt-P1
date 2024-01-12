@@ -3,125 +3,28 @@
     <div class="filter-section">
       <h2>Filtruj</h2>
       <ul class="filter-list">
-        <li><input type="checkbox" id="skydiving" class="filter-option" checked><label for="skydiving"><span>Skoki Spad</span></label></li>
-        <li><input type="checkbox" id="paintball" class="filter-option"><label for="paintball"><span>PaintBall</span></label></li>
+        <li><input type="checkbox" id="skydiving" class="filter-option" checked><label for="skydiving"><span>Skoki
+              Spad</span></label></li>
+        <li><input type="checkbox" id="paintball" class="filter-option"><label
+            for="paintball"><span>PaintBall</span></label></li>
         <li><input type="checkbox" id="asg" class="filter-option"><label for="asg"><span>ASG</span></label></li>
-        <li><input type="checkbox" id="group-events" class="filter-option"><label for="group-events"><span>Imprezy grupowe</span></label></li>
+        <li><input type="checkbox" id="group-events" class="filter-option"><label for="group-events"><span>Imprezy
+              grupowe</span></label></li>
       </ul>
     </div>
   </aside>
   <section class="products">
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
+    <div *ngFor="let course of courses" class="product-card">
+      <div>
+        <img *ngIf="course.images && course.images.length > 0; else noImage" [src]="course.images[0]"
+          alt="Course image">
+        <ng-template #noImage>
+          <img src="./../../../../assets/images/image1.jpg" alt="No image available">
+        </ng-template>
+      </div>
+      <h3>{{course.title}}</h3>
+      <p class="price">{{course.price}}</p>
     </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-     <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/images/back.jpg" alt="Nike Air Force 1">
-      <h3>Nike Air Force 1</h3>
-      <p class="price">$99</p>
-    </div>
-
   </section>
 </div>
 <app-footer></app-footer>

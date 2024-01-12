@@ -1,5 +1,5 @@
-<app-user-custom-container>
-  <app-custom-header title="Dodaj kurs"></app-custom-header>
+<app-user-custom-container title="Dodaj kurs">
+
   <app-user-form-container [formGroup]="courseForm" (ngSubmit)="onSubmit()">
 
     <mat-form-field appearance="fill">
@@ -70,7 +70,8 @@
     </mat-form-field>
 
     <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" multiple hidden>
-    <button mat-stroked-button (click)="fileInput.click()" type="button" class="image-upload-btn">Dodaj zdjęcie...</button>
+    <button mat-stroked-button (click)="fileInput.click()" type="button" class="image-upload-btn">Dodaj
+      zdjęcie...</button>
 
     <div class="image-previews">
       <div *ngFor="let image of imagePreviews; let i = index" class="image-preview">

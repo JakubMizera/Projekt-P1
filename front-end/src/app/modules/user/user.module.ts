@@ -15,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UserCoursesEditComponent } from './user-courses-edit/user-courses-edit.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserAdminPanelComponent } from './user-admin-panel/user-admin-panel.component';
+import { UserPaymentHistoryComponent } from './user-payment-history/user-payment-history.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { UserAdminPanelComponent } from './user-admin-panel/user-admin-panel.com
     UserCoursesEditComponent,
     UserPanelComponent,
     UserAdminPanelComponent,
+    UserPaymentHistoryComponent,
   ],
   imports: [
     CommonModule,

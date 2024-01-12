@@ -1,3 +1,42 @@
+@import "./../../../../styles/variables";
+
 .user-container {
-    padding: 10px 5%;
+  padding: 10px 5%;
+}
+
+header {
+  height: 114px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  width: 30px;
+  aspect-ratio: 1/1;
+  box-shadow: 2px 2px 5px $color-box-shadow;
+}
+
+.header {
+  display: inline-block;
+  background: $button-background;
+  border-radius: 20px;
+  font-weight: 300;
+  padding: 12px 26px;
+  margin-bottom: 20px;
+
+  .header-title {
+    color: #fff;
+    font-size: 1.1rem;
+    text-align: center;
+  }
 }

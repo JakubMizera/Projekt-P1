@@ -1,5 +1,4 @@
-<app-user-custom-container>
-  <app-custom-header title="Ustawienia użytkownika"></app-custom-header>
+<app-user-custom-container title="Ustawienia użytkownika">
   <app-user-form-container class="user-settings-container" *ngIf="userForm" [formGroup]="userForm"
     (ngSubmit)="saveUserSettings()">
 

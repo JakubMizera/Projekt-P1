@@ -1,5 +1,5 @@
-<app-user-custom-container>
-  <app-custom-header title="Edytuj kurs"></app-custom-header>
+<app-user-custom-container title="Edytuj kurs">
+
   <app-user-form-container *ngIf="editCourseForm" [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
 
     <mat-form-field appearance="fill">

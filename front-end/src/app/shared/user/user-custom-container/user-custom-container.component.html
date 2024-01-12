@@ -1,22 +1,21 @@
-<header>
-  <div class="custom-box">
-    <span class="custom-box-title">{{title}}</span>
-  </div>
-  <div *ngIf="currentUser; else loginButton" class="container">
-    <img *ngIf="currentUser.picture" [src]="currentUser.picture" alt="{{ currentUser.displayName }}"
-      class="user-avatar">
-    <span class="user-name">{{ currentUser.displayName }}</span>
-    <button mat-stroked-button (click)="logout()">
-      Wyloguj się
-    </button>
-  </div>
-  <ng-template #loginButton>
-    <button mat-icon-button (click)="navigateToLogin()">
-      <mat-icon>more_horiz</mat-icon>
-    </button>
-  </ng-template>
-</header>
-
 <div class="user-container">
+  <header>
+    <div class="custom-box">
+      <span class="custom-box-title">{{title}}</span>
+    </div>
+    <div *ngIf="currentUser; else loginButton" class="container">
+      <img *ngIf="currentUser.picture" [src]="currentUser.picture" alt="{{ currentUser.displayName }}"
+        class="user-avatar">
+      <span class="user-name">{{ currentUser.displayName }}</span>
+      <button mat-stroked-button (click)="logout()">
+        Wyloguj się
+      </button>
+    </div>
+    <ng-template #loginButton>
+      <button mat-icon-button (click)="navigateToLogin()">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </ng-template>
+  </header>
   <ng-content></ng-content>
 </div>

@@ -4,12 +4,14 @@ import { UserCustomContainerComponent } from './user-custom-container/user-custo
 import { MaterialModule } from '../material/material.module';
 import { UserFormContainer } from './user-form-container/user-form-container.component';
 import { UserUnauthorizedComponent } from './user-unauthorized/user-unauthorized.component';
+import { UserCalendarComponent } from './user-calendar/user-calendar.component';
 
 @NgModule({
   declarations: [
     UserCustomContainerComponent,
     UserFormContainer,
     UserUnauthorizedComponent,
+    UserCalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { UserUnauthorizedComponent } from './user-unauthorized/user-unauthorized
   exports: [
     UserCustomContainerComponent,
     UserFormContainer,
+    UserCalendarComponent,
   ]
 })
 export class UserSharedModule { }

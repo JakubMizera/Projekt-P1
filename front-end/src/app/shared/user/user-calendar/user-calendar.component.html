@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="calendar-navigation">
+    <button (click)="navigateMonth(-1)">&lt;</button>
+    <span>{{ getMonthName() }} {{ currentDate.getFullYear() }}</span>
+    <button (click)="navigateMonth(1)">&gt;</button>
+  </div>
+  <div class="calendar-layout">
+    <div class="month-view">
+      <div class="day-labels">
+        <div class="day-name" *ngFor="let name of dayNames">{{ name }}</div>
+      </div>
+      <div *ngFor="let day of currentMonth" (click)="setCurrentWeek(day)" [ngClass]="{'course-day': isCourseOnDate(day)}" class="day">
+        {{ day.getDate() }}
+      </div>
+    </div>
+    <div class="week-view">
+      <div class="day-labels">
+        <div class="day-name" *ngFor="let name of dayNames">{{ name }}</div>
+      </div>
+      <div *ngFor="let day of currentWeek" class="day">
+        {{ day.getDate() }}
+        <div *ngFor="let course of getCoursesOnDate(day)" class="course-marker">
+          {{ course.title }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

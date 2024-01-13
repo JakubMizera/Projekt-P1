@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import passport from 'passport';
 
 const router = express.Router();
-
+//Google
 router.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email', 'openid'] }));
 
@@ -11,7 +11,15 @@ router.get('/auth/google/callback',
     { failureRedirect: 'http://localhost:4200/login' }), (req: Request, res: Response) => {
       res.redirect('http://localhost:4200/user');
     });
-
+//Facebook
+ router.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: ['email', 'public_profile'] }));
+  
+router.get('/auth/facebook/callback',
+   passport.authenticate('facebook',
+      { failureRedirect: 'http://localhost:4200/login' }), (req: Request, res: Response) => {
+        res.redirect('http://localhost:4200/user');
+      });
 router.get('/auth/check', (req: Request, res: Response) => {
   if (req.isAuthenticated()) {
     res.status(200).json({ isAuthenticated: true })
@@ -35,6 +43,7 @@ router.post('/auth/logout', (req: Request, res: Response) => {
       res.status(200).json({ message: 'Logged out successfully' });
     });
   });
+  
 });
 
 export default router;

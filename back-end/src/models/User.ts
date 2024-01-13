@@ -2,7 +2,8 @@ import mongoose, { Document, Schema } from 'mongoose';
 import { UserRole } from '../interfaces/UserRole';
 
 export interface IUser extends Document {
-  googleId: string;
+  googleId?: string;  
+  facebookId?: string; 
   displayName: string;
   email?: string;
   picture?: string;
@@ -14,7 +15,12 @@ export interface IUser extends Document {
 const UserSchema: Schema = new Schema({
   googleId: {
     type: String,
-    required: true,
+    required: false, 
+    unique: true
+  },
+  facebookId: {
+    type: String,
+    required: false, 
     unique: true
   },
   displayName: {

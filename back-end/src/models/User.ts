@@ -10,18 +10,19 @@ export interface IUser extends Document {
   name?: string;
   surname?: string;
   role: UserRole;
+  phoneNumber?: string;
 }
 
 const UserSchema: Schema = new Schema({
   googleId: {
     type: String,
     required: false, 
-    unique: true
+    unique: false,
   },
   facebookId: {
     type: String,
     required: false, 
-    unique: true
+    unique: false,
   },
   displayName: {
     type: String,
@@ -47,6 +48,10 @@ const UserSchema: Schema = new Schema({
     type: String,
     enum: Object.values(UserRole),
     required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: false,
   }
 });
 

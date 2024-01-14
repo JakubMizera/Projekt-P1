@@ -10,4 +10,5 @@ export interface User {
   name?: string;
   surname?: string;
   role: UserRole;
+  phoneNumber?: string;
 }

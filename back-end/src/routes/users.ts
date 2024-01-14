@@ -20,6 +20,7 @@ router.get('/users/current', isAuthenticated, (req: Request, res: Response) => {
     name: user.name,
     surname: user.surname,
     role: user.role,
+    phoneNumber: user.phoneNumber,
   });
 })
 

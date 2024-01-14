@@ -26,6 +26,14 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Numer telefonu</mat-label>
+      <input matInput formControlName="phoneNumber" required>
+      <mat-error *ngIf="userForm.controls['phoneNumber'].invalid">
+        Numer telefonu jest wymagany
+      </mat-error>
+    </mat-form-field>
+
     <button mat-raised-button color="primary" type="submit" [disabled]="userForm.pristine || !userForm.valid">
       Zapisz zmiany
     </button>

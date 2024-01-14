@@ -10,7 +10,7 @@ export interface Course {
   address: string,
   images?: string[],
   price: number,
-  accountNumber: number,
+  accountNumber: string,
   status: Status,
   additionDate: Date,
   expirationDate: Date,

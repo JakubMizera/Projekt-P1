@@ -9,7 +9,7 @@ interface ICourse extends Document {
   address: string;
   images?: string[];
   price: number;
-  accountNumber: number;
+  accountNumber: string;
   status: CourseStatus;
   additionDate: Date;
   expirationDate: Date;
@@ -28,7 +28,7 @@ const CourseSchema: Schema = new Schema({
   address: { type: String, required: true },
   images: [String],
   price: { type: Number, required: true },
-  accountNumber: { type: Number, required: true },
+  accountNumber: { type: String, required: true },
   status: { type: String, required: true },
   additionDate: { type: Date, required: true },
   expirationDate: { type: Date, required: true },

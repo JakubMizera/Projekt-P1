@@ -33,7 +33,7 @@ export class UserAddCourseComponent extends CourseBaseComponent implements OnIni
       description: ['', Validators.required],
       address: ['', Validators.required],
       price: [null, [Validators.required, Validators.min(0)]],
-      accountNumber: [null, Validators.required],
+      accountNumber: ['', Validators.required],
       status: Status.Active,
       additionDate: [new Date()],
       expirationDate: [null, Validators.required],

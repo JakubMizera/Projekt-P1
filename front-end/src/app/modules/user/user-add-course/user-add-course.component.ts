@@ -37,6 +37,9 @@ export class UserAddCourseComponent extends CourseBaseComponent implements OnIni
       status: Status.Active,
       additionDate: [new Date()],
       expirationDate: [null, Validators.required],
+      eventDate: [null, Validators.required],
+      eventHour: ['', Validators.required],
+      courseCapacity: ['', [Validators.required, Validators.min(1)]],
       category: [CourseCategory.None, Validators.required],
       createdBy: [null, Validators.required],
     });

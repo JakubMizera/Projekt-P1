@@ -3,7 +3,6 @@ import { Status } from "./course-status.model";
 
 export interface Course {
   _id: string,
-  courseId: number,
   createdBy: string,
   title: string,
   description: string,
@@ -14,6 +13,10 @@ export interface Course {
   status: Status,
   additionDate: Date,
   expirationDate: Date,
+  eventDate: Date,
+  eventHour: string,
+  courseCapacity: number,
+  reservedUserIds?: string[],
   category: CourseCategory,
   requirements?: string[],
   location?: {

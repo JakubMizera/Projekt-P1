@@ -13,6 +13,10 @@ interface ICourse extends Document {
   status: CourseStatus;
   additionDate: Date;
   expirationDate: Date;
+  eventDate: Date;
+  eventHour: string;
+  courseCapacity: number,
+  reservedUserIds?: string[],
   category: CourseCategory;
   requirements?: string[];
   location?: {
@@ -32,6 +36,10 @@ const CourseSchema: Schema = new Schema({
   status: { type: String, required: true },
   additionDate: { type: Date, required: true },
   expirationDate: { type: Date, required: true },
+  eventDate: { type: Date, required: true },
+  eventHour: { type: String, required: true },
+  courseCapacity: { type: Number, required: true },
+  reservedUserIds: [{ type: String, ref: 'User', required: false }],
   category: { type: String, enum: Object.values(CourseCategory), required: true },
   requirements: [String],
   location: {

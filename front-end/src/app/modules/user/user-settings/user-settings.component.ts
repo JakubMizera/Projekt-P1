@@ -28,8 +28,7 @@ export class UserSettingsComponent implements OnInit {
           displayName: new FormControl(this.currentUser?.displayName, Validators.required),
           name: new FormControl(this.currentUser?.name, Validators.required),
           surname: new FormControl(this.currentUser?.surname, Validators.required),
-          phoneNumber: new FormControl(this.currentUser?.phoneNumber,
-            [Validators.required]),
+          phoneNumber: new FormControl(this.currentUser?.phoneNumber),
         });
       }
     });

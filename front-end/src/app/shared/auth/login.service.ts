@@ -13,9 +13,11 @@ export class LoginService {
   constructor(private httpClient: HttpClient) { }
 
   loginWithGoogle(): void {
-    // Redirects the user to the backend OAuth endpoint
     window.location.href = `${this.baseUrl}/api/auth/google`;
   };
+  loginWithFacebook(): void {
+    window.location.href = `${this.baseUrl}/api/auth/facebook`;
+  }
 
   checkAuthentication(): void {
     this.httpClient.get<boolean>(`${this.baseUrl}/api/auth/check`, { withCredentials: true })

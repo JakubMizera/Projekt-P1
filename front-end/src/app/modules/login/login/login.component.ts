@@ -12,5 +12,8 @@ export class LoginComponent {
   login(): void {
     this.loginService.loginWithGoogle();
   }
+  loginWithFacebook(): void {
+    this.loginService.loginWithFacebook();
+  }
 
 }

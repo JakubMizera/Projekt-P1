@@ -9,7 +9,7 @@ import session from 'express-session';
 import './auth/googleAuth';
 import authRouter from './routes/auth';
 import contactRouter from './routes/contacts';
-
+import './auth/facebookAuth';
 dotenv.config();
 const app: Express = express();
 

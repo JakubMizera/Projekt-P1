@@ -29,7 +29,7 @@ export class UserSettingsComponent implements OnInit {
           name: new FormControl(this.currentUser?.name, Validators.required),
           surname: new FormControl(this.currentUser?.surname, Validators.required),
           phoneNumber: new FormControl(this.currentUser?.phoneNumber,
-            [Validators.required, Validators.pattern(/^\+48 \d{3} \d{3} \d{3}$/)]),
+            [Validators.required]),
         });
       }
     });

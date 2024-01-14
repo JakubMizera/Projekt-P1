@@ -16,6 +16,7 @@ import { UserCoursesEditComponent } from './user-courses-edit/user-courses-edit.
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserAdminPanelComponent } from './user-admin-panel/user-admin-panel.component';
 import { UserPaymentHistoryComponent } from './user-payment-history/user-payment-history.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,8 @@ import { UserPaymentHistoryComponent } from './user-payment-history/user-payment
     ReactiveFormsModule,
     MaterialModule,
     SharedModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
   exports: [
     UserAddCourseComponent,
@@ -46,6 +49,7 @@ import { UserPaymentHistoryComponent } from './user-payment-history/user-payment
     UserPurchasedComponent,
     UserSettingsComponent,
     UserCoursesEditComponent,
-  ]
+  ],
+  providers: [provideNgxMask()],
 })
 export class UserModule { }

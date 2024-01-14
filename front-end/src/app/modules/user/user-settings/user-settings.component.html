@@ -28,7 +28,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Numer telefonu</mat-label>
-      <input matInput formControlName="phoneNumber" required>
+      <input matInput formControlName="phoneNumber" [showMaskTyped]="true" mask="+00 000 000 000" required>
       <mat-error *ngIf="userForm.controls['phoneNumber'].invalid">
         Numer telefonu jest wymagany
       </mat-error>

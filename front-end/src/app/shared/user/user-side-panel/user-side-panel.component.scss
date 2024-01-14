@@ -1,9 +1,20 @@
 @import './../../../../styles/variables';
 
 :host {
-  display: grid;
+  display: block;
   grid-template-columns: 306px 1fr;
   height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  overflow-y: auto; 
 }
 
 router-outlet {
@@ -11,10 +22,12 @@ router-outlet {
 }
 
 aside {
-  max-width: 306px;
+  width: 306px;
   display: grid;
   grid-template-rows: 1fr minmax(auto, 600px) 200px;
   box-shadow: 15px 0px 97px -11px $color-box-shadow;
+  height: 100vh;
+  overflow: auto;
 
   .brand {
     display: flex;

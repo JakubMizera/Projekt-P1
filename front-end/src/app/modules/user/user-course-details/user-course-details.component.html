@@ -1,0 +1,35 @@
+<app-user-custom-container title="Szczegóły kursu">
+  <div *ngIf="course" class="course-details">
+    <h2>{{ course.title }}</h2>
+
+    <div class="course-info">
+      <p>Opis: {{ course.description }}</p>
+      <p>Adres: {{ course.address }}</p>
+      <p>Cena: {{ course.price | currency }}</p>
+      <p>Status: {{ course.status }}</p>
+      <p>Data wygaśnięcia zapisu: {{ course.expirationDate | date:'mediumDate' }}</p>
+      <p>Data odbycia kursu: {{ course.eventDate | date:'mediumDate' }} o godzinie {{ course.eventHour }}</p>
+      <p>Liczba dostępnych miejsc: {{ course.courseCapacity }}</p>
+      <p>Kategoria: {{ course.category }}</p>
+    </div>
+
+    <img *ngIf="course.images && course.images.length > 0" [src]="course.images[0]" alt="{{ course.title }}">
+
+    <div *ngIf="course.location">
+      <h4>Lokalizacja:</h4>
+      <p>Szerokość geograficzna: {{ course.location.latitude }}</p>
+      <p>Długość geograficzna: {{ course.location.longitude }}</p>
+    </div>
+
+    <div *ngIf="course.requirements && course.requirements.length > 0">
+      <h4>Wymagania:</h4>
+      <ul>
+        <li *ngFor="let requirement of course.requirements">{{ requirement }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="!course">
+    <p>Ładowanie szczegółów kursu...</p>
+  </div>
+</app-user-custom-container>

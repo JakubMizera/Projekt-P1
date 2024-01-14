@@ -14,6 +14,7 @@ import { UserPanelComponent } from "./user-panel/user-panel.component";
 import { UserAdminPanelComponent } from "./user-admin-panel/user-admin-panel.component";
 import { RoleGuard } from "src/app/shared/guard/role.guard";
 import { UserRole } from "src/app/shared/interfaces/user-role.model";
+import { UserCourseDetailsComponent } from "./user-course-details/user-course-details.component";
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
         path: 'courses',
         component: UserCoursesComponent,
         data: { title: 'Kursy' }
+      },
+      {
+        path: 'courses/:_id/details',
+        component: UserCourseDetailsComponent,
+        data: { title: 'Szczegóły kursu' }
       },
       {
         path: 'courses/:_id/edit',

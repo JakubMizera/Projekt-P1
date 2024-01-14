@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Course } from '../../interfaces/course.model';
 import { ApiCoursesService } from '../api-courses.service';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-calendar',
@@ -18,6 +19,7 @@ export class UserCalendarComponent {
   constructor(
     private apiCoursesService: ApiCoursesService,
     private userService: UserService,
+    private router: Router,
   ) {
     this.generateMonth();
     this.generateWeek();
@@ -65,10 +67,10 @@ export class UserCalendarComponent {
   setFirstWeekOfMonth(): void {
     // Clear the currentWeek array
     this.currentWeek = [];
-  
+
     // Start of the first week of the current month
     let startOfWeek = this.getStartOfWeek(this.currentDate);
-  
+
     // Generate the first week of the month
     for (let i = 0; i < 7; i++) {
       const day = new Date(startOfWeek.getFullYear(), startOfWeek.getMonth(), startOfWeek.getDate() + i);
@@ -138,6 +140,10 @@ export class UserCalendarComponent {
     const day = newDate.getDay() || 7; // Get the day or default to 7 (Sunday)
     if (day !== 1) newDate.setHours(-24 * (day - 1)); // Adjust to previous Monday
     return newDate;
+  }
+
+  navigateToCourseDetails(courseId: string): void {
+    this.router.navigate(['user', 'courses', courseId, 'details']);
   }
 
 }

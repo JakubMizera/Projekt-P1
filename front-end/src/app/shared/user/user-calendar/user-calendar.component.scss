@@ -58,7 +58,7 @@
     }
   }
 
-  .day {
+  .month-day {
     background-color: #f0f0f0;
     padding: 10px;
     text-align: center;
@@ -66,13 +66,22 @@
     cursor: pointer;
   }
 
+  .week-day {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+
   .course-marker {
     background: $button-background;
     color: white;
-    padding: 2px;
+    padding: 10px 2px;
     margin-top: 5px;
     text-align: center;
     border-radius: 4px;
+
+    cursor: pointer;
   }
 
   .course-day {

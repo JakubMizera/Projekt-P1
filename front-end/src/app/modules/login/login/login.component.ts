@@ -9,9 +9,10 @@ import { LoginService } from 'src/app/shared/auth/login.service';
 export class LoginComponent {
   constructor(private loginService: LoginService) { }
 
-  login(): void {
+  loginWithGoogle(): void {
     this.loginService.loginWithGoogle();
   }
+
   loginWithFacebook(): void {
     this.loginService.loginWithFacebook();
   }

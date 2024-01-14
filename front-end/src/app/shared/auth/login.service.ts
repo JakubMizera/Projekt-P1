@@ -15,9 +15,10 @@ export class LoginService {
   loginWithGoogle(): void {
     window.location.href = `${this.baseUrl}/api/auth/google`;
   };
+  
   loginWithFacebook(): void {
     window.location.href = `${this.baseUrl}/api/auth/facebook`;
-  }
+  };
 
   checkAuthentication(): void {
     this.httpClient.get<boolean>(`${this.baseUrl}/api/auth/check`, { withCredentials: true })

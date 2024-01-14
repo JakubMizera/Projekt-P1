@@ -54,4 +54,10 @@ export class ApiCoursesService {
     );
   }
 
+  reserveCourse(courseId: string, userId: string): Observable<Course> {
+    return this.httpClient.post<Course>(`${this.apiUrl}/courses/${courseId}/reserve`, { userId }).pipe(
+      tap(() => this.loadAllCourses())
+    );
+  }
+
 }

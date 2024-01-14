@@ -36,7 +36,7 @@ export class UserCalendarComponent {
 
   isCourseOnDate(date: Date): boolean {
     return this.userCourses.some(course => {
-      const courseDate = new Date(course.additionDate);
+      const courseDate = new Date(course.eventDate);
       return (
         date.getDate() === courseDate.getDate() &&
         date.getMonth() === courseDate.getMonth() &&
@@ -47,7 +47,7 @@ export class UserCalendarComponent {
 
   getCoursesOnDate(date: Date): Course[] {
     return this.userCourses.filter(course => {
-      const courseDate = new Date(course.additionDate);
+      const courseDate = new Date(course.eventDate);
       return (
         date.getDate() === courseDate.getDate() &&
         date.getMonth() === courseDate.getMonth() &&

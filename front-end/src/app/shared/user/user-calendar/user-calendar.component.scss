@@ -34,58 +34,94 @@
   .month-view {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    gap: 6px;
     padding: 10px;
+
+    .month-day-labels {
+      display: contents;
+    }
+
+
+    .month-day-name {
+      padding: 5px;
+      text-align: center;
+      font-weight: bold;
+      color: #555555;
+    }
+
+    .month-day {
+      background-color: #f0f0f0;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .course-day {
+      background: $button-background;
+      color: white;
+    }
+
+    .current-day {
+      background-color: #cfcfcf;
+    }
+
   }
 
   .week-view {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 1fr 3fr;
-    gap: 10px;
+    grid-template-rows: 50px 3fr;
     padding: 10px;
-  }
 
-  .day-labels {
-    display: contents;
+    .week-day-labels {
+      display: contents;
+      border: 1px solid #b1b1b1;
+    }
 
-    .day-name {
-      background-color: #aeaeae; // Different background for labels
-      padding: 5px;
+    .week-day-name {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #555555;
+      background-color: #cfcfcf;
       text-align: center;
       font-weight: bold;
-      border-radius: 5px;
+    }
+
+    .week-day {
+      background-color: #fafafa;
+      padding: 10px;
+      border-top: 1px solid #c0c0c0;
+      border-left: 1px solid #c0c0c0;
+      border-bottom: 1px solid #c0c0c0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .week-day:last-child {
+      border-right: 1px solid #c0c0c0;
+    }
+
+    .day-numbers-label {
+      color: #555555;
+      align-self: end;
+    }
+
+    .course-marker {
+      background: $button-background;
+      color: white;
+      padding: 10px 2px;
+      margin-top: 5px;
+      text-align: center;
+      border-radius: 4px;
+      max-height: 40px;
+      cursor: pointer;
+    }
+
+    .current-day {
+      background-color: #cfcfcf;
     }
   }
 
-  .month-day {
-    background-color: #f0f0f0;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .week-day {
-    background-color: #f0f0f0;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-  }
-
-  .course-marker {
-    background: $button-background;
-    color: white;
-    padding: 10px 2px;
-    margin-top: 5px;
-    text-align: center;
-    border-radius: 4px;
-
-    cursor: pointer;
-  }
-
-  .course-day {
-    background: $button-background;
-    color: white;
-  }
 }

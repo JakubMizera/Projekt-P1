@@ -47,6 +47,10 @@ export class UserPanelComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  navigateToCourseDetail(id: string): void {
+    this.router.navigate(['user/courses', id, 'details']);
+  }
+
   navigateToCourseEdit(id: string): void {
     this.router.navigate(['user/courses', id, 'edit']);
   }

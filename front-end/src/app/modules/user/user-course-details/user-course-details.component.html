@@ -5,7 +5,7 @@
     <div class="course-info">
       <p>Opis: {{ course.description }}</p>
       <p>Adres: {{ course.address }}</p>
-      <p>Cena: {{ course.price | currency }}</p>
+      <p>Cena: {{ course.price }} zł</p>
       <p>Status: {{ course.status }}</p>
       <p>Data wygaśnięcia zapisu: {{ course.expirationDate | date:'mediumDate' }}</p>
       <p>Data odbycia kursu: {{ course.eventDate | date:'mediumDate' }} o godzinie {{ course.eventHour }}</p>

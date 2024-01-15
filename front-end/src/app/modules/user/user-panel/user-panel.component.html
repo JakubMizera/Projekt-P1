@@ -32,6 +32,10 @@
               <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="navigateToCourseDetail(course._id)">
+                <mat-icon>open_in_full</mat-icon>
+                <span>Szczegóły</span>
+              </button>
               <button mat-menu-item (click)="navigateToCourseEdit(course._id)">
                 <mat-icon>edit</mat-icon>
                 <span>Edytuj</span>

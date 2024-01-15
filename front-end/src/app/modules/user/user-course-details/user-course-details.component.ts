@@ -18,6 +18,7 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
   courseId!: string;
   userId!: string;
   isEnrolled: boolean = false;
+  reservedSpotsCount!: number;
 
   constructor(
     private apiCoursesService: ApiCoursesService,
@@ -41,6 +42,9 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
     this.apiCoursesService.getCourseById(this.courseId).subscribe((courseData) => {
       this.course = courseData;
 
+      this.reservedSpotsCount = this.course.reservedUserIds ? this.course.reservedUserIds.length : 0;
+      this.isFullyBooked();
+
       this.apiCoursesService.isUserEnrolled(this.courseId, this.userId).subscribe(isEnrolled => {
         this.isEnrolled = isEnrolled;
       })
@@ -51,6 +55,8 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
   reserveCourse(): void {
     this.apiCoursesService.reserveCourse(this.courseId, this.userId).subscribe(({
       next: () => {
+        this.reservedSpotsCount++;
+        this.isFullyBooked();
         this.openSnackBar('Zostałeś zapisany na kurs', 'Zamknij');
       },
       error: (err) => console.error(err),
@@ -60,6 +66,8 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
   unreserveCourse(): void {
     this.apiCoursesService.unreserveCourse(this.courseId, this.userId).subscribe(({
       next: () => {
+        this.reservedSpotsCount--;
+        this.isFullyBooked();
         this.openSnackBar('Zostałeś wypisany z kursu', 'Zamknij');
       },
       error: (err) => console.error(err),
@@ -74,6 +82,13 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
       this.reserveCourse();
       this.isEnrolled = true;
     }
+  }
+
+  isFullyBooked(): boolean {
+    if (this.course && this.course.reservedUserIds && typeof this.course.courseCapacity === 'number') {
+      return this.course.reservedUserIds.length >= this.course.courseCapacity;
+    }
+    return false;
   }
 
   ngOnDestroy(): void {

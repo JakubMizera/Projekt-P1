@@ -10,6 +10,7 @@
       <p>Data wygaśnięcia zapisu: {{ course.expirationDate | date:'mediumDate' }}</p>
       <p>Data odbycia kursu: {{ course.eventDate | date:'mediumDate' }} o godzinie {{ course.eventHour }}</p>
       <p>Liczba dostępnych miejsc: {{ course.courseCapacity }}</p>
+      <p>Liczba zarezerwowanych miejsc: {{ reservedSpotsCount }} / {{course.courseCapacity}}</p>
       <p>Kategoria: {{ course.category }}</p>
     </div>
 
@@ -29,9 +30,12 @@
     </div>
   </div>
 
-  <button mat-stroked-button (click)="toggleCourseReservation()">
+  <button mat-stroked-button (click)="toggleCourseReservation()" [disabled]="isFullyBooked() && !isEnrolled">
     {{ isEnrolled ? 'Zrezygnuj z miejsca' : 'Rezerwuj miejsce' }}
   </button>
+  <div *ngIf="isFullyBooked()">
+    <p>Brak dostępnych miejsc na kurs</p>
+  </div>
 
   <div *ngIf="!course">
     <p>Ładowanie szczegółów kursu...</p>

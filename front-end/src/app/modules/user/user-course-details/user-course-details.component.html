@@ -29,7 +29,9 @@
     </div>
   </div>
 
-  <button mat-stroked-button (click)="reserveCourse()">Rezerwuj miejsce</button>
+  <button mat-stroked-button (click)="toggleCourseReservation()">
+    {{ isEnrolled ? 'Zrezygnuj z miejsca' : 'Rezerwuj miejsce' }}
+  </button>
 
   <div *ngIf="!course">
     <p>Ładowanie szczegółów kursu...</p>

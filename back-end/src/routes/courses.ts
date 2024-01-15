@@ -87,6 +87,36 @@ router.post('/courses/:id/reserve', async (req, res) => {
   }
 })
 
+// Rezygnacja rezerwacji miejsca w kursie
+router.post('/courses/:id/unreserve', async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    const userId = req.body.userId;
+
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return res.status(404).send({ message: 'Course not found' });
+    }
+    
+    if (!course.reservedUserIds) {
+      course.reservedUserIds = [];
+    }
+
+    const index = course.reservedUserIds.indexOf(userId);
+    if (index === -1) {
+      return res.status(400).send({ message: 'User has not reserved a spot' });
+    }
+
+    course.reservedUserIds.splice(index, 1);
+    await course.save();
+
+    res.status(200).send({ message: 'Spot unreserved successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+})
+
 // Aktualizacja istniejącego kursu
 router.put('/courses/:id', isAuthenticated, checkCourseOwner, updateCourseStatus, async (req, res) => {
   try {

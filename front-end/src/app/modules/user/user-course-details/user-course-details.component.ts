@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Course } from 'src/app/shared/interfaces/course.model';
 import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
+import { CourseBaseComponent } from 'src/app/shared/user/course-base-component/course-base.component';
 import { UserService } from 'src/app/shared/user/user.service';
 
 @Component({
@@ -10,26 +12,24 @@ import { UserService } from 'src/app/shared/user/user.service';
   templateUrl: './user-course-details.component.html',
   styleUrls: ['./user-course-details.component.scss']
 })
-export class UserCourseDetailsComponent implements OnInit, OnDestroy {
+export class UserCourseDetailsComponent extends CourseBaseComponent implements OnInit, OnDestroy {
   routeSubscription!: Subscription;
   course!: Course;
   courseId!: string;
   userId!: string;
+  isEnrolled: boolean = false;
 
   constructor(
     private apiCoursesService: ApiCoursesService,
     private userService: UserService,
     private route: ActivatedRoute,
+    snackBar: MatSnackBar,
   ) {
-
+    super(snackBar);
   }
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(params => {
       this.courseId = params['_id'];
-    })
-
-    this.apiCoursesService.getCourseById(this.courseId).subscribe((courseData) => {
-      this.course = courseData;
     })
 
     this.userService.currentUser$.subscribe((user) => {
@@ -37,12 +37,43 @@ export class UserCourseDetailsComponent implements OnInit, OnDestroy {
         this.userId = user._id
       }
     })
+
+    this.apiCoursesService.getCourseById(this.courseId).subscribe((courseData) => {
+      this.course = courseData;
+
+      this.apiCoursesService.isUserEnrolled(this.courseId, this.userId).subscribe(isEnrolled => {
+        this.isEnrolled = isEnrolled;
+      })
+    })
+
   }
 
   reserveCourse(): void {
-    this.apiCoursesService.reserveCourse(this.courseId, this.userId).subscribe(() => {
+    this.apiCoursesService.reserveCourse(this.courseId, this.userId).subscribe(({
+      next: () => {
+        this.openSnackBar('Zostałeś zapisany na kurs', 'Zamknij');
+      },
+      error: (err) => console.error(err),
+    }))
+  }
 
-    })
+  unreserveCourse(): void {
+    this.apiCoursesService.unreserveCourse(this.courseId, this.userId).subscribe(({
+      next: () => {
+        this.openSnackBar('Zostałeś wypisany z kursu', 'Zamknij');
+      },
+      error: (err) => console.error(err),
+    }))
+  }
+
+  toggleCourseReservation(): void {
+    if (this.isEnrolled) {
+      this.unreserveCourse();
+      this.isEnrolled = false;
+    } else {
+      this.reserveCourse();
+      this.isEnrolled = true;
+    }
   }
 
   ngOnDestroy(): void {

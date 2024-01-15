@@ -60,4 +60,18 @@ export class ApiCoursesService {
     );
   }
 
+  unreserveCourse(courseId: string, userId: string): Observable<Course> {
+    return this.httpClient.post<Course>(`${this.apiUrl}/courses/${courseId}/unreserve`, { userId }).pipe(
+      tap(() => this.loadAllCourses())
+    );
+  }
+
+  isUserEnrolled(courseId: string, userId: string): Observable<boolean> {
+    return this.getCourseById(courseId).pipe(
+      map(course => {
+        return course.reservedUserIds ? course.reservedUserIds.includes(userId) : false;
+      })
+    );
+  }
+
 }

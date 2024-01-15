@@ -19,7 +19,7 @@
         <img *ngIf="course.images && course.images.length > 0; else noImage" [src]="course.images[0]"
           alt="Course image">
         <ng-template #noImage>
-          <img src="./../../../../assets/images/image1.jpg" alt="No image available">
+          <img src="./../../../../assets/images/NoPhoto.png" alt="No image available">
         </ng-template>
       </div>
       <h3>{{course.title}}</h3>

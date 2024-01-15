@@ -1,15 +1,17 @@
 @import './../../../../styles/variables';
 
+/* Style kontenera - ustawia pełnowysokościowe tło z gradientem i centruje zawartość */
 .container {
-  background-image: url('./../../../../assets/images/back.jpg');
+  background-image: $color-background-gradient;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+/* Opakowanie dla obszaru logowania z określoną wysokością, szerokością i cieniem dla głębi */
 .login-wrapper {
   background-color: #fff;
   height: 500px;
@@ -20,7 +22,7 @@
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+/* Lewa kolumna dla elementów wizualnych, np. obrazów */
 .left-column {
   flex: 1;
   padding: 20px;
@@ -32,7 +34,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+/* Prawa kolumna dla funkcji logowania i tekstów */
 .right-column {
   font-size: 25px;
   flex: 1;
@@ -41,16 +43,18 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+    /* Stylowanie nagłówków */
   h1 {
     padding-bottom: 0px;
     font-weight: bold;
   }
+    /* Stylowanie akapitów */
   p {
-    padding-bottom: 30px;
+    padding-bottom: 10px;
   }
 }
 
-
+/* Style przycisku logowania przez Google */
 .google-btn {
   display: flex;
   align-items: center;
@@ -60,15 +64,21 @@
   cursor: pointer;
   width: 270px;
   height: 50px;
-  color: #fff;
-  background: $color-background-gradient ;
+  color: #8b8b8b;
+  border: 3px solid #002a58;
   transition: transform 0.2s ease;
-
+/* Style ikony przycisku Google */
+.google-btn-icon{
+  font-size: 1.0rem;
+  padding: 10px 5px;
+  margin: 5px;
 }
-
+}
+/* Efekt najechania dla przycisku Google */
 .google-btn:hover {
   transform: scale(1.1);
 }
+/* Style przycisku logowania przez Facebook, podobne do przycisku Google */
 .facebook-btn{
   display: flex;
   align-items: center;
@@ -78,13 +88,20 @@
   cursor: pointer;
   width: 270px;
   height: 50px;
-  color: #fff;
-  background: $color-background-gradient ;
+  color: #8b8b8b;
+  border: 3px solid #002a58;
   transition: transform 0.2s ease;
+  .google-btn-icon{
+    font-size: 1.0rem;
+    padding: 10px 5px;
+    margin: 5px;
+  }
 }
+/* Efekt najechania dla przycisku Facebook */
 .facebook-btn:hover {
   transform: scale(1.1);
 }
+/* Style ikon linków do mediów społecznościowych */
 .social-links a {
   margin: 0 10px;
   color: #ffffff;
@@ -99,7 +116,40 @@
   transition: transform 0.3s;
   background-color: #002a58;
 }
-
+/* Efekt najechania dla ikon linków społecznościowych */
 .social-links a:hover {
   transform: scale(1.3);
+}
+/* Zapytanie media dla mniejszych ekranów, np. tabletów lub telefonów komórkowych */
+@media (max-width: 768px) {
+    /* Ukrywa całą lewą kolumnę, w tym tło z obrazem */
+  .left-column {
+    display: none;
+  }
+  /* Dostosowuje opakowanie logowania do kierunku kolumnowego i zmniejsza szerokość */
+  .login-wrapper {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+  /* Dostosowania dla prawej kolumny na mniejszych ekranach */
+  .right-column {
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+  }
+  /* Zmniejsza szerokość przycisków i dostosowuje rozmiar czcionki */
+  .google-btn, .facebook-btn {
+    width: 80%;
+    font-size: 0.9rem;
+  }
+  /* Dostosowuje style linków do mediów społecznościowych */
+  .social-links a {
+    margin: 0 5px;
+    font-size: 20px;
+    padding: 17px;
+    height: 10px;
+    width: 10px;
+  }
 }

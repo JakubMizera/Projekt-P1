@@ -79,3 +79,43 @@
     }
   }
 }
+
+/* Media Query for Navbar */
+@media (max-width: 768px) {
+  .navbar {
+      grid-template-columns: 1fr; /* Single column layout */
+      padding: 10px 5px; /* Reduced padding */
+  }
+
+  .left-side,
+  .center-side,
+  .right-side {
+      display: block; /* Stack elements vertically */
+  }
+
+  .left-side .logo {
+      width: 60px; /* Smaller logo size */
+  }
+
+  .left-side .brand {
+      font-size: 1.4rem; /* Smaller font size for brand */
+  }
+
+  .center-side .nav-link {
+      font-size: 1rem; /* Smaller font size for navigation links */
+      padding: 5px 10px; /* Adjusted padding */
+      margin: 0 5px; /* Spacing between links */
+  }
+
+  .right-side .user-info {
+      font-size: 1rem; /* Smaller font size for user info */
+  }
+
+  .right-side .user-avatar {
+      width: 25px; /* Smaller user avatar */
+  }
+
+  .right-side .fa-user-circle {
+      font-size: 1.5rem; /* Smaller icon size */
+  }
+}

@@ -30,11 +30,22 @@
     </div>
   </div>
 
-  <button mat-stroked-button (click)="toggleCourseReservation()" [disabled]="isFullyBooked() && !isEnrolled">
-    {{ isEnrolled ? 'Zrezygnuj z miejsca' : 'Rezerwuj miejsce' }}
-  </button>
-  <div *ngIf="isFullyBooked()">
-    <p>Brak dostępnych miejsc na kurs</p>
+  <div *ngIf="!isCourseOwner">
+    <button mat-stroked-button (click)="toggleCourseReservation()" [disabled]="isFullyBooked() && !isEnrolled">
+      {{ isEnrolled ? 'Zrezygnuj z miejsca' : 'Rezerwuj miejsce' }}
+    </button>
+    <div *ngIf="isFullyBooked()">
+      <p>Brak dostępnych miejsc na kurs</p>
+    </div>
+  </div>
+
+  <div *ngIf="isCourseOwner">
+    <h3>Użytkownicy zapisani na kurs:</h3>
+    <ul>
+      <li *ngFor="let user of reservedUsers">
+        {{user.displayName}} - {{user.email}} - {{user.phoneNumber}}
+      </li>
+    </ul>
   </div>
 
   <div *ngIf="!course">

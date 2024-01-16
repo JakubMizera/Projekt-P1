@@ -10,6 +10,8 @@ export class UserService {
   private baseUrl = 'http://localhost:5000';
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$: Observable<User | null> = this.currentUserSubject.asObservable();
+  private reservedUsersSubject = new BehaviorSubject<User[] | null>(null);
+  public reservedUsers$: Observable<User[] | null> = this.reservedUsersSubject.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -39,6 +41,18 @@ export class UserService {
           return throwError(() => new Error('Error updating currentUser$ subject'));
         })
       )
+  }
+
+  getReservedUsers(courseId: string): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.baseUrl}/api/courses/${courseId}/reservedUsers`).pipe(
+      tap(reservedUsers => {
+        this.reservedUsersSubject.next(reservedUsers);
+      }),
+      catchError(error => {
+        console.error('Error fetching reserved users', error);
+        return throwError(() => new Error('Error fetching reserved users'));
+      })
+    )
   }
 
   getCurrentUserValue(): User | null {

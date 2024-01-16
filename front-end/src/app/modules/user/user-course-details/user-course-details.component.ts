@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Course } from 'src/app/shared/interfaces/course.model';
+import { User } from 'src/app/shared/interfaces/user.model';
 import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
 import { CourseBaseComponent } from 'src/app/shared/user/course-base-component/course-base.component';
 import { UserService } from 'src/app/shared/user/user.service';
@@ -19,6 +20,8 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
   userId!: string;
   isEnrolled: boolean = false;
   reservedSpotsCount!: number;
+  isCourseOwner: boolean = false;
+  reservedUsers: User[] = [];
 
   constructor(
     private apiCoursesService: ApiCoursesService,
@@ -44,6 +47,14 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
 
       this.reservedSpotsCount = this.course.reservedUserIds ? this.course.reservedUserIds.length : 0;
       this.isFullyBooked();
+
+      if (this.userId === this.course.createdBy) {
+        this.isCourseOwner = true;
+      }
+
+      this.userService.getReservedUsers(this.courseId).subscribe((users) => {
+        this.reservedUsers = users;
+      })
 
       this.apiCoursesService.isUserEnrolled(this.courseId, this.userId).subscribe(isEnrolled => {
         this.isEnrolled = isEnrolled;

@@ -15,6 +15,7 @@ export class UserCalendarComponent {
   currentWeek: Date[] = [];
   dayNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nie'];
   userCourses: Course[] = [];
+  userReservedCourses: Course[] = [];
 
   constructor(
     private apiCoursesService: ApiCoursesService,
@@ -32,12 +33,15 @@ export class UserCalendarComponent {
         this.apiCoursesService.getUserCourses(user._id).subscribe(courses => {
           this.userCourses = courses;
         });
+        this.userService.getUserReservedCourses(user._id).subscribe(reservedCourses => {
+          this.userReservedCourses = reservedCourses;
+        })
       }
     })
   }
 
-  isCourseOnDate(date: Date): boolean {
-    return this.userCourses.some(course => {
+  getCoursesForDate(date: Date, courseType: Course[]): Course[] {
+    return courseType.filter(course => {
       const courseDate = new Date(course.eventDate);
       return (
         date.getDate() === courseDate.getDate() &&
@@ -47,15 +51,15 @@ export class UserCalendarComponent {
     });
   }
 
-  getCoursesOnDate(date: Date): Course[] {
-    return this.userCourses.filter(course => {
-      const courseDate = new Date(course.eventDate);
-      return (
-        date.getDate() === courseDate.getDate() &&
-        date.getMonth() === courseDate.getMonth() &&
-        date.getFullYear() === courseDate.getFullYear()
-      );
-    });
+  hasCoursesOnDate(date: Date, courseType: Course[]): boolean {
+    return this.getCoursesForDate(date, courseType).length > 0;
+  }
+
+  isCurrentDay(date: Date): boolean {
+    const today = new Date();
+    return date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear();
   }
 
   navigateMonth(step: number): void {
@@ -144,13 +148,6 @@ export class UserCalendarComponent {
 
   navigateToCourseDetails(courseId: string): void {
     this.router.navigate(['user', 'courses', courseId, 'details']);
-  }
-
-  isCurrentDay(date: Date): boolean {
-    const today = new Date();
-    return date.getDate() === today.getDate() &&
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear();
   }
 
 }

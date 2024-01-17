@@ -9,8 +9,11 @@
       <div class="month-day-labels">
         <div class="month-day-name" *ngFor="let name of dayNames">{{ name }}</div>
       </div>
-      <div *ngFor="let day of currentMonth" (click)="setCurrentWeek(day)"
-        [ngClass]="{'course-day': isCourseOnDate(day), 'current-day': isCurrentDay(day)}" class="month-day">
+      <div *ngFor="let day of currentMonth" (click)="setCurrentWeek(day)" [ngClass]="{
+          'course-day': hasCoursesOnDate(day, userCourses),
+          'reserved-day': hasCoursesOnDate(day, userReservedCourses),
+          'current-day': isCurrentDay(day)
+          }" class="month-day">
         {{ day.getDate() }}
       </div>
     </div>
@@ -18,10 +21,13 @@
       <div class="week-day-labels">
         <div class="week-day-name" *ngFor="let name of dayNames">{{ name }}</div>
       </div>
-      <div *ngFor="let day of currentWeek" class="week-day"
-        [ngClass]="{'course-day': isCourseOnDate(day), 'current-day': isCurrentDay(day)}">
+      <div *ngFor="let day of currentWeek" class="week-day" [ngClass]="{'current-day': isCurrentDay(day)}">
         <span class="day-numbers-label">{{ day.getDate() }}</span>
-        <div *ngFor="let course of getCoursesOnDate(day)" class="course-marker"
+        <div *ngFor="let course of getCoursesForDate(day, userCourses)" class="course-marker"
+          (click)="navigateToCourseDetails(course._id)">
+          {{ course.title }}
+        </div>
+        <div *ngFor="let course of getCoursesForDate(day, userReservedCourses)" class="reserved-course-marker"
           (click)="navigateToCourseDetails(course._id)">
           {{ course.title }}
         </div>

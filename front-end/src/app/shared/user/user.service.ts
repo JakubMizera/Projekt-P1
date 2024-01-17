@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user.model';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import { Course } from '../interfaces/course.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,10 @@ export class UserService {
           return throwError(() => new Error('Error fetching reserved users'));
         })
       )
+  }
+
+  getUserReservedCourses(userId: string): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(`${this.baseUrl}/api/courses/reserved/${userId}`);
   }
 
   getCurrentUserValue(): User | null {

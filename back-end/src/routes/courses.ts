@@ -139,6 +139,18 @@ router.get('/courses/:id/reservedUsers', checkCourseOwner, async (req, res) => {
   }
 })
 
+// Zwraca listę kursów na które użytkownik się zapisał
+router.get('/courses/reserved/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const reservedCourses = await Course.find({ reservedUserIds: userId });
+
+    res.status(200).json(reservedCourses);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+})
+
 // Aktualizacja istniejącego kursu
 router.put('/courses/:id', isAuthenticated, checkCourseOwner, updateCourseStatus, async (req, res) => {
   try {

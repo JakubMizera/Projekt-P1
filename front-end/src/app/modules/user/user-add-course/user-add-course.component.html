@@ -95,6 +95,9 @@
       </mat-error>
     </mat-form-field>
 
+  <button (click)="toggleMap()">Pokaż Mapę</button>
+  <div *ngIf="showMap" id="map" style="height: 400px;"></div>
+
     <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" multiple hidden>
     <button mat-stroked-button (click)="fileInput.click()" type="button" class="image-upload-btn">Dodaj
       zdjęcie...</button>

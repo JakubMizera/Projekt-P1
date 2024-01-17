@@ -33,6 +33,7 @@ $AdventureSport-theme: mat.define-light-theme((color: (primary: $AdventureSport-
 @import 'styles/variables';
 @import 'styles/image_thumbnail';
 @import 'styles/user_table';
+@import '~leaflet/dist/leaflet.css';
 
 body {
   overflow-x: hidden;

@@ -1,25 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-declare var google: any;
+import * as L from 'leaflet';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  ngOnInit() {
+  private map!: L.Map;
+
+  ngOnInit(): void {
     this.initMap();
+    this.getCurrentLocation()
+      .then(location => this.showLocationOnMap(location))
+      .catch(error => console.error(error));
   }
 
-  initMap(): void {
-    const uluru = { lat: -25.344, lng: 131.036 }; // Zastąp współrzędnymi
-    const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-      zoom: 4,
-      center: uluru,
-    });
+  private initMap(): void {
+    this.map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(this.map);
+  }
 
-    new google.maps.Marker({
-      position: uluru,
-      map: map,
+  private getCurrentLocation(): Promise<L.LatLng> {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject('Geolokalizacja nie jest wspierana przez Twoją przeglądarkę');
+      } else {
+        navigator.geolocation.getCurrentPosition(position => {
+          resolve(new L.LatLng(position.coords.latitude, position.coords.longitude));
+        }, () => {
+          reject('Nie udało się uzyskać lokalizacji');
+        });
+      }
     });
   }
+
+  private showLocationOnMap(location: L.LatLng): void {
+    L.marker(location).addTo(this.map)
+      .bindPopup('Twoja obecna lokalizacja').openPopup();
+
+    this.map.setView(location, 13);
+  }
+
 }
+navigator.geolocation.getCurrentPosition(position => {
+  // ...
+}, error => {
+  // Obsługa błędów
+}, {
+  enableHighAccuracy: true
+});
+

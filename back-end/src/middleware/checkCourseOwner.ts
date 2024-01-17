@@ -12,7 +12,7 @@ export const checkCourseOwner = async (req: any, res: Response, next: NextFuncti
     }
 
     if (course.createdBy.toString() !== userId.toString()) {
-      return res.status(403).send('User is not authorized to edit this course');
+      return res.status(403).send('User is not authorized');
     }
     next();
   } catch (error) {

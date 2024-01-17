@@ -119,7 +119,7 @@ router.post('/courses/:id/unreserve', async (req, res) => {
 })
 
 // Zwraca listę użytkowników zapisanych na kurs
-router.get('/courses/:id/reservedUsers', async (req, res) => {
+router.get('/courses/:id/reservedUsers', checkCourseOwner, async (req, res) => {
   try {
     const courseId = req.params.id;
     const course = await Course.findById(courseId);
@@ -131,10 +131,6 @@ router.get('/courses/:id/reservedUsers', async (req, res) => {
     if (!course.reservedUserIds) {
       course.reservedUserIds = [];
     }
-
-    // if(req.user._id !== course.createdBy) {
-    //   return res.status(403).json({ message: 'Unauthorized' });
-    // }
 
     const users = await User.find({ '_id': { $in: course.reservedUserIds } });
     return res.status(200).json(users);

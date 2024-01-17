@@ -44,15 +44,16 @@ export class UserService {
   }
 
   getReservedUsers(courseId: string): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.baseUrl}/api/courses/${courseId}/reservedUsers`).pipe(
-      tap(reservedUsers => {
-        this.reservedUsersSubject.next(reservedUsers);
-      }),
-      catchError(error => {
-        console.error('Error fetching reserved users', error);
-        return throwError(() => new Error('Error fetching reserved users'));
-      })
-    )
+    return this.httpClient.get<User[]>(`${this.baseUrl}/api/courses/${courseId}/reservedUsers`,
+      { withCredentials: true }).pipe(
+        tap(reservedUsers => {
+          this.reservedUsersSubject.next(reservedUsers);
+        }),
+        catchError(error => {
+          console.error('Error fetching reserved users', error);
+          return throwError(() => new Error('Error fetching reserved users'));
+        })
+      )
   }
 
   getCurrentUserValue(): User | null {

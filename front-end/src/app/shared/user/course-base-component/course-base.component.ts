@@ -11,6 +11,7 @@ export class CourseBaseComponent {
   protected selectedLatitude!: number;
   protected selectedLongitude!: number;
   protected courseLocationMarker: L.Marker | null = null;
+  protected hasLocationChanged = false;
 
   courseCategories = Object.keys(CourseCategory).map(key => ({
     key: key,
@@ -82,7 +83,7 @@ export class CourseBaseComponent {
     });
   }
 
-  private updateMarkerLocation(lat: number, lng: number): void {
+  protected updateMarkerLocation(lat: number, lng: number): void {
     if (this.courseLocationMarker) {
       this.courseLocationMarker.setLatLng([lat, lng]);
     } else {
@@ -93,6 +94,7 @@ export class CourseBaseComponent {
 
     this.selectedLatitude = lat;
     this.selectedLongitude = lng;
+    this.hasLocationChanged = true;
   }
 
   private setupCurrentLocationMarker(): void {

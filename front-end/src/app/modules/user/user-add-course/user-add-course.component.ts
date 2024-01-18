@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -15,13 +15,13 @@ import * as L from 'leaflet';
   templateUrl: './user-add-course.component.html',
   styleUrls: ['./user-add-course.component.scss']
 })
-export class UserAddCourseComponent extends CourseBaseComponent implements OnInit {
+export class UserAddCourseComponent extends CourseBaseComponent implements OnInit, AfterViewInit {
   courseForm!: FormGroup;
   showMap: boolean = false;
   private map!: L.Map;
   selectedLatitude!: number;
   selectedLongitude!: number;
-
+  private courseLocationMarker: L.Marker | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,6 +59,10 @@ export class UserAddCourseComponent extends CourseBaseComponent implements OnIni
     })
   }
 
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
+
   onSubmit(): void {
     if (this.courseForm.valid) {
       const courseData: Course = {
@@ -76,13 +80,6 @@ export class UserAddCourseComponent extends CourseBaseComponent implements OnIni
       });
     }
   }
-  toggleMap(): void {
-    this.showMap = !this.showMap;
-
-    if (this.showMap) {
-      setTimeout(() => this.initMap(), 0);
-    }
-  }
 
   private initMap(): void {
     this.map = L.map('map').setView([51.505, -0.09], 13);
@@ -92,44 +89,49 @@ export class UserAddCourseComponent extends CourseBaseComponent implements OnIni
     }).addTo(this.map);
 
     this.getCurrentLocation()
-        .then(location => {
-          this.map.setView(location, 13);
-          L.marker(location).addTo(this.map)
-            .bindPopup('Twoja obecna lokalizacja').openPopup();
-        })
-        .catch(error => console.error(error));
+      .then(location => {
+        this.map.setView(location, 13);
+        L.marker(location).addTo(this.map)
+          .bindPopup('Twoja obecna lokalizacja').openPopup();
+      })
+      .catch(error => console.error(error));
 
     this.map.on('click', (e: L.LeafletMouseEvent) => {
       const clickedLat = e.latlng.lat;
       const clickedLng = e.latlng.lng;
 
-      L.marker([clickedLat, clickedLng]).addTo(this.map)
-        .bindPopup('Wybrane miejsce kursu').openPopup();
+      if (this.courseLocationMarker) {
+        this.courseLocationMarker.setLatLng([clickedLat, clickedLng]);
+      } else {
+        this.courseLocationMarker = L.marker([clickedLat, clickedLng]).addTo(this.map)
+          .bindPopup('Wybrane miejsce kursu');
+      }
+
+      this.courseLocationMarker.openPopup();
 
       this.selectedLatitude = clickedLat;
       this.selectedLongitude = clickedLng;
 
       this.courseForm.patchValue({
-        latitude: e.latlng.lat,
-        longitude: e.latlng.lng
+        latitude: this.selectedLatitude,
+        longitude: this.selectedLongitude,
       });
-
     });
   }
 
-  private getCurrentLocation(): Promise<L.LatLng> {
+  private async getCurrentLocation(): Promise<L.LatLng> {
+    if (!navigator.geolocation) {
+      throw new Error('Geolokalizacja nie jest wspierana przez Twoją przeglądarkę');
+    }
+
     return new Promise((resolve, reject) => {
-      if (!navigator.geolocation) {
-        reject('Geolokalizacja nie jest wspierana przez Twoją przeglądarkę');
-      } else {
-        navigator.geolocation.getCurrentPosition(position => {
-          resolve(new L.LatLng(position.coords.latitude, position.coords.longitude));
-        }, () => {
-          reject('Nie udało się uzyskać lokalizacji');
-        }, {
-          enableHighAccuracy: true
-        });
-      }
+      navigator.geolocation.getCurrentPosition(position => {
+        resolve(new L.LatLng(position.coords.latitude, position.coords.longitude));
+      }, () => {
+        reject('Nie udało się uzyskać lokalizacji');
+      }, {
+        enableHighAccuracy: true
+      });
     });
   }
 

@@ -15,12 +15,10 @@
     </div>
 
     <img *ngIf="course.images && course.images.length > 0" [src]="course.images[0]" alt="{{ course.title }}">
-
-    <div *ngIf="course.location">
-      <h4>Lokalizacja:</h4>
-      <p>Szerokość geograficzna: {{ course.location.latitude }}</p>
-      <p>Długość geograficzna: {{ course.location.longitude }}</p>
-    </div>
+    <!-- wyświetlić mapę -->
+    <h4>Lokalizacja:</h4>
+    <p>Szerokość geograficzna: {{ course.latitude }}</p>
+    <p>Długość geograficzna: {{ course.longitude }}</p>
 
     <div *ngIf="course.requirements && course.requirements.length > 0">
       <h4>Wymagania:</h4>

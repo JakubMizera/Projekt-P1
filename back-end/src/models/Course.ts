@@ -19,10 +19,8 @@ interface ICourse extends Document {
   reservedUserIds?: string[],
   category: CourseCategory;
   requirements?: string[];
-  location?: {
-    latitude: number;
-    longitude: number;
-  };
+  latitude?: number;
+  longitude?: number;
 }
 
 const CourseSchema: Schema = new Schema({
@@ -42,10 +40,8 @@ const CourseSchema: Schema = new Schema({
   reservedUserIds: [{ type: String, ref: 'User', required: false }],
   category: { type: String, enum: Object.values(CourseCategory), required: true },
   requirements: [String],
-  location: {
-    latitude: Number,
-    longitude: Number
-  }
+  latitude: { type: Number, required: false },
+  longitude: { type: Number, required: false },
 });
 
 export default mongoose.model<ICourse>('Course', CourseSchema);

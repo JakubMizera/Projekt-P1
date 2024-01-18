@@ -19,8 +19,6 @@ export interface Course {
   reservedUserIds?: string[],
   category: CourseCategory,
   requirements?: string[],
-  location?: {
-    latitude: number,
-    longitude: number,
-  }
+  latitude: number,
+  longitude: number,
 }

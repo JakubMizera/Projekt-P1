@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -14,8 +14,9 @@ import { UserService } from 'src/app/shared/user/user.service';
   templateUrl: './user-add-course.component.html',
   styleUrls: ['./user-add-course.component.scss']
 })
-export class UserAddCourseComponent extends CourseBaseComponent implements OnInit {
+export class UserAddCourseComponent extends CourseBaseComponent implements OnInit, AfterViewInit {
   courseForm!: FormGroup;
+  showMap: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,6 +43,8 @@ export class UserAddCourseComponent extends CourseBaseComponent implements OnIni
       courseCapacity: ['', [Validators.required, Validators.min(1)]],
       category: [CourseCategory.None, Validators.required],
       createdBy: [null, Validators.required],
+      latitude: [null],
+      longitude: [null],
     });
 
     this.userService.currentUser$.subscribe(user => {
@@ -49,6 +52,17 @@ export class UserAddCourseComponent extends CourseBaseComponent implements OnIni
         this.courseForm.patchValue({ createdBy: user._id });
       }
     })
+  }
+
+  protected override onMapClick(lat: number, lng: number): void {
+    this.courseForm.patchValue({
+      latitude: lat,
+      longitude: lng
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.initMap();
   }
 
   onSubmit(): void {

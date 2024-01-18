@@ -94,6 +94,8 @@
       </mat-error>
     </mat-form-field>
 
+    <div id="map"></div>
+
     <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" multiple hidden>
     <button mat-stroked-button (click)="fileInput.click()" type="button" class="image-upload-btn">
       Dodaj zdjęcie...
@@ -109,7 +111,7 @@
     </div>
 
     <button mat-raised-button color="primary" type="submit"
-      [disabled]="editCourseForm.pristine && !hasImageChanged || !editCourseForm.valid">
+      [disabled]="editCourseForm.pristine && !hasImageChanged && !hasLocationChanged || !editCourseForm.valid">
       Edytuj dane kursu
     </button>
 

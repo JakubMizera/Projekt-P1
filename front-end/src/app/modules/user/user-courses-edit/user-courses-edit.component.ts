@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -12,7 +12,7 @@ import { ApiCoursesService } from "src/app/shared/user/api-courses.service";
   templateUrl: './user-courses-edit.component.html',
   styleUrls: ['./user-courses-edit.component.scss']
 })
-export class UserCoursesEditComponent extends CourseBaseComponent implements OnInit, OnDestroy {
+export class UserCoursesEditComponent extends CourseBaseComponent implements OnInit, OnDestroy, AfterViewInit {
   editCourseForm!: FormGroup;
   routeSubscription!: Subscription;
   courseSubscription!: Subscription;
@@ -30,10 +30,36 @@ export class UserCoursesEditComponent extends CourseBaseComponent implements OnI
   }
 
   ngOnInit(): void {
+    this.editCourseForm = this.formBuilder.group({
+      title: null,
+      description: null,
+      address: null,
+      price: null,
+      accountNumber: null,
+      status: null,
+      expirationDate: null,
+      eventDate: null,
+      eventHour: null,
+      courseCapacity: null,
+      category: null,
+      latitude: null,
+      longitude: null,
+    });
     this.routeSubscription = this.route.params.subscribe(params => {
       this.id = params['_id'];
       this.loadCourse(this.id);
     })
+  }
+
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
+
+  protected override onMapClick(lat: number, lng: number): void {
+    this.editCourseForm.patchValue({
+      latitude: lat,
+      longitude: lng
+    });
   }
 
   loadCourse(id: string): void {
@@ -43,6 +69,9 @@ export class UserCoursesEditComponent extends CourseBaseComponent implements OnI
         this.initializeForm();
         this.imagePreviews = course.images || [];
         this.base64Images = [...this.imagePreviews];
+        if (course.latitude && course.longitude) {
+          this.updateMarkerLocation(course.latitude, course.longitude);
+        }
       } else {
         throw new Error(`Cannot find course with id = ${id}`);
       }
@@ -62,6 +91,8 @@ export class UserCoursesEditComponent extends CourseBaseComponent implements OnI
       eventHour: new FormControl(this.course.eventHour, Validators.required),
       courseCapacity: new FormControl(this.course.courseCapacity, [Validators.required, Validators.min(1)]),
       category: new FormControl(this.course.category, Validators.required),
+      latitude: new FormControl(this.course.latitude),
+      longitude: new FormControl(this.course.longitude),
     });
   }
 

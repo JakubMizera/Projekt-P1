@@ -12,6 +12,7 @@ export class CourseBaseComponent {
   protected selectedLongitude!: number;
   protected courseLocationMarker: L.Marker | null = null;
   protected hasLocationChanged = false;
+  protected allowMapClickToUpdateLocation = true;
 
   courseCategories = Object.keys(CourseCategory).map(key => ({
     key: key,
@@ -63,7 +64,7 @@ export class CourseBaseComponent {
   }
 
   protected initMap(): void {
-    this.map = L.map('map').setView([51.505, -0.09], 13);
+    this.map = L.map('map').setView([51.505, -0.09], 16);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© OpenStreetMap contributors'
@@ -75,6 +76,7 @@ export class CourseBaseComponent {
 
   private setupMapClickEvent(): void {
     this.map.on('click', (e: L.LeafletMouseEvent) => {
+      if (!this.allowMapClickToUpdateLocation) return;
       const clickedLat = e.latlng.lat;
       const clickedLng = e.latlng.lng;
 
@@ -97,14 +99,27 @@ export class CourseBaseComponent {
     this.hasLocationChanged = true;
   }
 
-  private setupCurrentLocationMarker(): void {
-    this.getCurrentLocation()
-      .then(location => {
-        this.map.setView(location, 13);
-        L.marker(location).addTo(this.map)
-          .bindPopup('Twoja obecna lokalizacja').openPopup();
-      })
-      .catch(error => console.error(error));
+  protected setupCurrentLocationMarker(lat?: number, lng?: number, zoomLevel: number = 13): void {
+    if (lat !== undefined && lng !== undefined) {
+      // Center map on provided coordinates
+      this.map.setView([lat, lng], zoomLevel);
+      if (this.courseLocationMarker) {
+        this.courseLocationMarker.setLatLng([lat, lng]);
+      } else {
+        this.courseLocationMarker = L.marker([lat, lng]).addTo(this.map)
+          .bindPopup('Wybrane miejsce kursu');
+      }
+      this.courseLocationMarker.openPopup();
+    } else {
+      // Center map on current location
+      this.getCurrentLocation()
+        .then(location => {
+          this.map.setView(location, zoomLevel);
+          L.marker(location).addTo(this.map)
+            .bindPopup('Twoja obecna lokalizacja').openPopup();
+        })
+        .catch(error => console.error(error));
+    }
   }
 
   protected onMapClick(lat: number, lng: number): void {

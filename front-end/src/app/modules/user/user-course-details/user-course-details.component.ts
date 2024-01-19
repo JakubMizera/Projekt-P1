@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { UserService } from 'src/app/shared/user/user.service';
   templateUrl: './user-course-details.component.html',
   styleUrls: ['./user-course-details.component.scss']
 })
-export class UserCourseDetailsComponent extends CourseBaseComponent implements OnInit, OnDestroy {
+export class UserCourseDetailsComponent extends CourseBaseComponent implements OnInit, OnDestroy, AfterViewInit {
   routeSubscription!: Subscription;
   course!: Course;
   courseId!: string;
@@ -30,6 +30,7 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
     snackBar: MatSnackBar,
   ) {
     super(snackBar);
+    this.allowMapClickToUpdateLocation = false;
   }
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(params => {
@@ -62,6 +63,18 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
     })
 
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.initMap();
+      if (this.course.latitude && this.course.longitude) {
+        this.updateMarkerLocation(this.course.latitude, this.course.longitude);
+        this.setupCurrentLocationMarker(this.course.latitude, this.course.longitude);
+      }
+    }, 100);
+  }
+
+
 
   reserveCourse(): void {
     this.apiCoursesService.reserveCourse(this.courseId, this.userId).subscribe(({

@@ -53,6 +53,7 @@ export class UserCoursesEditComponent extends CourseBaseComponent implements OnI
 
   ngAfterViewInit(): void {
     this.initMap();
+    this.setupCurrentLocationMarker(this.course.latitude, this.course.longitude);
   }
 
   protected override onMapClick(lat: number, lng: number): void {

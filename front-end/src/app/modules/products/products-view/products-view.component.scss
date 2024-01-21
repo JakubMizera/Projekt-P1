@@ -3,6 +3,7 @@
 .container {
   display: flex; /* Ustawienie flexbox dla kontenera */
   max-width: 1200px;
+  min-height: 100vh;
   margin: 0 auto; /* Wyśrodkowanie kontenera */
 }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Course } from 'src/app/shared/interfaces/course.model';
 import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
 
@@ -11,6 +12,7 @@ export class ProductsViewComponent implements OnInit {
   courses: Course[] = [];
 
   constructor(
+    private router: Router,
     private apiCoursesService: ApiCoursesService,
   ) { }
 
@@ -19,5 +21,4 @@ export class ProductsViewComponent implements OnInit {
       this.courses = courses;
     })
   }
-
 }

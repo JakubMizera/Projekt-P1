@@ -6,10 +6,12 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductsViewComponent } from './products-view/products-view.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { ProductsDetailsComponent } from './products-details/products-details.component';
 
 @NgModule({
   declarations: [
-    ProductsViewComponent
+    ProductsViewComponent,
+    ProductsDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -14,8 +14,8 @@
     </div>
   </aside>
   <section class="products">
-    <div *ngFor="let course of courses" class="product-card">
-      <div>
+    <div *ngFor="let course of courses" [routerLink]="['/products/details', course._id]" class="product-card">
+      <div >
         <img *ngIf="course.images && course.images.length > 0; else noImage" [src]="course.images[0]"
           alt="Course image">
         <ng-template #noImage>

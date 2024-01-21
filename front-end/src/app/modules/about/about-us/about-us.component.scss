@@ -101,60 +101,83 @@
   background-color: #eeeeeece;
 }
 
-  h2 {
-    font-size: 2em;
-    margin-bottom: 1em;
-    font-weight: bold;
+h2 {
+  font-size: 2em;
+  margin-bottom: 1em;
+  font-weight: bold;
+} /* Brakujący nawias klamrowy został dodany tutaj */
 
+p {
+  font-size: 1.2em;
+  padding-bottom: 35px;
+}
 
-  p {
-    font-size: 1.2em;
-    padding-bottom: 35px;
+.services-items {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding-top: 20px;
+}
+
+.service-item {
+  max-width: 350px;
+  background-color: #ffffff71;
+  border-radius: 3%;
+  padding: 17px;
+  box-shadow: 0 0 50px rgba(112, 112, 112, 0.5);
+  transition: background-color 0.70s ease, transform 0.90s ease;
+}
+
+.service-item img {
+  width: 180px;
+  height: 180px;
+  border-radius: 100%;
+}
+
+.service-item h3 {
+  font-size: 1.5em;
+  margin: 0.5em 0;
+  font-weight: bold;
+}
+
+.service-item p {
+  font-size: 1rem;
+  text-align: justify;
+  padding: 10px;
+}
+
+.service-item:hover {
+  background-color: #88a8ff32;
+  transform: scale(1.1);
+}
+
+/* Media Queries dla tabletów */
+@media screen and (max-width: 768px) {
+  .services-items {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .service-item {
+    width: 100%;
+    margin-bottom: 20px;
   }
 }
 
+/* Media Queries dla telefonów */
+@media screen and (max-width: 600px) {
   .services-items {
-    display: flex;
-    margin: 10px;
-    justify-content: center;
-    gap: 40px;
-    padding-top: 20px;
-
-    .service-item {
-      max-width: 350px;
-      min-width: 100px;
-      background-color: #ffffff71;
-      border-radius: 3%;
-      padding: 17px;
-      box-shadow: 0 0 50px rgba(112, 112, 112, 0.5);
-      transition: background-color 0.70s ease, transform 0.90s ease;
-
-      img {
-        width: 180px;
-        height: 180px;
-        border-radius: 100%;
-
-      }
-
-      h3 {
-        font-size: 1.5em;
-        margin: 0.5em 0;
-        font-weight: bold;
-      }
-
-      p {
-        font-size: 1rem;
-        text-align: justify;
-        padding: 10px;
-      }
-
-      &:hover {
-        background-color: #88a8ff32;
-        transform: scale(1.1);
-      }
-
-    }
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
+
+  .service-item {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
 
 /* Sekcja Opinie */
 .feedback-section {

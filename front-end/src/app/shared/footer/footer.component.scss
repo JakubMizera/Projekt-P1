@@ -123,6 +123,13 @@
   transform: scale(1.05);
 }
 
+@media (max-width: 767px) {
+  .contact-form {
+    display: none;
+  }
+}
+
+/* Style dla urządzeń o szerokości ekranu 768px lub większej */
 @media (min-width: 768px) {
   .footer {
     flex-direction: row;

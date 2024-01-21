@@ -3,7 +3,7 @@
 .container {
   display: flex; /* Ustawienie flexbox dla kontenera */
   max-width: 1200px;
-  min-height: 100vh;
+  height: fit-content; /* Wysokość dopasowana do zawartości */
   margin: 0 auto; /* Wyśrodkowanie kontenera */
 }
 
@@ -11,7 +11,7 @@
 .filter-sidebar {
   flex: 0 0 250px; /* Szerokość paska filtrów ustawiona na 250px */
   background: #ffffff;
-  border-radius: 10px; /* Zaokrąglone rogi */
+  border-radius: 10px;
   box-shadow: $box-shadow-standard; /* Cień dla paska bocznego */
   padding: 20px;
   margin: 20px;

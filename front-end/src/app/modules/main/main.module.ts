@@ -9,6 +9,7 @@ import { SliderComponent } from './slider/slider.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.com
     CommonModule,
     MainRoutingModule,
     SharedModule,
+    MaterialModule,
   ],
   exports: [
     MainPageComponent,

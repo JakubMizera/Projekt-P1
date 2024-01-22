@@ -15,7 +15,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UserCoursesEditComponent } from './user-courses-edit/user-courses-edit.component';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserAdminPanelComponent } from './user-admin-panel/user-admin-panel.component';
-import { UserPaymentHistoryComponent } from './user-payment-history/user-payment-history.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { UserCourseDetailsComponent } from './user-course-details/user-course-details.component';
 
@@ -30,7 +29,6 @@ import { UserCourseDetailsComponent } from './user-course-details/user-course-de
     UserCoursesEditComponent,
     UserPanelComponent,
     UserAdminPanelComponent,
-    UserPaymentHistoryComponent,
     UserCourseDetailsComponent,
   ],
   imports: [

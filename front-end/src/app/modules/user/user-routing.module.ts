@@ -51,11 +51,6 @@ const routes: Routes = [
         canActivate: [CourseOwnerGuard]
       },
       {
-        path: 'purchased',
-        component: UserPurchasedComponent,
-        data: { title: 'Zakupione' }
-      },
-      {
         path: 'settings',
         component: UserSettingsComponent,
         data: { title: 'Ustawienia' }

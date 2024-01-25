@@ -1,46 +1,55 @@
-@import './variables';
+@import "./variables";
 
 .table-wrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .mat-elevation-z8 {
-    box-shadow: none;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 
-    th,
-    td {
-        vertical-align: middle;
-        height: 70px;
-    }
+  tr {
+    background-color: $color-background-grey-1;
+  }
 
-    th {
-        font-weight: 500;
-    }
+  th,
+  td {
+    vertical-align: middle;
+    height: 70px;
+  }
 
-    td:first-child {
-        width: 15%;
-    }
+  th {
+    font-weight: 500;
+  }
+
+  td:first-child {
+    width: 15%;
+  }
 }
 
 mat-icon {
-    color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .status {
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    text-align: center;
-    display: inline-block;
-    width: 100px;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-align: center;
+  display: inline-block;
+  width: 100px;
 }
 
 .status-active {
-    background-color: $color-status-active;
+  background-color: $color-status-active;
 }
 
 .status-inactive {
-    background-color: $color-status-inactive;
+  background-color: $color-status-inactive;
+}
+
+.mat-mdc-paginator-outer-container {
+  background-color: $color-background-grey-1;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }

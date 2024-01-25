@@ -1,0 +1,99 @@
+@import "./../../../../styles/variables";
+
+.sports-courses {
+  text-align: center;
+  padding: 2rem;
+  display: flex; /* Ustawienie kontenera jako flex */
+  flex-direction: column; /* Elementy ułożone pionowo */
+  align-items: center; /* Wyśrodkowanie elementów w poziomie */
+  justify-content: center; /* Wyśrodkowanie elementów w pionie */
+  width: 60%; /* Szerokość tła ustawiona na 60% */
+  margin: auto; /* Wyśrodkowanie całego kontenera w poziomie */
+  border-radius: 8px; /* Zaokrąglenie rogów tła */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Cień dla tła (opcjonalnie) */
+}
+.button-container{
+  align-items: center;
+  text-align: center;
+}
+.add-to-cart-button {
+  background:$color-main-blue; /* Dominujący kolor przycisku */
+  color: white;
+  padding: 10px 25px; /* Odpowiedni padding, aby przycisk był większy */
+  border: none; /* Brak obramowania */
+  border-radius: 20px; /* Zaokrąglone rogi */
+  font-weight: bold; /* Pogrubiona czcionka */
+  text-transform: uppercase; /* Tekst wielkimi literami */
+  cursor: pointer; /* Kursor wskazujący na przycisk */
+  font-size: 16px; /* Rozmiar czcionki */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); /* Lekki cień dla głębi */
+  transition: background-color 0.3s ease; /* Animacja zmiany koloru */
+  margin-right: 20px; /* Odstęp po prawej stronie każdego przycisku */
+  margin-top: 30px;
+}
+
+
+.sports-courses h2 {
+  color: #005cbf;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.course-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Opcjonalnie, aby szerokość kontenera dopasowała się do zawartości */
+}
+
+.course {
+  align-items: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  width: 100%; /* Aby kurs zajmował pełną dostępną szerokość */
+}
+
+.course-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 1rem; /* Dodanie marginesu poniżej obrazu */
+}
+
+.course-info {
+  text-align: left;
+  flex: 1;
+}
+
+.course-info h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.course-info .description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.course-details li {
+  background-color: #f8f8f8;
+  padding: 0.5rem;
+  border-left: 4px solid #005cbf;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .course {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .course-image {
+      margin-bottom: 1rem;
+  }
+
+  .course-info {
+      text-align: center;
+  }
+}

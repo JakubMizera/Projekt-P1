@@ -28,7 +28,6 @@ $AdventureSport-theme: mat.define-light-theme((color: (primary: $AdventureSport-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($AdventureSport-theme);
-
 @import 'styles/reset';
 @import 'styles/variables';
 @import 'styles/image_thumbnail';
@@ -39,13 +38,15 @@ body {
   overflow-x: hidden;
 }
 
-
-html,
-body {
+html, body {
   height: 100%;
-}
-
-body {
+  height: auto;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .test {
+    width: 10px;
+  }
 }

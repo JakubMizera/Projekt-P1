@@ -1,5 +1,6 @@
 @import '../../../styles/variables';
 
+/* Styl paska nawigacyjnego */
 .navbar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -80,42 +81,67 @@
   }
 }
 
-/* Media Query for Navbar */
+/* Media Query dla urządzeń mobilnych */
 @media (max-width: 768px) {
   .navbar {
-      grid-template-columns: 1fr; /* Single column layout */
-      padding: 10px 5px; /* Reduced padding */
+      grid-template-columns: 1fr; /* Jednokolumnowy układ */
+      padding: 10px 5px; /* Zmniejszony padding */
   }
 
   .left-side,
   .center-side,
   .right-side {
-      display: block; /* Stack elements vertically */
+      display: block; /* Układanie elementów pionowo */
   }
 
   .left-side .logo {
-      width: 60px; /* Smaller logo size */
+      width: 60px; /* Mniejszy rozmiar logo */
   }
 
   .left-side .brand {
-      font-size: 1.4rem; /* Smaller font size for brand */
+      font-size: 1.4rem; /* Mniejszy rozmiar czcionki dla marki */
   }
 
   .center-side .nav-link {
-      font-size: 1rem; /* Smaller font size for navigation links */
-      padding: 5px 10px; /* Adjusted padding */
-      margin: 0 5px; /* Spacing between links */
+      font-size: 1rem; /* Mniejszy rozmiar czcionki dla linków nawigacyjnych */
+      padding: 5px 10px; /* Zmodyfikowany padding */
+      margin: 0 5px; /* Odstępy między linkami */
   }
 
   .right-side .user-info {
-      font-size: 1rem; /* Smaller font size for user info */
+      font-size: 1rem; /* Mniejszy rozmiar czcionki dla informacji o użytkowniku */
   }
 
   .right-side .user-avatar {
-      width: 25px; /* Smaller user avatar */
+      width: 25px; /* Mniejszy avatar użytkownika */
   }
 
   .right-side .fa-user-circle {
-      font-size: 1.5rem; /* Smaller icon size */
+      font-size: 1.5rem; /* Mniejszy rozmiar ikony */
   }
+
+  .menu-toggle {
+    display: block;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .show {display: block;}
 }

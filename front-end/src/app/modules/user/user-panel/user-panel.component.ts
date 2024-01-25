@@ -16,7 +16,10 @@ import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
   styleUrls: ['./user-panel.component.scss']
 })
 export class UserPanelComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'status', 'price', 'options'];
+  displayedColumns: string[] = [
+    'title', 'status', 'price', 'eventDate',
+    'courseCapacity', 'category', 'address', 'options'
+  ];
   dataSource!: MatTableDataSource<Course>;
   Status = Status;
 

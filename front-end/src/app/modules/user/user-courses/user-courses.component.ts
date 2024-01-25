@@ -14,7 +14,10 @@ import { ApiCoursesService } from 'src/app/shared/user/api-courses.service';
   styleUrls: ['./user-courses.component.scss']
 })
 export class UserCoursesComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['title', 'status', 'price', 'options'];
+  displayedColumns: string[] = [
+    'title', 'status', 'price', 'eventDate',
+    'courseCapacity', 'category', 'address', 'options'
+  ];
   dataSource!: MatTableDataSource<Course>;
   private subscription!: Subscription;
   Status = Status;

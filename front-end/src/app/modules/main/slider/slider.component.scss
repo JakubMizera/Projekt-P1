@@ -30,16 +30,18 @@
     .splide__list {
       .splide__slide {
         margin: 0 5px;
-        transition: transform 0.5s ease;
+        transition: transform 0.3s ease-in-out;
         overflow: hidden;
         position: relative;
         border-radius: 25px;
+        z-index: 3;
         img {
-          transition: transform 0.3s ease;
+          transition: transform 0.2s ease-in-out;
+          z-index: 4;
         }
         &:hover {
-          transform: scale(1.35);
-          z-index: 5;
+          transform: scale(1.15);
+          z-index: 4;
         }
       }
     }

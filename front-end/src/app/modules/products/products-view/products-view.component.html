@@ -3,19 +3,22 @@
     <div class="filter-section">
       <h2>Filtruj</h2>
       <ul class="filter-list">
-        <li><input type="checkbox" id="skydiving" class="filter-option" checked><label for="skydiving"><span>Skoki
-              Spad</span></label></li>
-        <li><input type="checkbox" id="paintball" class="filter-option"><label
-            for="paintball"><span>PaintBall</span></label></li>
-        <li><input type="checkbox" id="asg" class="filter-option"><label for="asg"><span>ASG</span></label></li>
-        <li><input type="checkbox" id="group-events" class="filter-option"><label for="group-events"><span>Imprezy
-              grupowe</span></label></li>
+        <li>
+          <input type="radio" id="all" class="filter-option" name="categoryFilter" [(ngModel)]="selectedCategory" value="All"
+            (change)="applyCategoryFilter()">
+          <label for="all">Wszystkie</label>
+        </li>
+        <li *ngFor="let category of courseCategories">
+          <input type="radio" [id]="category.key" class="filter-option" name="categoryFilter" [(ngModel)]="selectedCategory"
+            [value]="category.value" (change)="applyCategoryFilter()">
+          <label [for]="category.key">{{ category.value }}</label>
+        </li>
       </ul>
     </div>
   </aside>
   <section class="products">
-    <div *ngFor="let course of courses" [routerLink]="['/products/details', course._id]" class="product-card">
-      <div >
+    <div *ngFor="let course of filteredCourses" [routerLink]="['/products/details', course._id]" class="product-card">
+      <div>
         <img *ngIf="course.images && course.images.length > 0; else noImage" [src]="course.images[0]"
           alt="Course image">
         <ng-template #noImage>

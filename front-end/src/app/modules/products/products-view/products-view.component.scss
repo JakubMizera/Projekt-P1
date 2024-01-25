@@ -1,8 +1,9 @@
-@import './../../../../styles/variables';
+@import "./../../../../styles/variables";
 /* Kontener główny */
 .container {
   display: flex; /* Ustawienie flexbox dla kontenera */
   max-width: 1200px;
+  min-height: calc(100vh - 100px);
   height: fit-content; /* Wysokość dopasowana do zawartości */
   margin: 0 auto; /* Wyśrodkowanie kontenera */
 }
@@ -24,62 +25,52 @@
   font-size: 1.25rem;
 }
 
-/* Ukrycie domyślnego checkboxa */
-.filter-list input[type="checkbox"] {
-  display: none;
+.filter-option {
+  opacity: 0;
+  position: absolute;
 }
 
-/* Stylowanie etykiety (label) i dodanie niestandardowego boxa */
-.filter-list label {
-  display: block;
-  background: #f0f0f0;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  position: relative;
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Style the label to look like a button with text beside it */
+.filter-option + label {
   cursor: pointer;
-  transition: background 0.3s;
+  display: flex;
+  align-items: center; /* Aligns the pseudo-element and text vertically */
+  gap: 10px; /* Distance between pseudo-element and text */
+  position: relative;
 }
 
-/* Niestandardowy znacznik wyboru */
-.filter-list input[type="checkbox"] + label:before {
+/* Custom pseudo-element for radio button appearance */
+.filter-option + label:before {
   content: '';
-  position: absolute;
-  left: 2px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 30px;
+  display: block;
   width: 30px;
-  background: #fff;
-  border: 2px solid #ccc;
-  border-radius: 50%;
+  height: 30px;
+  border: 2px solid #ccc; /* Border color */
+  border-radius: 12px; /* Makes it round */
+  box-sizing: border-box; /* Includes border in the width and height */
 }
 
-/* Styl dla zaznaczonego checkboxa */
-.filter-list input[type="checkbox"]:checked + label:before {
-  background: $color-main2-blue;
-  border-color: $color-main-blue;
+/* When the radio button is checked, change the pseudo-element appearance */
+.filter-option:checked + label:before {
+  background: $button-background; /* Background color */
+  border-color: #7467f0;
 }
 
-/* Ikona zaznaczenia - można użyć gotowej ikony lub stworzyć niestandardową */
-.filter-list input[type="checkbox"]:checked + label:after {
-  content: '✓';
+/* Optional: Add another pseudo-element for the checkmark inside the pseudo-element */
+.filter-option:checked + label:after {
+  content: '\2713'; /* Unicode checkmark */
   position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #fff;
-  font-size: 1.0rem;
-}
-
-/* Zmiana tła etykiety przy najechaniu */
-.filter-list label:hover {
-  background: #e6e6e6;
-}
-
-/* Dodanie odstępu dla tekstu w etykiecie */
-.filter-list label span {
-  padding-left: 40px;
+  left: 7px; /* Position inside the before pseudo-element */
+  top: 5px; /* Position inside the before pseudo-element */
+  color: white; /* Checkmark color */
+  font-size: 22px; /* Checkmark size */
+  line-height: 1;
 }
 
 /* Lista produktów */
@@ -99,13 +90,16 @@
   border-radius: 10px;
   padding: 15px;
   width: calc(33.333% - 20px); /* Szerokość dla trzech kolumn */
+  max-height: 400px;
   box-shadow: $box-shadow-standard;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Obraz produktu */

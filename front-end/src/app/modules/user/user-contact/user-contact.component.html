@@ -1,2 +1,16 @@
-<app-user-custom-container title="Kontakt">
+<app-user-custom-container title="Kontakt z pomocą">
+
+  <app-user-form-container [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Twoja wiadomość</mat-label>
+      <textarea matInput formControlName="message" required></textarea>
+      <mat-error class="error"  *ngIf="contactForm.get('message')?.errors?.['required']">
+        Wiadomość jest wymagana
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid">Wyślij wiadomość</button>
+
+  </app-user-form-container>
+
 </app-user-custom-container>

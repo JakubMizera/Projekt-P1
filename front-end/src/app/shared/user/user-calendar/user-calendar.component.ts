@@ -150,4 +150,8 @@ export class UserCalendarComponent {
     this.router.navigate(['user', 'courses', courseId, 'details']);
   }
 
+  navigateToCreateCourse(): void {
+    this.router.navigate(['user/addcourse']);
+  }
+
 }

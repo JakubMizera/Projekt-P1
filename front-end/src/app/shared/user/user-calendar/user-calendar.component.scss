@@ -1,4 +1,4 @@
-@import './../../../../styles/variables';
+@import "./../../../../styles/variables";
 
 .container {
   background-color: white;
@@ -6,23 +6,93 @@
   margin-bottom: 30px;
 }
 
+.create-course {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  align-items: center;
+  color: #555555;
+  padding: 20px 0;
+
+  .course-info {
+    display: flex;
+    align-items: center;
+    background-color: #f4f4f4;
+    gap: 40px;
+    border-radius: 10px;
+    padding: 20px 40px;
+  }
+
+  .course-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  h2 {
+    color: rgb(29, 27, 27);
+    font-size: 21px;
+  }
+
+  .create-course-btn {
+    background: $button-background;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: pointer;
+
+    mat-icon {
+      color: white;
+    }
+  }
+
+  .course-legend {
+    display: block;
+    width: 100%;
+    height: 7px;
+  }
+
+  .courses-count {
+    font-size: 24px;
+  }
+
+  .course-description {
+    font-size: 15px;
+    color: #a1a1a1;
+  }
+
+  .created {
+    background: $button-background;
+  }
+
+  .reserved {
+    background: $button-background2;
+  }
+}
+
 .calendar-navigation {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+  gap: 10px;
+  color: #555555;
 
   button {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 24px;
-    margin: 0 10px;
+    display: flex;
   }
 
   span {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
+    min-width: 160px;
+    text-align: center;
   }
 }
 
@@ -40,7 +110,6 @@
     .month-day-labels {
       display: contents;
     }
-
 
     .month-day-name {
       padding: 5px;
@@ -137,5 +206,4 @@
       background-color: #cfcfcf;
     }
   }
-
 }

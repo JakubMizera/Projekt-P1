@@ -1,8 +1,27 @@
 <div class="container">
+  <div class="create-course">
+    <div class="course-info">
+      <div class="course-wrapper">
+        <h2>Stwórz kurs</h2>
+        <div class="course-legend created"></div>
+        <span class="courses-count">{{userCourses.length}}</span>
+        <p class="course-description">Liczba stworzonych kursów</p>
+      </div>
+      <button class="create-course-btn" (click)="navigateToCreateCourse()"><mat-icon>add</mat-icon></button>
+    </div>
+    <div class="course-info">
+      <div class="course-wrapper">
+        <h2>Zarezerwowane kursy</h2>
+        <div class="course-legend reserved"></div>
+        <span class="courses-count">{{userReservedCourses.length}}</span>
+        <p class="course-description">Liczba zarezerwowanych kursów</p>
+      </div>
+    </div>
+  </div>
   <div class="calendar-navigation">
-    <button (click)="navigateMonth(-1)">&lt;</button>
+    <button (click)="navigateMonth(-1)"><mat-icon>arrow_back</mat-icon></button>
     <span>{{ getMonthName() }} {{ currentDate.getFullYear() }}</span>
-    <button (click)="navigateMonth(1)">&gt;</button>
+    <button (click)="navigateMonth(1)"><mat-icon>arrow_forward</mat-icon></button>
   </div>
   <div class="calendar-layout">
     <div class="month-view">

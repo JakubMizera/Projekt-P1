@@ -5,28 +5,29 @@
       <span class="brandName">AdventureSport</span>
     </div>
     <div class="forwardBtns">
-      <button class="asideBtn" *ngIf="userService.getCurrentUserValue()?.role === 'User'" routerLink="panel">
+      <button class="asideBtn" *ngIf="userService.getCurrentUserValue()?.role === 'User'" routerLink="panel"
+        routerLinkActive="activeBtn" [routerLinkActiveOptions]="{exact: true}">
         <mat-icon class="icon">edit_calendar</mat-icon>
         Panel użytkownika
       </button>
-      <button class="asideBtn" *ngIf="userService.getCurrentUserValue()?.role === 'Admin'" routerLink="admin-panel">
+      <button class="asideBtn" *ngIf="userService.getCurrentUserValue()?.role === 'Admin'" routerLink="admin-panel"
+        routerLinkActive="activeBtn" [routerLinkActiveOptions]="{exact: true}">
         <mat-icon class="icon">edit_calendar</mat-icon>
         Panel administratora
       </button>
-      <button class="asideBtn" routerLink="courses">
+      <button class="asideBtn" routerLink="courses" routerLinkActive="activeBtn"
+        [routerLinkActiveOptions]="{exact: true}">
         <mat-icon class="icon">list</mat-icon>
         Lista kursów
       </button>
-      <button class="asideBtn" routerLink="settings">
+      <button class="asideBtn" routerLink="settings" routerLinkActive="activeBtn"
+        [routerLinkActiveOptions]="{exact: true}">
         <mat-icon class="icon">settings</mat-icon>
         Ustawienia konta
       </button>
-    </div>
-    <div class="bottomBtns">
-      <button routerLink="addcourse" class="bottomBtn">
-        Dodaj kurs
-      </button>
-      <button routerLink="contact" class="bottomBtn">
+      <button class="asideBtn" routerLink="contact" routerLinkActive="activeBtn"
+        [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon class="icon">contact_support</mat-icon>
         Kontakt z pomocą
       </button>
     </div>

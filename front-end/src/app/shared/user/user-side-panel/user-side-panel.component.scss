@@ -1,4 +1,4 @@
-@import './../../../../styles/variables';
+@import "./../../../../styles/variables";
 
 :host {
   display: block;
@@ -14,7 +14,7 @@
 
 .main-content {
   flex-grow: 1;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 router-outlet {
@@ -73,27 +73,8 @@ aside {
     }
   }
 
-  .bottomBtns {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-
-    .bottomBtn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #226cfc;
-      background-color: #dfe9ff;
-      font-size: 18px;
-      font-weight: 600;
-      width: 221px;
-      height: 54px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 7px;
-    }
+  .activeBtn {
+    color: black;
+    background-color: #ebebeb
   }
 }

@@ -25,6 +25,12 @@
 
   td:first-child {
     width: 15%;
+
+    a {
+      &:hover {
+        color: $color-blue;
+      }
+    }
   }
 }
 

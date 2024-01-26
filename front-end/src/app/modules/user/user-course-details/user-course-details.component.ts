@@ -71,7 +71,7 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
         this.updateMarkerLocation(this.course.latitude, this.course.longitude);
         this.setupCurrentLocationMarker(this.course.latitude, this.course.longitude);
       }
-    }, 100);
+    }, 200);
   }
 
 

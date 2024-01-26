@@ -25,7 +25,6 @@ export class MapComponent extends CourseBaseComponent implements OnInit, AfterVi
     this.initMap();
     this.apiCoursesService.courses$.subscribe(courses => {
       this.courses = courses;
-      console.log(courses)
     })
   }
 

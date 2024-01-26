@@ -1,26 +1,34 @@
-
-<section class="sports-courses">
-    <h2>Kursy Sportowe</h2>
-      <img src="assets/images/icon1.png" alt="Yoga dla początkujących" class="course-image">
-      <article class="course">
+<section *ngIf="course" class="sports-courses">
+  <h2>{{course.title}}</h2>
+  <img *ngIf="course.images && course.images.length > 0; else defaultImage" [src]="course.images[0]"
+    alt="{{ course.title }}" class="course-image">
+  <ng-template #defaultImage>
+    <img class="course-image" src="./../../../../assets/images/NoPhoto.png">
+  </ng-template>
+  <article class="course">
 
     <div class="course-container">
-            <div class="course-info">
-                <p class="description">
-                    Zajęcia jogi dla początkujących pomagają osiągnąć harmonię ciała i ducha oraz poprawić elastyczność.
-                </p>
-                <ul class="course-details">
-                    <li>Poziom:</li>
-                    <li>Czas trwania:</li>
-                    <li>Adres</li>
-                    <li>Cena:</li>
-                </ul>
-                <div class="button-container">
-                  <button class="add-to-cart-button">Rezerwuj</button>
-                  <button class="add-to-cart-button">Kontakt</button>
-              </div>
-            </div>
-            </div>
-          </article>
+      <div class="course-info">
+        <p class="description">
+          {{course.description}}
+        </p>
+        <ul class="course-details">
+          <li>Poziom:</li>
+          <li>Czas trwania:</li>
+          <li>Adres</li>
+          <li>Cena:</li>
+        </ul>
+        <h4>Lokalizacja:</h4>
+        <div id="map"></div>
+        <div *ngIf="!isCourseOwner" class="button-container">
+          <button class="add-to-cart-button" (click)="toggleCourseReservation()"
+          [disabled]="isFullyBooked() && !isEnrolled">
+          {{ isEnrolled ? 'Zrezygnuj z miejsca' : 'Rezerwuj miejsce'}}
+        </button>
+        <button class="add-to-cart-button">Kontakt</button>
+      </div>
+    </div>
+  </div>
+  </article>
 </section>
 

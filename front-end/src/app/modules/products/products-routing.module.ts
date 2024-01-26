@@ -12,6 +12,7 @@ const routes: Routes = [
   {
     path: 'details/:id',
     component: ProductsDetailsComponent,
+    data: { title: 'Szczegóły produktu' }
   }
 ]
 

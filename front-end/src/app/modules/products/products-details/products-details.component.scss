@@ -83,6 +83,11 @@
   margin-bottom: 0.5rem;
 }
 
+#map {
+  height: 400px;
+  width: 600px;
+}
+
 @media (max-width: 768px) {
   .course {
       flex-direction: column;

@@ -2,13 +2,14 @@
 
 .container {
   background: $color-background-gradient;
-  height: calc(100vh - 96px); //Wysokość kontenera - wysokość banera
+  height: calc(100vh - 60px); //Wysokość kontenera - wysokość banera
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .contact-wrapper {
+  padding-top: 30px;
   background-color: #fff;
   width: 500px;
   border-radius: 8px;
@@ -94,12 +95,14 @@
   .contact-wrapper {
     width: auto;
     padding: 20px;
+    padding-top: 50px;
+    height: 100vh;
   }
 
   .contact-form input[type="text"],
   .contact-form input[type="email"],
   .contact-form textarea {
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
   }
 
   .content-column {

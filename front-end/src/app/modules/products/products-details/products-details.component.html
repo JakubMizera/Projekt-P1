@@ -9,17 +9,16 @@
 
     <div class="course-container">
       <div class="course-info">
-        <p class="description">
+        <h3>Szczegóły oferty:</h3>
+        <p class="description"><br>
           {{course.description}}
         </p>
         <ul class="course-details">
-          <li>Poziom:</li>
-          <li>Czas trwania:</li>
-          <li>Adres</li>
-          <li>Cena:</li>
+          <li>Cena: {{course.price}} zł</li>
+          <li>Data odbycia: {{course.eventDate}}</li>
+          <li>Liczba miejsc: {{course.reservedUserIds?.length}}</li>
+          <li>Lokalizacja:<div id="map"></div></li>
         </ul>
-        <h4>Lokalizacja:</h4>
-        <div id="map"></div>
         <div *ngIf="!isCourseOwner" class="button-container">
           <button class="add-to-cart-button" (click)="toggleCourseReservation()"
           [disabled]="isFullyBooked() && !isEnrolled">

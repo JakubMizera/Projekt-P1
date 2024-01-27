@@ -54,10 +54,13 @@
 }
 
 .course-image {
-  width: 300px;
-  height: 300px;
+  width: 600px;
+  height: 600px;
   object-fit: cover;
   margin-bottom: 1rem; /* Dodanie marginesu poniżej obrazu */
+  border-radius: 20px;
+  box-shadow: $box-shadow-standard
+  ;
 }
 
 .course-info {

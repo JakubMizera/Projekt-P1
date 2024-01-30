@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { UserService } from 'src/app/shared/user/user.service';
   templateUrl: './user-course-details.component.html',
   styleUrls: ['./user-course-details.component.scss']
 })
-export class UserCourseDetailsComponent extends CourseBaseComponent implements OnInit, OnDestroy, AfterViewInit {
+export class UserCourseDetailsComponent extends CourseBaseComponent implements OnInit, OnDestroy {
   routeSubscription!: Subscription;
   course!: Course;
   courseId!: string;
@@ -32,6 +32,7 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
     super(snackBar);
     this.allowMapClickToUpdateLocation = false;
   }
+
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(params => {
       this.courseId = params['_id'];
@@ -45,6 +46,7 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
 
     this.apiCoursesService.getCourseById(this.courseId).subscribe((courseData) => {
       this.course = courseData;
+      this.initMapAndSetMarker();
 
       this.reservedSpotsCount = this.course.reservedUserIds ? this.course.reservedUserIds.length : 0;
       this.isFullyBooked();
@@ -64,17 +66,13 @@ export class UserCourseDetailsComponent extends CourseBaseComponent implements O
 
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.initMap();
-      if (this.course.latitude && this.course.longitude) {
-        this.updateMarkerLocation(this.course.latitude, this.course.longitude);
-        this.setupCurrentLocationMarker(this.course.latitude, this.course.longitude);
-      }
-    }, 200);
+  private initMapAndSetMarker(): void {
+    this.initMap();
+    if (this.course.latitude && this.course.longitude) {
+      this.updateMarkerLocation(this.course.latitude, this.course.longitude);
+      this.setupCurrentLocationMarker(this.course.latitude, this.course.longitude);
+    }
   }
-
-
 
   reserveCourse(): void {
     this.apiCoursesService.reserveCourse(this.courseId, this.userId).subscribe(({

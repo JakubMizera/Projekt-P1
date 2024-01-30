@@ -13,7 +13,7 @@ import { UserService } from 'src/app/shared/user/user.service';
   templateUrl: './products-details.component.html',
   styleUrls: ['./products-details.component.scss']
 })
-export class ProductsDetailsComponent extends CourseBaseComponent implements OnInit, AfterViewInit {
+export class ProductsDetailsComponent extends CourseBaseComponent implements OnInit {
   routeSubscription!: Subscription;
   course!: Course;
   courseId!: string;
@@ -47,6 +47,7 @@ export class ProductsDetailsComponent extends CourseBaseComponent implements OnI
 
     this.apiCoursesService.getCourseById(this.courseId).subscribe((courseData) => {
       this.course = courseData;
+      this.initMapAndSetMarker();
 
       this.reservedSpotsCount = this.course.reservedUserIds ? this.course.reservedUserIds.length : 0;
       this.isFullyBooked();
@@ -65,14 +66,12 @@ export class ProductsDetailsComponent extends CourseBaseComponent implements OnI
     })
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.initMap();
-      if (this.course.latitude && this.course.longitude) {
-        this.updateMarkerLocation(this.course.latitude, this.course.longitude);
-        this.setupCurrentLocationMarker(this.course.latitude, this.course.longitude);
-      }
-    }, 200);
+  private initMapAndSetMarker(): void {
+    this.initMap();
+    if (this.course.latitude && this.course.longitude) {
+      this.updateMarkerLocation(this.course.latitude, this.course.longitude);
+      this.setupCurrentLocationMarker(this.course.latitude, this.course.longitude);
+    }
   }
 
   reserveCourse(): void {

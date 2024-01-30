@@ -1,4 +1,4 @@
-<section *ngIf="course" class="sports-courses">
+<section class="sports-courses">
   <h2>{{course.title}}</h2>
   <img *ngIf="course.images && course.images.length > 0; else defaultImage" [src]="course.images[0]"
     alt="{{ course.title }}" class="course-image">

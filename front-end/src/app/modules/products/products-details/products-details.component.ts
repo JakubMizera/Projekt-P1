@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Course } from 'src/app/shared/interfaces/course.model';
 import { User } from 'src/app/shared/interfaces/user.model';
@@ -27,6 +27,7 @@ export class ProductsDetailsComponent extends CourseBaseComponent implements OnI
     private apiCoursesService: ApiCoursesService,
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router,
     snackBar: MatSnackBar,
   ) {
     super(snackBar);
@@ -75,14 +76,20 @@ export class ProductsDetailsComponent extends CourseBaseComponent implements OnI
   }
 
   reserveCourse(): void {
-    this.apiCoursesService.reserveCourse(this.courseId, this.userId).subscribe(({
-      next: () => {
-        this.reservedSpotsCount++;
-        this.isFullyBooked();
-        this.openSnackBar('Zostałeś zapisany na kurs', 'Zamknij');
-      },
-      error: (err) => console.error(err),
-    }))
+    if (this.userId) {
+      console.log(this.userId);
+      this.apiCoursesService.reserveCourse(this.courseId, this.userId).subscribe(({
+        next: () => {
+          this.reservedSpotsCount++;
+          this.isFullyBooked();
+          this.openSnackBar('Zostałeś zapisany na kurs', 'Zamknij');
+        },
+        error: (err) => console.error(err),
+      }))
+    } else {
+      this.router.navigate(['/login']);
+      this.openSnackBar('Aby zarezerwować kurs należy się zalogować', 'Zamknij');
+    }
   }
 
   unreserveCourse(): void {

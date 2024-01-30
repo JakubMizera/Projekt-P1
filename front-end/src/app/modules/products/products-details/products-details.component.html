@@ -16,7 +16,8 @@
         <ul class="course-details">
           <li>Cena: {{course.price}} zł</li>
           <li>Data odbycia: {{course.eventDate}}</li>
-          <li>Liczba miejsc: {{course.reservedUserIds?.length}}</li>
+          <li>Liczba zarezerwowanych miejsc: {{course.reservedUserIds?.length}} z {{course.courseCapacity}}</li>
+          <li *ngIf="isFullyBooked()">Brak dostępnych miejsc</li>
           <li>Lokalizacja:<div id="map"></div></li>
         </ul>
         <div *ngIf="!isCourseOwner" class="button-container">

@@ -42,11 +42,11 @@
       </div>
       <div *ngFor="let day of currentWeek" class="week-day" [ngClass]="{'current-day': isCurrentDay(day)}">
         <span class="day-numbers-label">{{ day.getDate() }}</span>
-        <div *ngFor="let course of getCoursesForDate(day, userCourses)" class="course-marker"
+        <div *ngFor="let course of getCoursesForDate(day, userCourses)" class="marker course"
           (click)="navigateToCourseDetails(course._id)">
           {{ course.title }}
         </div>
-        <div *ngFor="let course of getCoursesForDate(day, userReservedCourses)" class="reserved-course-marker"
+        <div *ngFor="let course of getCoursesForDate(day, userReservedCourses)" class="marker reserved-course"
           (click)="navigateToCourseDetails(course._id)">
           {{ course.title }}
         </div>

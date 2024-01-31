@@ -11,7 +11,13 @@ import { UserService } from '../user/user.service';
 export class NavbarComponent implements OnInit {
   showNav?: boolean;
   currentUser: User | null = null;
+  isMenuOpen = false;
 
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    console.log("Is menu open:", this.isMenuOpen);
+
+  }
   // Show or hide main navbar - (hide for /user)
   constructor(
     private router: Router,

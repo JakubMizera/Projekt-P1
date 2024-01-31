@@ -1,16 +1,18 @@
 <nav class="navbar" *ngIf="showNav">
+  <button class="hamburger-icon" (click)="toggleMenu()">☰</button>
   <a routerLink="/" class="nav-link">
     <div class="left-side">
       <img src="assets/images/Logo.png" alt="Adventure Sport logo" class="logo"/>
       <span class="brand">AdventureSport</span>
     </div></a>
-    <div class="center-side">
-      <a routerLink="/" class="nav-link">Strona Główna</a>
+    <div class="center-side" [ngClass]="{'active': isMenuOpen}">
+          <a routerLink="/" class="nav-link">Strona Główna</a>
       <a routerLink="/about" class="nav-link">O nas</a>
       <a routerLink="/products" class="nav-link">Produkty</a>
       <a routerLink="/contact" class="nav-link">Kontakt</a>
     </div>
     <div class="right-side">
+
       <div *ngIf="currentUser; else loginButton" class="user-info" routerLink="/user">
         <img *ngIf="currentUser.picture" [src]="currentUser.picture" alt="{{ currentUser.displayName }}"
           class="user-avatar">
